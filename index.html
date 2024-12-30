@@ -1,4 +1,4 @@
- <!--
+  <!--
 
                  PRIMORIA FEROX
 
@@ -367,11 +367,8 @@ and build better dodging survival game
 kashumy.github.io copyright © all rights reserved 
 dat : 24.21.12,
 
-
-
 Warning this is a Online Demo this can not work properly like my apk 
 please download orginal android game from my site <a href="https://github.com/Kashumy/Primoria-Ferox-Download/releases/tag/game">Release </a>
-
 
     </pre>
   </div>
@@ -888,12 +885,12 @@ let options = {
   autoclose: 0,
   dontbreakfloor:0,
   dropany:0,
-  creativemode:1,
+  creativemode:0,
   autopause:1,
   fightmode:0,
   fancygraphic:0,
   quickinventory:1,
-  noclip:1,
+  noclip:0,
   zoomout:0,
   biggerzoomout:0,
 };
@@ -2579,7 +2576,7 @@ if (generateCave === 1|| isunderwater==1|| inabyss==1|| inhell==1) {
 if(inabyss==1){
   
 }
-}else if (distanceFromSpawn > 690) {
+}else if (distanceFromSpawn > 890) {
         blockType = generateRandomIsland(blockPosX, blockPosY) // Generowanie wysp
         if(blockType=="water"){
          if (Math.random() < 0.002) {
@@ -2589,7 +2586,7 @@ if(inabyss==1){
          blockType = 'water'; // Woda poza 1600 bloków
         }
         }
-      } else if (distanceFromSpawn > 630) {
+      } else if (distanceFromSpawn > 830) {
         
         if(Math.random()<0.005){
           blockType = 'underwaterentrance';
@@ -2597,9 +2594,9 @@ if(inabyss==1){
         }else{
           blockType = 'water'; // Woda poza 1600 bloków
         }
-      }else if (distanceFromSpawn > 486 && distanceFromSpawn < 560) {
+      }else if (distanceFromSpawn > 686 && distanceFromSpawn < 760) {
         blockType =  Math.random() < 0.1 ? 'magnetite' : 'sand'; // Piasek między 1000 a 1600 bloków
-      }else if (distanceFromSpawn > 500) {
+      }else if (distanceFromSpawn > 700) {
  blockType = 'coast';
 } else {
         
@@ -2838,7 +2835,7 @@ blocks.push({ x: i * blockSize, y: (j - 1) * blockSize, type: 'black_elderberry2
 } else if (Math.random() < 0.2) {
                 blocks.push({ x: i * blockSize, y: j * blockSize, type: 'grass' });
                 blocks.push({ x: i * blockSize, y: j * blockSize, type: 'tallgrass' });
-            }else if (Math.random() < 0.22) {
+            }else if (Math.random() < 0.12) {
  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'grass' });
  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'grassdeco' });
 }else if (Math.random() < 0.01) {
