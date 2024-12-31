@@ -26,7 +26,10 @@ html {
     width: 5px; /* Szerokość paska przewijania */
     background-color: rgba(0, 0, 0, 0.3); /* Tło paska przewijania z przezroczystością */
 }
-
+::-webkit-scrollbar-track {
+  background-color: #00000000; 
+}
+ 
 ::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.1); 
 }
@@ -258,7 +261,11 @@ var cancontinue=0
    document.getElementById('loadingMenu').style.display='none' ;
    document.getElementById('MainMenu').style.display='none' ;
    if(paused==1){document.getElementById('advanced').style.display='block';}
+   isUpdating=0
    update();
+   setTimeout(function(){
+       update();
+   },1000)
    },1500);
  }
  function playgameslot(slot) {
@@ -274,8 +281,13 @@ var cancontinue=0
     
     document.getElementById('MainMenu').style.display = 'none';
     document.getElementById('loadingMenu').style.display = 'none';
-    update();
+    
     if(paused==1){document.getElementById('advanced').style.display='block';}
+    isUpdating = 0
+update();
+setTimeout(function() {
+    update();
+}, 1000)
   }, 2000);
  }
 
@@ -10954,7 +10966,8 @@ document.addEventListener('keydown', function(event) {
     flex-direction: column;
     font-size: 10px;
     margin-bottom: 0px;
-    max-height: 250px;
+    width: calc(100% - 55px );
+    max-height: 350px;
     overflow-y: auto; /* W przypadku dużej liczby receptur, pojawi się przewijanie */
 }
 
