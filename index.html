@@ -10669,7 +10669,20 @@ canvas.addEventListener(
   },
   false,
 );
-
+canvas.addEventListener(
+    "touchstart",
+    (e) => {
+        process_target(e);
+    },
+    false,
+);
+canvas.addEventListener(
+    "mousedown",
+    (e) => {
+        process_target(e);
+    },
+    false,
+);
 
 
 // Funkcja sprawdzająca, czy na danej pozycji znajduje się blok typu 'type'
@@ -10819,7 +10832,22 @@ function closeSaveNamesModal() {
 background-size: 100%;
 opacity:0.3;  color: rgba(0, 200, 255, 1); padding: 25px;image-rendering: pixelated; font-size: 15px;
 font-family: Arial, Helvetica, sans-serif;">EQ</div>
+<script>
 
+let inventoryOpen = false;
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'x' || event.key === 'X') { 
+        if (inventoryOpen) {
+            closeInventory();
+            inventoryOpen = false;
+        } else {
+            openInventory();
+            inventoryOpen = true;
+        }
+    }
+});
+
+</script>
     <style>
 /* Ciemny retro styl */
 
