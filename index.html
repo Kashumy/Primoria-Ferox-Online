@@ -19,6 +19,19 @@ FULL BETA                    1.5
     var yourItems = [];  // Ekwipunek
   </script>
       <style>
+html {
+    position:fixed; width:100vw; height: 100vh; overflow: hidden;;
+}
+::-webkit-scrollbar {
+    width: 5px; /* Szerokość paska przewijania */
+    background-color: rgba(0, 0, 0, 0.3); /* Tło paska przewijania z przezroczystością */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+
+ 
       *{
         user-select: none;
       }
@@ -244,7 +257,8 @@ var cancontinue=0
      abletostart=1;
    document.getElementById('loadingMenu').style.display='none' ;
    document.getElementById('MainMenu').style.display='none' ;
-   update();if(paused==1){document.getElementById('advanced').style.display='block';}
+   if(paused==1){document.getElementById('advanced').style.display='block';}
+   update();
    },1500);
  }
  function playgameslot(slot) {
@@ -4017,7 +4031,7 @@ let targetX = offsetX; // Docelowa pozycja X
 let targetY = offsetY; // Docelowa pozycja Y
 let smoothingFactor = 0.40; // Współczynnik gładkości (jak szybko gracz się przesuwa)
 
-const targetFPS = 24; 
+const targetFPS = 20; 
 const frameDuration = 1000 / targetFPS; // Duration of each frame in milliseconds
 
 
@@ -4458,7 +4472,7 @@ var butterflyentities = {
   "butterflyblue": {   },
   "firefly":{}
 };
-var speedmultiply=1.2
+var speedmultiply=1.35
 function updateEnemies() {
   var removebymagic=0;
   if(updfixbug==0){
@@ -6958,6 +6972,10 @@ function drawOxygenBar(ctx) {
 var abletostart=0
 var tickFix=0
 var zoomedDELTA=0
+    let isUpdating = 0;
+
+ 
+
 function update() {
  if(by5>14){
      
@@ -6982,17 +7000,23 @@ zoomedDELTA=0
     
  }}
  
-  if(options.autopause==0){
+  if(options.autopause!==1){
    tickFix++
-   if(tickFix>100){
+   if(tickFix>50){
     tickFix=0
     paused=1
-    setTimeout(function (){ paused=0; update() },10)
+    setTimeout(function (){ paused=0; update() },100)
    } 
   }
   
-  
-  if(paused!==1){
+  if (isUpdating>1) {
+      isUpdating=0
+  }else if(paused!==1){
+      
+
+ 
+    isUpdating += 1; // Ustaw flagę na true, aby oznaczyć, że funkcja jest w trakcie wykonywania
+      
     weaponTimeout()
   if( currentTrack !== trueTrack && checkIfHasEnemy("trueuniversehead",1)){
     playTrueTrack()
@@ -7829,7 +7853,7 @@ drawLightning2();
     const timeTaken = endTime - startTime;
     const timeToWait = Math.max(0, frameDuration - timeTaken);
 
-    setTimeout(update, frameDuration); // Wywołanie update ponownie
+    setTimeout(function(){isUpdating = 0;update();}, frameDuration); // Wywołanie update ponownie
   }
 }}
 
@@ -10981,7 +11005,8 @@ image-rendering:pixelated;
   flex-direction: column;
 justify-content: center;
 align-items: center;
-overflow: hidden scroll;
+overflow: hidden ;
+overflow-y: scroll ;
 }
 #advanced button {
   color: #000000;
@@ -11001,7 +11026,7 @@ overflow: hidden scroll;
 }
     </style>
 
-    <div class="inventory-container"  id="inventory">
+    <div class="inventory-container" style="overflow: scroll; height:100%;"  id="inventory">
       <input   style="position:absolute; top:40px; right:0 ; width:100px; background:#666666;z-index: 999; border:none; outline: none; font-size: 8px;" class="hover" placeholder="save name " id="savename" ></input>
       <div onclick="saveGameState(document.getElementById('savename').value || '' );" style="position:absolute; top:60px; right:0 ; background:#666666;z-index: 999; " class="hover">save game</div>
       
@@ -11022,8 +11047,8 @@ overflow: hidden scroll;
         </div>
     </div>
 
-<div id="advanced" style="display:none;">
-  <ffd style=" width :100%; height:99%; overflow: scroll hidden; ">
+<div id="advanced" style="display:none; height:100vh; overflow: hidden scroll;">
+  <ffd style=" width :100%; height:99%; overflow: hidden scroll ; ">
   <button   id="cheatButton" onclick="openCheatModal();" >Activate Cheats</button> <br>
   
     <div onclick="toggleAdvanced()" style="position:absolute; top:160px; right:10px; z-index:999; background:#666; color:white; padding:5px; cursor:pointer;">
