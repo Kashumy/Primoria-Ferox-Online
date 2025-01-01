@@ -1,4 +1,4 @@
-   <!--
+  <!--
 
                  PRIMORIA FEROX
 
@@ -263,10 +263,9 @@ var cancontinue=0
    document.getElementById('MainMenu').style.display='none' ;
    if(paused==1){document.getElementById('advanced').style.display='block';}
    isUpdating=0
-   update();
-   setTimeout(function(){
-       update();
-   },1000)
+   update()
+   paused = 1
+  setTimeout(function(){paused=0; update() },1000);
    },1500);
  }
  function playgameslot(slot) {
@@ -285,10 +284,9 @@ var cancontinue=0
     
     if(paused==1){document.getElementById('advanced').style.display='block';}
     isUpdating = 0
-update();
-setTimeout(function() {
-    update();
-}, 1000)
+update()
+   paused = 1
+  setTimeout(function(){paused=0; update() },1000);
   }, 2000);
  }
 
@@ -10879,10 +10877,11 @@ font-family: Arial, Helvetica, sans-serif;">EQ</div>
 
 let inventoryOpen = false;
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'x' || event.key === 'X') { 
+    if (event.key === 'x' || event.key === 'X'|| event.key === "z") { 
         if (inventoryOpen) {
             closeInventory();
             inventoryOpen = false;
+            advanced.style.display ="none"
         } else {
             openInventory();
             inventoryOpen = true;
@@ -10906,7 +10905,7 @@ document.addEventListener('keydown', function(event) {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 20px;
+    padding: 7px;
     visibility: hidden; /* Ukryty domyślnie */
     box-sizing: border-box;
 }
@@ -10959,8 +10958,8 @@ document.addEventListener('keydown', function(event) {
     flex-direction: column;
     font-size: 10px;
     margin-bottom: 0px;
-    width: calc(100% - 65px );
-    max-height: 350px;
+    width: calc(100% - 70px );
+    max-height: 460px;
     overflow-y: auto; /* W przypadku dużej liczby receptur, pojawi się przewijanie */
 }
 
@@ -11027,14 +11026,17 @@ overflow-y: scroll ;
   width:50%;
   
 }
+.hover{
+    font-size: 12.5px;
+}
 .cheatButton1{
   background-color:#959595;
 }
     </style>
 
     <div class="inventory-container" style="overflow: scroll; height:100%;"  id="inventory">
-      <input   style="position:absolute; top:40px; right:0 ; width:100px; background:#666666;z-index: 999; border:none; outline: none; font-size: 8px;" class="hover" placeholder="save name " id="savename" ></input>
-      <div onclick="saveGameState(document.getElementById('savename').value || '' );" style="position:absolute; top:60px; right:0 ; background:#666666;z-index: 999; " class="hover">save game</div>
+      <input   style="position:absolute; top:40px; right:0 ; width:50px; background:#666666;z-index: 999; border:none; outline: none; font-size: 8px;" class="hover" placeholder="save name " id="savename" ></input>
+      <div onclick="saveGameState(document.getElementById('savename').value || '' );" style="position:absolute; top:60px; right:0 ; background:#666666;z-index: 999; font-size: 10px;" class="hover">save game</div>
       
       <div onclick="loadGameState(document.getElementById('savename').value || '');"  style="position:absolute; top:90px; right:0 ;z-index: 999; background:#666666;"class="hover">load game</div>
 <div onclick="toggleAllRecipes()"  style="position:absolute; top:120px; right:0 ; z-index: 999; background:#666666;"class="hover">Show all</div>
@@ -12171,8 +12173,8 @@ offsetY = (Math.floor(offsetY / 32) * 32) + 10; // Zaokrąglamy offsetY
         function closeInventory() {
           
 if (options.autopause == 1) {
-  paused = 0
-  update()
+  paused = 1
+  setTimeout(function(){paused=0; update() },300);
 } else {
   paused = 1
   setTimeout(function(){paused=0; update() },300);
