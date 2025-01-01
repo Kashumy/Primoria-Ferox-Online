@@ -1,4 +1,4 @@
-  <!--
+   <!--
 
                  PRIMORIA FEROX
 
@@ -25,13 +25,14 @@ html {
 ::-webkit-scrollbar {
     width: 5px; /* Szerokość paska przewijania */
     background-color: rgba(0, 0, 0, 0.3); /* Tło paska przewijania z przezroczystością */
+    height:5px;
 }
 ::-webkit-scrollbar-track {
   background-color: #00000000; 
 }
  
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.1); 
+    background-color: rgba(255, 255, 255, 0.15); 
 }
 
  
@@ -478,21 +479,21 @@ opacity: 0.8
 }
 .hunger-bar {
   height: 100%;
-  background-color: #00792A;
+  background-color: #00C846;
   /* Czerwony - aktualne życie */
   width: 100%;
   /* Domyślnie pełne zdrowie */
 }
       .health-bar {
         height: 100%;
-        background-color: #790000;
+        background-color: #FF0000;
         /* Czerwony - aktualne życie */
         width: 100%;
         /* Domyślnie pełne zdrowie */
       }
 .stamina-bar {
         height: 100%;
-        background-color: #797500;
+        background-color: #DDD600;
         /* Czerwony - aktualne życie */
         width: 100%;
         /* Domyślnie pełne zdrowie */
@@ -7012,20 +7013,12 @@ zoomedDELTA=0
     
  }}
  
-  if(options.autopause!==1){
-   tickFix++
-   if(tickFix>50){
-    tickFix=0
-    paused=1
-    setTimeout(function (){ paused=0; update() },100)
-   } 
-  }
   
   if (isUpdating>1) {
       isUpdating=0
   }else if(paused!==1){
       
-
+const startTime = performance.now();
  
     isUpdating += 1; // Ustaw flagę na true, aby oznaczyć, że funkcja jest w trakcie wykonywania
       
@@ -7082,7 +7075,7 @@ if (inWater) {
   if(checkIfItems("healmedalion",1)){
     updateHealth(0.01);
   }
-  const startTime = performance.now(); // Get the current time at the start of the update
+  
   
     if (Array.isArray(housechunks)) {
   housechunks = {}; // zmienna staje się pustym obiektem
@@ -10966,14 +10959,14 @@ document.addEventListener('keydown', function(event) {
     flex-direction: column;
     font-size: 10px;
     margin-bottom: 0px;
-    width: calc(100% - 55px );
+    width: calc(100% - 65px );
     max-height: 350px;
     overflow-y: auto; /* W przypadku dużej liczby receptur, pojawi się przewijanie */
 }
 
 .recipe {
-    background-color: #333;
-    padding: 10px;
+    background-color: #2C2828;
+    padding: 5px;
     margin-bottom: 5px;
     border-radius: 5px;
     cursor: pointer;
@@ -10989,18 +10982,18 @@ flex-wrap: wrap;
 }
 
 .recipe img {
-    width: 30px;
+    width: 25px;
     image-rendering: pixelated;
     vertical-align: middle;
 }
 
 .recipe-name {
     margin-top: 5px;
-    font-size: 12px;
+    font-size: 10px;
     text-align: center;
 }
 .itemImg{
-width: 30px;
+width: 26px;
 background-size: 60%;
 image-rendering:pixelated;
 }
@@ -11740,7 +11733,7 @@ var campfirerecipes = {
 "cooked_salmon": [["salmon"]],
 "cooked_trout": [["trout"]],
 "sugar": [["thistleroot","thistleroot"],["cooked_thistleroot","cooked_thistleroot"],["dandelion","dandelion","dandelion"],["blackberry-fruit"],["briar-fruit","briar-fruit"]],
-"rye_seeds":["rye","rye"],
+"rye_seeds":[["rye","rye"]],
 "bowl_with_water": [["bowl_with_seawater"]],
 "leafbowlwithcleanwater": [["leafbowlwithwater"]],
 }
@@ -12180,10 +12173,9 @@ offsetY = (Math.floor(offsetY / 32) * 32) + 10; // Zaokrąglamy offsetY
 if (options.autopause == 1) {
   paused = 0
   update()
-  
 } else {
-  paused = 0
-  update()
+  paused = 1
+  setTimeout(function(){paused=0; update() },300);
   
 }
             document.getElementById("inventory").style.visibility = "hidden";
@@ -12644,7 +12636,7 @@ recipeDiv.style.opacity = "1";
             recipeVariants.forEach(variant => {
                 const variantDiv = document.createElement("div");
                 variantDiv.classList.add("recipe-variant");
-
+if(variant){
                 variant.forEach(item => {
                     const itemImg = document.createElement("img");
                     itemImg.src = allItems[item];
@@ -12658,7 +12650,7 @@ recipeDiv.style.opacity = "1";
                     variantDiv.appendChild(itemImg);
                     variantDiv.appendChild(itemName);
                 });
-
+}
                 itemsContainer.appendChild(variantDiv);
             });
 
