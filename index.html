@@ -1,4 +1,4 @@
-  <!--
+ <!--
 
                  PRIMORIA FEROX
 
@@ -547,12 +547,15 @@ function checkIfItems(item, amount) {
       let currentStamina = 100; // Aktualna Stamina
       function updateHealth(amount) {
         // Aktualizacja HP, ograniczenie do wartości od 0 do maxHP
-        if(checkIfItems("hellbuff",1)){
+         if(checkIfItems("dracobuff",1)){
           if(amount<1){
-          amount=amount/1.15
+          amount=amount/1.3
+        }}else if(checkIfItems("hellbuff",1)){
+          if(amount<1){
+          amount=amount/1.10
         }} else if(checkIfItems("titaniumbuff",1)){
           if(amount<1){
-          amount=amount/1.5
+          amount=amount/1.3
         }}
         currentHP = Math.max(0, Math.min(maxHP, currentHP + amount));
 playhitmp3()
@@ -588,6 +591,7 @@ if(currentHP<50){
           offsetY=0
           
          showTextInCanvas("YOU DIED")
+         
           }
          const healthBar = document.getElementById('healthBar');
 const healthPercentage = (currentHP / maxHP) * 100;
@@ -595,6 +599,7 @@ healthBar.style.width = healthPercentage + '%';
 setTimeout(function (){
 renderedEnemies=[]
 //loadGameState(document.getElementById('savename').value || '');
+playRandomMusic();
 },200);
 nightpower=nightpower-1 
 if(nightpower<0){
@@ -606,12 +611,15 @@ if(nightpower<0){
 
 function updateHealth2(amount) {
         // Aktualizacja HP, ograniczenie do wartości od 0 do maxHP
-        if(checkIfItems("hellbuff",1)){
+if(checkIfItems("dracobuff",1)){
           if(amount<1){
-          amount=amount/1.7
+          amount=amount/1.3
+        }}else if(checkIfItems("hellbuff",1)){
+          if(amount<1){
+          amount=amount/1.10
         }} else if(checkIfItems("titaniumbuff",1)){
           if(amount<1){
-          amount=amount/1.5
+          amount=amount/1.3
         }}
         currentHP = Math.max(0, Math.min(maxHP, currentHP + amount));
         const healthBar = document.getElementById('healthBar');
@@ -666,7 +674,9 @@ healthBar.style.width = healthPercentage + '%';
         staminaBar.style.width = staminaprocentage + '%';
         
         if(currentStamina<=1){
-          if (checkIfItems("hellbuff", 1)) {
+            if (checkIfItems("dracobuff", 1)) {
+    updateHealth(-0.45)
+        }else if (checkIfItems("hellbuff", 1)) {
            updateHealth(-0.35)
           }
           showTextInCanvas(" you are tried ")
@@ -929,7 +939,7 @@ const inventory = {
     items: [], // Tablica przechowująca przedmioty
     maxSlots: 4, // Maksymalna liczba slotów w ekwipunku
 };
-const waterBuilder = ["stone_floor", "fiber_floor","grasslayer","yellow","violet","thistle","clayblock","clayblock1","dandelion","toadstool","sandblock2","gypsumblock","glass","fern","planks_floor","log_floor","ashblock","ashfloor","brickfloor","dirt","daffodil","flax" ,"myosotis" ,"fiber_floor","bed1","magnetite","nettle","stone_floor","emeraldfloor","sapphirefloor","rubyfloor","opalblock","opalblock","violetfloor","gypsum_dirt","gypsumfloor","gelfloor","gelblock","fiber_floor", "grasslayer", "yellow", "violet", "clayblock", "clayblock1", "dandelion", "toadstool", "sandblock2", "gypsumblock", "glass", "fern", "planks_floor", "log_floor", "ashblock", "ashfloor", "brickfloor", "daffodil", "fiber_floor", "bed1", "magnetite", "nettle", "stone_floor", "emeraldfloor", "sapphirefloor", "rubyfloor", "clayblock1", "clayblock","violetfloor","toadstool","stones","thistle","ryeroof","houseroof","housewall","brickhouse","gelblock","gypsum_dirt","roadfloor","gypsumblock","gypsumfloor","brickfloor2","grass2","forestgrasslayer","deadgrassfloor2","deadgrassfloor","forestgrasslayer","hill","climbhill"];
+const waterBuilder = ["stone_floor", "fiber_floor","grasslayer","yellow","violet","thistle","clayblock","clayblock1","dandelion","toadstool","sandblock2","gypsumblock","glass","fern","planks_floor","log_floor","ashblock","ashfloor","brickfloor","dirt","daffodil","flax" ,"myosotis" ,"fiber_floor","bed1","magnetite","nettle","stone_floor","emeraldfloor","sapphirefloor","rubyfloor","opalblock","opalblock","violetfloor","gypsum_dirt","gypsumfloor","gelfloor","gelblock","fiber_floor", "grasslayer", "yellow", "violet", "clayblock", "clayblock1", "dandelion", "toadstool", "sandblock2", "gypsumblock", "glass", "fern", "planks_floor", "log_floor", "ashblock", "ashfloor", "brickfloor", "daffodil", "fiber_floor", "bed1", "magnetite", "nettle", "stone_floor", "emeraldfloor", "sapphirefloor", "rubyfloor", "clayblock1", "clayblock","violetfloor","toadstool","stones","thistle","ryeroof","houseroof","housewall","brickhouse","gelblock","gypsum_dirt","roadfloor","gypsumblock","gypsumfloor","brickfloor2","grass2","forestgrasslayer","deadgrassfloor2","deadgrassfloor","forestgrasslayer","hill","climbhill","hellplank","abyssplank"];
 function isPlayerInWater() {
     let isInWater = false;
 
@@ -998,6 +1008,27 @@ let player = {
         
 };
 let armourstextures={
+      "dracobuff": {
+      staydown: ['./dracostaydown.png'],
+      stayup: ['./dracostayup.png'],
+      moveup: ['./dracoup1.png', './dracoup2.png'],
+      stayupleft: ['./dracoleft1.png'],
+      stayupright: ['./dracoright1.png'],
+      stayright: ['./dracoright1.png'],
+      stayleft: ['./dracoleft1.png'],
+      moveright: ['./dracoright1.png', './dracoright2.png'],
+      moveleft: ['./dracoleft1.png', './dracoleft2.png'],
+      movedown: ['./dracodown1.png', './dracodown2.png'],
+      moveupleft: ['./dracoleft1.png', './dracoleft2.png'],
+      moveupright: ['./dracoright1.png', './dracoright2.png'],
+      stayupleft: ['./dracoleft1.png'],
+      stayupright: ['./dracoright1.png'],
+
+      inwater_moveleft: ['./swimleft0.png', './swimleft1.png'],
+      inwater_moveright: ['./swimright0.png', './swimright1.png'],
+      inwater_movedown: ['./swimdown0.png', './swimdown1.png'],
+      inwater_moveup: ['./swimup0.png', './swimup1.png'],
+  },
   "titaniumbuff":{
     staydown: ['./titaniumstaydown.png'],
         stayup: ['./titaniumstayup.png'],
@@ -1115,7 +1146,7 @@ function playswimsound() {
 }
 function playwindsound() {
   if (windsound.paused) {
-    windsound.volume=0.3;
+    windsound.volume=0.15;
     windsound.play();
   }
 }
@@ -1206,6 +1237,9 @@ if(inWater ){
  if (checkIfItems("broom", 1) && isflying == 1) {
   newTexture.src = armourstextures.broom[player.currentAnimation][player.frameIndex];
   
+}else if (checkIfItems("dracobuff", 1)) {
+    newTexture.src = armourstextures.dracobuff[player.currentAnimation][player.frameIndex];
+
 } else   if (checkIfItems("hellbuff", 1)) {
   newTexture.src = armourstextures.hellbuff[player.currentAnimation][player.frameIndex];
   
@@ -1273,6 +1307,7 @@ const nightmusicTracks = [
   "./night.mp3",
  "./night5.mp3",
  "./night4.mp3",
+ "./%4NIGHTP - BBS -.mp3"
 ];
 const audioInstances = musicTracks.map(track => new Audio(track));
 const audioInstances2 = musicTracks2.map(track => new Audio(track));
@@ -1469,7 +1504,7 @@ currentTrack= trueTrack
   };
 
   trueTrack.onerror = function () {
-    playRandomMusic(); // Próbuje odtworzyć losowy utwór, jeśli TRUE.mp3 ma błąd
+//    playRandomMusic(); // Próbuje odtworzyć losowy utwór, jeśli TRUE.mp3 ma błąd
   };
 }
 function playAbyssumTrack() {
@@ -1680,6 +1715,34 @@ const textures = {};
 
 // Definicja nazw tekstur i ich ścieżek
 const textureSources = {
+warporb: "./warporb1.png",
+    
+    abysslog: "./abysstree0.png",
+    helllog: "./helltree0.png",
+ hellsapling:"./hellsapling.png",
+ abysssapling:"./abysssapling.png",
+ helltree0:"./helltree1.png",
+ helltree1:"./helltree1.png",
+ helltree2:"./helltree2.png",
+ hellwood:"./hellwood.png",
+ hellgrass:"./hellgrass1.png",
+ hellplank:"./hellplank1.png",
+ abyssgrass: "./abyssgrass1.png",
+abyssplank: "./abyssplank1.png",
+
+ abyssgel:"./abyssgel.png",
+ abysswood:"./abysswood.png",
+ abysstree0:"./abysstree0.png",
+ abysstree1:"./abysstree0.png",
+ abysstree2:"./abysstree2.png",
+  
+ hell_boomerang:"./hell_boomerang.png",
+ draco_boomerang:"./draco_boomerang.png",
+ good_boomerang:"./good_boomerang.png",
+ titanium_boomerang:"./titanium_boomerang.png",
+ boomerang: './boomerang.png',
+ dracobuff: './dracobuff.png',
+ 
  extinguished_campfire: './extinguished_campfire1.png',
  algae1: './algae1.png',
  algae0: './algae1.png',
@@ -2096,6 +2159,42 @@ function loadWeaponTextures() {
 
 
 const animatedTextures = {
+warporb: {
+    frames: ['./warporb1.png', './warporb2.png'],
+    speed: 1.5
+},
+hellplank: {
+    frames: ['./hellplank1.png', './hellplank2.png'],
+    speed: 1.5
+},
+abyssplank: {
+    frames: ['./abyssplank1.png', './abyssplank2.png'],
+    speed: 1.5
+},
+ abyssgrass: {
+    frames: ['./abyssgrass2.png', './abyssgrass1.png'], 
+    speed: 0.7
+},
+hellgrass: {
+    frames: ['./hellgrass2.png', './hellgrass1.png'],
+    speed: 0.7
+},
+abysstree1: {
+    frames: ['./abysstree1.png', './abysstree0.png'],
+    speed: 1.7
+},
+abysstree0: {
+    frames: ['./abysstree1.png', './abysstree0.png'],
+    speed: 1.7
+},
+helltree1: {
+    frames: ['./helltree1.png', './helltree0.png'],
+    speed: 1.7
+},
+helltree0: {
+    frames: ['./helltree1.png', './helltree0.png'],
+    speed: 1.7
+},
  algae1: {
  frames: ['./algae1.png', './algae2.png'],
  speed: 0.5
@@ -2200,6 +2299,7 @@ tallgrass: {
  frames: ['./extinguished_campfire1.png', './extinguished_campfire2.png'], // Klatki animacji
  speed: 0.3 // Czas trwania jednej klatki (w sekundach)
 },
+
    hook: {
   frames: ['./hook1.png', './hook2.png'], // Klatki animacji
   speed: 0.5 // Czas trwania jednej klatki (w sekundach)
@@ -3020,7 +3120,15 @@ blocks.push({ x: i * blockSize, y: j * blockSize, type: 'basalt' });
   
   }else{
   blocks.push({ x: 0, y: 0, type: 'hellcavestone' });
-
+if (Math.random() < 0.05) {
+    blocks.push({ x: i * blockSize, y: j * blockSize, type: 'helltree0' });
+    blocks.push({ x: i * blockSize, y: (j - 1) * blockSize, type: 'helltree1' });
+    blocks.push({ x: i * blockSize, y: (j - 2) * blockSize, type: 'helltree2' });
+} else if (Math.random() < 0.002) {
+    blocks.push({ x: 0, y: 0, type: 'hellwood' });
+}else if (Math.random() < 0.020) {
+    blocks.push({ x: 0, y: 0, type: 'hellgrass' });
+}
   }
 } else {
   if (isNearCaveEntrance) {
@@ -3141,7 +3249,15 @@ if (generateCaves2(blockPosX, blockPosY)) {
     blocks.push({ x: 0, y: 0, type: 'glowblossom' });
   } else if (Math.random() < 0.01) {
     blocks.push({ x: 0, y: 0, type: 'echorocks' });
-  }
+  }else if (Math.random() < 0.05) {
+    blocks.push({ x: i * blockSize, y: j * blockSize, type: 'abysstree0' });
+    blocks.push({ x: i * blockSize, y: (j - 1) * blockSize, type: 'abysstree1' });
+    blocks.push({ x: i * blockSize, y: (j - 2) * blockSize, type: 'abysstree2' });
+} else if (Math.random() < 0.002) {
+    blocks.push({ x: 0, y: 0, type: 'abysswood' });
+}else if (Math.random() < 0.020) {
+    blocks.push({ x: 0, y: 0, type: 'abyssgrass' });
+}
 
 
 }else{
@@ -3354,7 +3470,13 @@ var blocksGlow = {
     "campfire": { "x": 0, "y": 0, "d": 1 },
     "extinguished_campfire": { "x": 0, "y": 0, "d": 0 },
     "ignited_fiber": { "x": 0, "y": 0, "d": 1 },
-    "statueofgods": { "x": 2, "y": 2, "d": 2 }
+    "statueofgods": { "x": 2, "y": 2, "d": 2 },
+    "abysstree2": { "x": 0, "y": 0, "d": 1 },
+    "abysstree0": { "x": 0, "y": 0, "d": 1 },
+    "abysstree1": { "x": 0, "y": 0, "d": 1 },
+    "helltree0": { "x": 0, "y": 0, "d": 0 },
+    "helltree1": { "x": 0, "y": 0, "d": 0 },
+    "helltree2": { "x": 0, "y": 0, "d": 0 },
 };
 
 
@@ -3461,7 +3583,7 @@ if (yourItems !== undefined) {
 
 
 let chunkPositions = []; // Dodajemy do przechowywania pozycji chunków
-var dontcount = ["dirt", "grass", "tallgrass", "yellow", "dandelion", "violet","tree0","pine0","birch0","tree1","pine1","birch1","tree2","pine2","birch2","grasslayer","clayblock","ashfloor","shine","shiny","log_floor","log_wall","log","stone_floor","stone_wall","brickwall","brickfloor","clayblock1","glass","gypsumblock","abyssfloor","abyssescape","snowpine1","snowpine2","snowpine3","stone_floor", "fiber_floor", "grasslayer", "yellow", "violet", "clayblock", "clayblock1", "dandelion", "toadstool", "sandblock2", "gypsumblock", "glass", "fern", "planks_floor", "log_floor", "ashblock", "ashfloor", "brickfloor", "daffodil","flax","myosotis", "fiber_floor", "bed1", "magnetite", "nettle", "stone_floor", "emeraldfloor", "sapphirefloor", "rubyfloor", "clayblock1", "clayblock","violetfloor","grass","toadstool","stones","thistle","ryeroof","houseroof","housewall","brickhouse","gelblock","gypsum_dirt","roadfloor","gypsumblock","gypsumfloor","torch","brickfloor2","door","door2","housegrass","lamp","lamp2","hellwall2","forestgrass","forestleaf","blush","hill1","climbhill","statue1_1","statue1_2","kiln","algae1","algae2","algae0","statue2_2","statue2_1"];
+var dontcount = ["dirt", "grass", "tallgrass", "yellow", "dandelion", "violet","tree0","pine0","birch0","tree1","pine1","birch1","tree2","pine2","birch2","grasslayer","clayblock","ashfloor","shine","shiny","log_floor","log_wall","log","stone_floor","stone_wall","brickwall","brickfloor","clayblock1","glass","gypsumblock","abyssfloor","abyssescape","snowpine1","snowpine2","snowpine3","stone_floor", "fiber_floor", "grasslayer", "yellow", "violet", "clayblock", "clayblock1", "dandelion", "toadstool", "sandblock2", "gypsumblock", "glass", "fern", "planks_floor", "log_floor", "ashblock", "ashfloor", "brickfloor", "daffodil","flax","myosotis", "fiber_floor", "bed1", "magnetite", "nettle", "stone_floor", "emeraldfloor", "sapphirefloor", "rubyfloor", "clayblock1", "clayblock","violetfloor","grass","toadstool","stones","thistle","ryeroof","houseroof","housewall","brickhouse","gelblock","gypsum_dirt","roadfloor","gypsumblock","gypsumfloor","torch","brickfloor2","door","door2","housegrass","lamp","lamp2","hellwall2","forestgrass","forestleaf","blush","hill1","climbhill","statue1_1","statue1_2","kiln","algae1","algae2","algae0","statue2_2","statue2_1","helltree0","helltree1","helltree2","abysstree2","abysstree1","abysstree0","helllog","abysslog","abyssgrass","hellgrass" ];
 let waveTick = 0;
 var fenceconnections={
   "none": "./fence.png",
@@ -4004,7 +4126,7 @@ if (texture && texture.complete && texture.naturalWidth > 0) {
                 if (block.type === 'tree0' || block.type === 'yew0' || block.type === 'pine0') {
                     treesBelowPlayer.push({ type: block.type, x: x, y: y });
                 }
-                if (block.type === 'tree1' || block.type === 'tree2'|| block.type === 'voidblock'|| block.type === 'birch1' || block.type === 'birch2' || block.type === 'yew1' || block.type === 'pine1' || block.type === 'pine2'|| block.type === 'black_elderberry2'|| block.type === 'empty_black_elderberry2'|| block.type === 'houseroof'||block.type === 'ryeroof'||block.type === 'snowpine2'||block.type === 'snowpine3'||block.type === 'lamp2'||block.type === 'statue1_2'||block.type === 'statue2_2'||block.type === 'algae0'||block.type === 'algae2') {
+                if (block.type === 'tree1' || block.type === 'tree2'|| block.type === 'voidblock'|| block.type === 'birch1' || block.type === 'birch2' || block.type === 'yew1' || block.type === 'pine1' || block.type === 'pine2'|| block.type === 'black_elderberry2'|| block.type === 'empty_black_elderberry2'|| block.type === 'houseroof'||block.type === 'ryeroof'||block.type === 'snowpine2'||block.type === 'snowpine3'||block.type === 'lamp2'||block.type === 'statue1_2'||block.type === 'statue2_2'||block.type === 'algae0'||block.type === 'algae2' ||block.type === 'helltree1'||block.type === 'helltree2'||block.type === 'abysstree1'||block.type === 'abysstree2') {
                     treesAbovePlayer.push({ type: block.type, x: x, y: y });
                 }
             });
@@ -4042,7 +4164,7 @@ let targetX = offsetX; // Docelowa pozycja X
 let targetY = offsetY; // Docelowa pozycja Y
 let smoothingFactor = 0.40; // Współczynnik gładkości (jak szybko gracz się przesuwa)
 
-const targetFPS = 20; 
+const targetFPS = 15; 
 const frameDuration = 1000 / targetFPS; // Duration of each frame in milliseconds
 
 
@@ -4187,7 +4309,18 @@ const textureDefinitions = {
     "hyperblast":"./hyperblast.png",
     "greenmagic1": "./greenmagic.png",
     "greenmagic2": "./grennmagic1.png",
+    
+    
+    
 "godmagic": "./godmagic.png",
+
+// boomerang 
+"boomerang":"./boomerang.png",
+"good_boomerang":"./good_boomerang.png",
+"titanium_boomerang":"./titanium_boomerang.png",
+"hell_boomerang":"./hell_boomerang.png",
+"draco_boomerang":"./draco_boomerang.png",
+
     "butterflyyellow1": "./butterflyyellow1.png",
     "butterflyyellow2": "./butterflyyellow2.png",
     
@@ -4218,6 +4351,11 @@ const enemies = {
 "firefly": { hp: 1, atk: 0 },
   "magicsharp": { hp: Infinity, atk: 0 },
   "hyperblast": { hp: Infinity, atk: 0 },
+  "boomerang": { hp: Infinity, atk: 0 },
+  "titanium_boomerang": { hp: Infinity, atk: 0 },
+  "good_boomerang": { hp: Infinity, atk: 0 },
+  "draco_boomerang": { hp: Infinity, atk: 0 },
+  "hell_boomerang": { hp: Infinity, atk: 0 },
   "bat": { hp: 5, atk: -1 },
   "giantbat": { hp: 20, atk: -1 },
   "shark": { hp: 10, atk: -2 },
@@ -4471,11 +4609,24 @@ function gfggf(data){
 }
 let updfixbug=0
 var magicspellsfromentities = {
-  "greenmagic": { dmg: -3.0, speed: 5 },
+  "greenmagic": { dmg: -5.0, speed: 5 },
+  "boomerang": { dmg: -1.5, speed: 12 },
+  "good_boomerang": { dmg: -50, speed: 18 },
+  "hell_boomerang": { dmg: -100, speed: 20 },
+  "draco_boomerang": { dmg: -200, speed: 18 },
+  "titanium_boomerang": { dmg: -10, speed: 15 },
   "magic": { dmg: -15.2, speed: 9 },
   "magicsharp": { dmg: -15.2, speed: 10 },
-  "hyperblast": { dmg: -30.0, speed: 13 },
+  "hyperblast": { dmg: -25.0, speed: 13 },
   "godmagic": { dmg: -150.2, speed: 10 },
+};
+var boomerangs = {
+
+    "boomerang": {  speed: 0.8},
+ "good_boomerang":{speed:1},
+ "titanium_boomerang":{speed:1.3},
+ "draco_boomerang":{speed:1.4},
+ "hell_boomerang":{speed:1.4},
 };
 var butterflyentities = {
   "butterflyred": {   },
@@ -4483,7 +4634,7 @@ var butterflyentities = {
   "butterflyblue": {   },
   "firefly":{}
 };
-var speedmultiply=1.35
+var speedmultiply=1.42
 function updateEnemies() {
   var removebymagic=0;
   if(updfixbug==0){
@@ -4537,7 +4688,13 @@ if (enemy.type in magicspellsfromentities) {
     }
   });
 }
-
+if (enemy.type in boomerangs) {
+    const spell = boomerangs[enemy.type];
+    enemy.height = 32+2;
+    enemy.width = 32+2 ;
+if(!enemy.angle2){enemy.angle2 = 0;}
+ enemy.angle2 += spell.speed
+}
         // Obsługa segmentów robaka
         
         if (enemy.type === "trueuniversebody" && enemy.following) {
@@ -5652,6 +5809,21 @@ if(enemy.type=='bat' || enemy.type=='bat1' ){ const enemyTexture = enemy.animati
     }
 }else if (enemy.type == 'hyperblast') {const enemyTexture = enemyTextures['hyperblast']; if (enemyTexture.complete && enemyTexture.naturalWidth > 0) { ctx.drawImage( enemyTexture, enemy.x - offsetX,  enemy.y - offsetY, enemy.width, enemy.height);
     }
+}else if (enemy.type == 'boomerang') {const enemyTexture = enemyTextures['boomerang'];
+    if (enemyTexture.complete && enemyTexture.naturalWidth > 0) { ctx.save(); ctx.translate(enemy.x - offsetX + enemy.width / 2, enemy.y - offsetY + enemy.height / 2); ctx.rotate(enemy.angle2-93);ctx.drawImage(enemyTexture, -enemy.width / 2, -enemy.height / 2, enemy.width, enemy.height);
+        ctx.restore(); }  
+}else if (enemy.type == 'good_boomerang') {const enemyTexture = enemyTextures['good_boomerang'];
+    if (enemyTexture.complete && enemyTexture.naturalWidth > 0) { ctx.save(); ctx.translate(enemy.x - offsetX + enemy.width / 2, enemy.y - offsetY + enemy.height / 2); ctx.rotate(enemy.angle2-93);ctx.drawImage(enemyTexture, -enemy.width / 2, -enemy.height / 2, enemy.width, enemy.height);
+        ctx.restore(); }  
+}else if (enemy.type == 'draco_boomerang') {const enemyTexture = enemyTextures['draco_boomerang'];
+    if (enemyTexture.complete && enemyTexture.naturalWidth > 0) { ctx.save(); ctx.translate(enemy.x - offsetX + enemy.width / 2, enemy.y - offsetY + enemy.height / 2); ctx.rotate(enemy.angle2-93);ctx.drawImage(enemyTexture, -enemy.width / 2, -enemy.height / 2, enemy.width, enemy.height);
+        ctx.restore(); }  
+}else if (enemy.type == 'hell_boomerang') {const enemyTexture = enemyTextures['hell_boomerang'];
+    if (enemyTexture.complete && enemyTexture.naturalWidth > 0) { ctx.save(); ctx.translate(enemy.x - offsetX + enemy.width / 2, enemy.y - offsetY + enemy.height / 2); ctx.rotate(enemy.angle2-93);ctx.drawImage(enemyTexture, -enemy.width / 2, -enemy.height / 2, enemy.width, enemy.height);
+        ctx.restore(); }  
+}else if (enemy.type == 'titanium_boomerang') {const enemyTexture = enemyTextures['titanium_boomerang'];
+    if (enemyTexture.complete && enemyTexture.naturalWidth > 0) { ctx.save(); ctx.translate(enemy.x - offsetX + enemy.width / 2, enemy.y - offsetY + enemy.height / 2); ctx.rotate(enemy.angle2-93);ctx.drawImage(enemyTexture, -enemy.width / 2, -enemy.height / 2, enemy.width, enemy.height);
+        ctx.restore(); }  
 }else if (enemy.type == 'magicsharp') {const enemyTexture = enemyTextures['magicsharp']; if (enemyTexture.complete && enemyTexture.naturalWidth > 0) { ctx.drawImage( enemyTexture, enemy.x - offsetX,  enemy.y - offsetY, enemy.width, enemy.height);
     }
 } if(enemy.type=='hellskull' || enemy.type=='hellskull1' ){ const enemyTexture = enemy.animationFrame === 0 ? enemyTextures['hellskull1'] : enemyTextures['hellskull2']; drawEnemyHealthBar(enemy); if (enemyTexture.complete && enemyTexture.naturalWidth > 0) { ctx.drawImage( enemyTexture, enemy.x - offsetX,  enemy.y - offsetY, enemy.width, enemy.height);}
@@ -6112,8 +6284,48 @@ function growTreeInVisibleChunks() {
           buildBlockAtPosition(Math.floor(((globalX - offsetX) / 32) * 32), Math.floor(((globalY - offsetY) / 32) * 32), 'extinguished_campfire'); 
           
         }}
-
-
+       if(Math.random()<0.05&&Math.random()<0.09){
+            if (block.type === 'hellsapling') {
+                const globalX = block.x + (parseInt(chunkKey.split(',')[0]) * blockSize);
+                const globalY = block.y + (parseInt(chunkKey.split(',')[1]) * blockSize);
+                removeBlockAtPosition(globalX - offsetX, globalY - offsetY, 'hellsapling');
+                let treeStructure = [
+                    { x: 0, y: 0, type: "helltree0" },    
+                    { x: 0, y: -32, type: "helltree1" },
+                    { x: 0, y: -64, type: "helltree2" }, 
+                ];
+                if (!chunks[chunkKey]) {
+                    chunks[chunkKey] = [];
+                }
+                treeStructure.forEach((treeBlock) => {
+                    chunks[chunkKey].push({
+                        x: block.x + treeBlock.x,  
+                        y: block.y + treeBlock.y,  
+                        type: treeBlock.type       
+                    });
+                });
+            }}
+if(Math.random()<0.05&&Math.random()<0.05){
+            if (block.type === 'abysssapling') {
+                const globalX = block.x + (parseInt(chunkKey.split(',')[0]) * blockSize);
+                const globalY = block.y + (parseInt(chunkKey.split(',')[1]) * blockSize);
+                removeBlockAtPosition(globalX - offsetX, globalY - offsetY, 'abysssapling');
+                let treeStructure = [
+                    { x: 0, y: 0, type: "abysstree0" },    
+                    { x: 0, y: -32, type: "abysstree1" },
+                    { x: 0, y: -64, type: "abysstree2" }, 
+                ];
+                if (!chunks[chunkKey]) {
+                    chunks[chunkKey] = [];
+                }
+                treeStructure.forEach((treeBlock) => {
+                    chunks[chunkKey].push({
+                        x: block.x + treeBlock.x,  
+                        y: block.y + treeBlock.y,  
+                        type: treeBlock.type       
+                    });
+                });
+            }}
           if(Math.random()<0.05&&Math.random()<0.09){
             if (block.type === 'sapling') {
                 // Obliczamy globalne współrzędne bloku
@@ -6815,6 +7027,12 @@ const itemsAndDamage = {
 "greenwand": { dmg: 10, kill: [], duration: 40, cooldown: 50, range: 73 },
 "magicwandofsharp": { dmg: 20, kill: [], duration: 40, cooldown: 50, range: 73 },
 "hyperblastwand": { dmg: 20, kill: [], duration: 40, cooldown: 50, range: 73 },
+// boomerang 
+"boomerang": { dmg: 0.0, kill: [], duration: 0, cooldown: 0, range: 0},
+"titanium_boomerang": { dmg: 0.0, kill: [], duration: 0, cooldown: 0, range: 0},
+"good_boomerang": { dmg: 0.0, kill: [], duration: 0, cooldown: 0, range: 0},
+"hell_boomerang": { dmg: 0.0, kill: [], duration: 0, cooldown: 0, range: 0},
+"draco_boomerang": { dmg: 0.0, kill: [], duration: 0, cooldown: 0, range: 0},
   "copper_spear": { dmg: 5, kill: [], duration: 50, cooldown: 50, range: 80 },
   "iron_spear": { dmg: 10, kill: [], duration: 100, cooldown: 50, range: 85 },
   "iron_sword": { dmg: 18, kill: [], duration: 50, cooldown: 70, range: 90 },
@@ -6985,9 +7203,12 @@ var tickFix=0
 var zoomedDELTA=0
     let isUpdating = 0;
 
- 
+ let weponDelay=0
 
 function update() {
+    if(weponDelay>0){
+        weponDelay-=1
+    }
  if(by5>14){
      
       if(options.zoomout==1){
@@ -7589,10 +7810,12 @@ if(moveDown || moveUp || moveLeft || moveRight){
     const playerCenterY = player.y + offsetY + player.height * 2;
 
     let collision = checkCollisionWithRock(playerCenterX, playerCenterY);
-    if (collision) {
+    if (collision && warped!==1) {
         offsetX = previousOffsetX;
         offsetY = previousOffsetY;
         console.log('Kolizja z blokiem rock, cofanie ruchu.');
+    }else if(! collision && warped==1){
+        warped=0;
     }
 
     // Rysowanie chunków i drzew
@@ -8017,6 +8240,45 @@ function clearVoidBlocksInHouse() {
 }
 
  var isinhill=0
+ let warped=0
+ function warpDimension(){
+ if(inhell==1){
+hellchunks = chunks
+inhell = 0;
+chunks = overworldChunks;  
+delayChangeDimension = 1
+setTimeout(function() {
+    delayChangeDimension = 0
+}, 5000)
+overworldChunks = null; 
+warped=1
+delayChangeDimension = 1;
+}else if(inabyss==1){
+abysschunks = chunks
+warped=1
+inabyss = 0;
+chunks = overworldChunks;  
+delayChangeDimension = 1
+setTimeout(function() {
+    delayChangeDimension = 0
+}, 5000)
+overworldChunks = null; 
+delayChangeDimension = 1;
+}else if (isunderwater == 1) {
+    seachunks = chunks
+    warped = 1
+    isunderwater = 0;
+    chunks = overworldChunks;
+    delayChangeDimension = 1
+    setTimeout(function() {
+        delayChangeDimension = 0
+    }, 5000)
+    overworldChunks = null;
+    delayChangeDimension = 1;
+}
+
+
+ }
 function checkCollisionWithRock(playerX, playerY) {
     const collisionRadius = 28; // Promień kolizji (32 / 2)
     let collisionDetected = false;
@@ -8328,7 +8590,8 @@ if(vartt>5000 ){
 }}
 
 if (nocliping == 0) {
-    if (block.type === 'rock' || block.type === 'log0' || block.type === 'tree0' || block.type === 'house_wall' || block.type === 'voidblock' || block.type === 'empty_black_elderberry' || block.type === 'black_elderberry' || block.type === 'birch0' || block.type === 'snowpine1' || block.type === 'yew0' || block.type === 'pine0' || block.type === 'stone_wall' || block.type === 'log_wall' || block.type === 'log' || block.type === 'sapling' || block.type === 'brickwall' || block.type === 'gypsumblock' || block.type === 'planks' || block.type === 'cave_wall' || block.type === 'broken_cavewall' || block.type === 'rubyblock' || block.type === 'sapphireblock' || block.type === 'emeraldblock' || block.type === 'brickhouse' || block.type === 'underwatersandblock' || block.type === 'abyssblock' || block.type === 'stonewithgypsum' || block.type === 'cavewallwithsalt' || block.type === 'fence' || block.type === 'table' || block.type === 'lamp' || block.type === 'hellwall' || block.type === 'hellwall2' || block.type === 'basalt' || block.type === 'granite'||block.type === 'statue1_1'||block.type === 'statue2_1') {
+    if (block.type === 'rock' || block.type === 'log0' || block.type === 'tree0' || block.type === 'house_wall' || block.type === 'voidblock' || block.type === 'empty_black_elderberry' || block.type === 'black_elderberry' || block.type === 'birch0' || block.type === 'snowpine1' || block.type === 'yew0' || block.type === 'pine0' || block.type === 'stone_wall' || block.type === 'log_wall' || block.type === 'log' || block.type === 'sapling' || block.type === 'brickwall' || block.type === 'gypsumblock' || block.type === 'planks' || block.type === 'cave_wall' || block.type === 'broken_cavewall' || block.type === 'rubyblock' || block.type === 'sapphireblock' || block.type === 'emeraldblock' || block.type === 'brickhouse' || block.type === 'underwatersandblock' || block.type === 'abyssblock' || block.type === 'stonewithgypsum' || block.type === 'cavewallwithsalt' || block.type === 'fence' || block.type === 'table' || block.type === 'lamp' || block.type === 'hellwall' || block.type === 'hellwall2' || block.type === 'basalt' || block.type === 'granite'||block.type === 'statue1_1'||block.type === 'statue2_1'
+    ||block.type === 'helllog'||block.type === 'abysslog'||block.type === 'helltree0' ||block.type === 'abysstree0'||block.type === 'hellsapling'||block.type === 'abysssapling') {
         
         // Obliczanie prostokątów kolizji
         let playerRect = {
@@ -8578,6 +8841,17 @@ if (item == "cooked_bunnmeat") {
     return;
   }
 }
+if (item == "warporb") {
+    if(!delayChangeDimension){
+  if(options.dropany==0&&(inhell==1||inabyss==1|| isunderwater==1)){ warpDimension(); 
+  showTextInCanvas("you are warped to overworld dimensions ");  
+  return;
+  }else{
+      showTextInCanvas("err cannot change dimension ");
+      
+       
+  }
+}}
 if (item == "extrabag") {
   if(options.dropany==0){
   if (slots < 9) {
@@ -9262,6 +9536,59 @@ updateStamina(-10)
     const spellangle = Math.atan2((enemyY - (playerCenterY)), (enemyX - (playerCenterX)));
     let bat = new Enemy(enemyX, enemyY, randomSpell); bat.angle = spellangle ;renderedEnemies.push(bat); bat.speed=4
   } spawnEnemyNearPlayer(32,0); spawnEnemyNearPlayer(-32,0); spawnEnemyNearPlayer(0,32);spawnEnemyNearPlayer(0,-32); spawnEnemyNearPlayer(32,-32); spawnEnemyNearPlayer(32,32); spawnEnemyNearPlayer(-32,-32); spawnEnemyNearPlayer(-32,32);
+}else if(weapon=="boomerang"){
+    if(weponDelay<2){
+        weponDelay=10
+updateStamina(-2)
+  const typesof = ["boomerang"];
+  const randomSpell = typesof[Math.floor(Math.random() * typesof.length)];function spawnEnemyNearPlayer() {
+    const enemyX = playerCenterX; const enemyY = playerCenterY;const spellangle = Math.atan2((y - (playerCenterY - offsetY)), (x - (playerCenterX - offsetX))); let bat = new Enemy(enemyX, enemyY, randomSpell); bat.angle = spellangle; bat.width=32+16;bat.height=32+16; ;renderedEnemies.push(bat); bat.speed=5
+  }  
+    spawnEnemyNearPlayer();
+    
+    }}else if(weapon=="titanium_boomerang"){
+    if(weponDelay<2){
+        weponDelay=6
+updateStamina(-2)
+  const typesof = ["titanium_boomerang"];
+  const randomSpell = typesof[Math.floor(Math.random() * typesof.length)];function spawnEnemyNearPlayer() {
+    const enemyX = playerCenterX; const enemyY = playerCenterY;const spellangle = Math.atan2((y - (playerCenterY - offsetY)), (x - (playerCenterX - offsetX))); let bat = new Enemy(enemyX, enemyY, randomSpell); bat.angle = spellangle; bat.width=32+16;bat.height=32+16; ;renderedEnemies.push(bat); bat.speed=5
+  }  
+    spawnEnemyNearPlayer();
+    
+    }}else if(weapon=="good_boomerang"){
+    if(weponDelay<2){
+        weponDelay=6
+updateStamina(-2)
+  const typesof = ["good_boomerang"];
+  const randomSpell = typesof[Math.floor(Math.random() * typesof.length)];function spawnEnemyNearPlayer() {
+    const enemyX = playerCenterX; const enemyY = playerCenterY;const spellangle = Math.atan2((y - (playerCenterY - offsetY)), (x - (playerCenterX - offsetX))); let bat = new Enemy(enemyX, enemyY, randomSpell); bat.angle = spellangle; bat.width=32+16;bat.height=32+16; ;renderedEnemies.push(bat); bat.speed=5
+  }  
+    spawnEnemyNearPlayer();
+    
+    }
+}else if(weapon=="hell_boomerang"){
+    if(weponDelay<2){
+        weponDelay=4
+updateStamina(-2)
+  const typesof = ["hell_boomerang"];
+  const randomSpell = typesof[Math.floor(Math.random() * typesof.length)];function spawnEnemyNearPlayer() {
+    const enemyX = playerCenterX; const enemyY = playerCenterY;const spellangle = Math.atan2((y - (playerCenterY - offsetY)), (x - (playerCenterX - offsetX))); let bat = new Enemy(enemyX, enemyY, randomSpell); bat.angle = spellangle; bat.width=32+16;bat.height=32+16; ;renderedEnemies.push(bat); bat.speed=5
+  }  
+    spawnEnemyNearPlayer();
+    
+    }
+}else if(weapon=="draco_boomerang"){
+    if(weponDelay<2){
+        weponDelay=4
+updateStamina(-1)
+  const typesof = ["draco_boomerang"];
+  const randomSpell = typesof[Math.floor(Math.random() * typesof.length)];function spawnEnemyNearPlayer() {
+    const enemyX = playerCenterX; const enemyY = playerCenterY;const spellangle = Math.atan2((y - (playerCenterY - offsetY)), (x - (playerCenterX - offsetX))); let bat = new Enemy(enemyX, enemyY, randomSpell); bat.angle = spellangle; bat.width=32+16;bat.height=32+16; ;renderedEnemies.push(bat); bat.speed=5
+  }  
+    spawnEnemyNearPlayer();
+    
+    }
 }
 
   if (cooldownatk==false) {
@@ -9364,6 +9691,8 @@ if (enemy.type == "hellskull") {
     
   }else if (Math.random() < 0.030) {
   buildBlockAtPosition(r, r2, "hellgem")
+}else if (Math.random() < 0.015) {
+    buildBlockAtPosition(r, r2, "warporb")
 } else {
     if (Math.random() < 0.5) {
   const slimeTypes = ['flesher'];
@@ -9394,7 +9723,9 @@ if (enemy.type == "soulcat") {
   let r2 = Math.floor((dy + player.y * 32) / 32)
   if(Math.random()<0.2){
   buildBlockAtPosition(r, r2, "abyssgem")
-  }
+  }  if (Math.random() < 0.005) {
+    buildBlockAtPosition(r, r2, "warporb")
+}
 }
 if (enemy.type == "frozenghost") {
   let r = Math.floor((dx + player.x * 32) / 32)
@@ -9465,13 +9796,14 @@ if (Math.random() < 0.2) {
 if (enemy.type === "trueuniversehead" && enemy.hp <= 0) {
   let r = Math.floor((dx + player.x * 32) / 32)
 let r2 = Math.floor((dy + player.y * 32) / 32)
-  buildBlockAtPosition(r, r2, "trueuniverseorb");
-  if (Math.random() < 0.05) {
-    buildBlockAtPosition(r, r2, "trueuniversesword");
-    
-  }
-  buildBlockAtPosition(r, r2, "statueofgods");
+if (Math.random() < 0.3) {
+    buildBlockAtPosition(r, r2, "universefragment");
 
+}
+  buildBlockAtPosition(r, r2, "trueuniverseorb");
+  
+  buildBlockAtPosition(r, r2, "statueofgods");
+playRandomMusic();
   setTimeout(function() {
     showTextInCanvas("that's it ..");
     
@@ -9501,7 +9833,9 @@ let r2 = Math.floor((dy + player.y * 32) / 32)
 if (enemy.type === "abyssdevourerhead" && enemy.hp <= 0) {
   let r = Math.floor((dx + player.x * 32) / 32)
 let r2 = Math.floor((dy + player.y * 32) / 32)
-  
+  if (Math.random() < 0.015) {
+    buildBlockAtPosition(r, r2, "warporb")
+}
   if (Math.random() < 0.05) {
     buildBlockAtPosition(r, r2, "abysscore");
   }
@@ -9603,7 +9937,7 @@ if (enemy.type == "darkeye") {
     return true; // Wróg zostaje na ekranie
   });
   if(fddg==0){
-    if(!(weapon=="magicwand"||weapon=="greenwand"||weapon=="magicwandofsharp"||weapon=="hyperblastwand"||weapon=="godwand")){
+    if(!(weapon=="magicwand"||weapon=="greenwand"||weapon=="magicwandofsharp"||weapon=="hyperblastwand"||weapon=="godwand"  ||weapon=="boomerang"||weapon=="titanium_boomerang"||weapon=="good_boomerang" ||weapon=="hell_boomerang"||weapon=="draco_boomerang")){
     playslash2()
   }}
 }
@@ -10480,8 +10814,39 @@ if (checkBlockAtPosition(x, y, "magnetite") && checkEmptySlots(0)) {
   }
   return;
 }
+if (["abysstree0"].some(tree => checkBlockAtPosition(x, y, tree))) {
+    if (checkIfItems("stone_axe", 1) && checkEmptySlots(3)) { // Potrzebujesz siekiery i 2 miejsc w ekwipunku
+        updateStamina(-5)
+        addItem("abysssapling", 1);
+        addItem("abysslog", 2);
+        if (Math.random() < 0.5) {
+            addItem("abysssapling", 1);
+            addItem("abyssgel", 2);
+        }
+        deleteFromChunk(x, y, ["abysstree0", "abysstree1", "abysstree2"])
 
+    } else {
+        showTextInCanvas("you need a tool");
+    }
+    return;
+}
+if (["helltree0"].some(tree => checkBlockAtPosition(x, y, tree))) {
+    if (checkIfItems("stone_axe", 1) && checkEmptySlots(3)) { // Potrzebujesz siekiery i 2 miejsc w ekwipunku
+        updateStamina(-5)
+        addItem("hellsapling", 1);
+addItem("helllog", 1);
+        if (Math.random() < 0.5) {
+            addItem("hellsapling", 1);
+            addItem("hellwood", 1);
+addItem("helllog", 1);
+        }
+        deleteFromChunk(x, y, ["helltree0", "helltree1", "helltree2"])
 
+    } else {
+        showTextInCanvas("you need a tool");
+    }
+    return;
+}
     if (["tree0"].some(tree => checkBlockAtPosition(x, y, tree))) {
         if (checkIfItems("stone_axe", 1) && checkEmptySlots(3)) {  // Potrzebujesz siekiery i 2 miejsc w ekwipunku
         updateStamina(-5)
@@ -11352,6 +11717,25 @@ function toggleadvanced() {
 }
         var slots = 8;  // Max slots
         var allItems = { // Definicja tekstur przedmiotów
+hellsapling: "./hellsapling.png",
+abysssapling: "./abysssapling.png",
+hell_boomerang: "./hell_boomerang.png",
+    draco_boomerang: "./draco_boomerang.png",
+    helllog: "./helltree0.png",
+    hellwood: "./hellwood.png",
+    abyssgel: "./abyssgel.png",
+    abysswood: "./abysswood.png",
+    abysslog: "./abysstree0.png",
+hellgrass: "./hellgrass1.png",
+    hellplank: "./hellplank1.png",
+    abyssgrass: "./abyssgrass1.png",
+    abyssplank: "./abyssplank1.png",
+    warporb: "./warporb1.png",
+     titanium_boomerang:"./titanium_boomerang.png",
+     good_boomerang:"./good_boomerang.png",
+    boomerang: './boomerang.png',
+    dracobuff: './dracobuff.png',
+    
 briarempty: './briarempty.png',
 iron_shovel: './iron_shovel.png',
 algae_item: './algae_item.png',
@@ -11708,14 +12092,18 @@ stone_floor: './stone_floor.png',
 "gypsum": [["gypsum_dirt"]],
 "leafbowl": [["forestleaf","forestleaf"]], 
 "gelblock": [["gel","gel","gel"]],
+"boomerang": [["woodboard","woodboard","gelblock"]],
 "truegodsword": [["truegodsword"]],
 "godwand": [["godwand"]],
 "hill_climber": [["longstick","longstick","woodboard","stick","cordage"]],
 "climbhill": [["hill1", "grasslayer"]],
 "blower": [["woodboard", "stick","stick","woodboard"]],
+"warporb": [["abyssgel", "abyssgel", "abyssgem", "abyssgem"],["helllog","hellgem","hellwood"],["aquaore","echorocks","geyser"]],
+"hellplank": [["hellwood", "helllog"]],
+"abyssplank": [["abysswood", "abysslog"]],
         };
         var canbedecrafted=["brickwall","clayblock1","ashfloor","cordage","fiber","fireplow","stone_wall","fiber_floor","torch","campfire","brickfloor","fireroll","decrafter","log_floor","log_wall","sharpstone","pointed_stick","thistleroot","woodboard","hand_torch","stoneshovel","stone_axe","iron_spear","copper_spear","fiber_fabric","extrabag","cavemakingpickaxe","pickaxe","opalblock","emeraldblock","emeraldfloor","sapphireblock","sapphirefloor","rubyfloor","rubyblock","planks","planks_floor","houseroof","house_wall","furnace","kiln","campfire","decrafter","log_floor","log_wall","stone_floor","gelblock","aquaspear","goodsword","universesword","sharpsaw","nightsword","fleshsaber","goodmace","truegodsword","trueuniversesword","iron_mace","iron_sword","sharpmace","aquagodshell","deepgodspawner","voltary_essence",
-        "fleshdumbass","housewall","houseroof","housefloor","planks_floor","planks","table","titaniumbuff","titaniumsword","lamptorch","brickfloor2","trueuniversespawner","deepgodspawner","hellbuff","hellsword","moltensword","knive","hellknive","magicwand","magicwandofsharp","hyperblastwand","greenwand","blower","forestleaf"
+        "fleshdumbass","housewall","houseroof","housefloor","planks_floor","planks","table","titaniumbuff","titaniumsword","lamptorch","brickfloor2","trueuniversespawner","deepgodspawner","hellbuff","hellsword","moltensword","knive","hellknive","magicwand","magicwandofsharp","hyperblastwand","greenwand","blower","forestleaf","titanium_boomerang","boomerang","good_boomerang"
         ]
 var campfirerecipes = {
 "cooked_thistleroot": [["thistleroot"]],
@@ -11816,11 +12204,16 @@ var anvilrecipes = {
 "unknown": [["emeraldblock","sapphireblock","rubyblock","anvil"]],
 "compass":[["iron_bar","iron_bar","magnetite_powder","bowl_with_water"]],
 //"spikegod_essence": [["voltary_essence","voltary_essence","voltary_essence","ilmenite"]],
+"titanium_boomerang":[["boomerang","titaniumbar","titaniumbar","titaniumbar"]],
+"good_boomerang":[["titanium_boomerang","soulofsharp","soulofsharp","fleshvolume",]],
+"hell_boomerang":[["good_boomerang","hellessence","fleshvolume","desertcore"]],
+
 "lamptorch": [["torch","iron_bar","longstick"]],
 "iron_sword": [["iron_bar","iron_bar","iron_spear"]],
 "titaniumsword": [["titaniumbar","titaniumbar","iron_sword"]],
 "titaniumbuff": [["titaniumbar","titaniumbar","titaniumbar","evileye","evileye"]],
 "hellbuff": [["titaniumbuff","hellgem","hellessence","evileye","evileye"]],
+"dracobuff": [["universefragment","hellbuff","coloressence"]],
 "titaniummace": [["titaniumbar","titaniumbar","iron_mace"]],
 "iron_mace": [["iron_bar","iron_bar","iron_spear"]],
 "sharpsaw": [["nightsword","evileye"]],
@@ -11834,6 +12227,7 @@ var anvilrecipes = {
 "moltensword": [["fleshsaber","hellgem","hellessence","hellessence","evileye"]],
 "rainbow": [["moltensword","goodsword","coloressence","evileye"]],
 "universesword": [["universefragment","rainbow","moltensword"]],
+"draco_boomerang":[["hell_boomerang","rainbow","universefragment","desertcore","soulofsharp"]],
 "trueuniversesword": [["trueuniverseorb","trueuniverseorb","universesword"]],
 //"cave_wall": [["bigrock", "stone"]],
 }
@@ -11841,9 +12235,9 @@ var redanvilrecipes={
   "broom":[["longstick","magicgem","speedmedalion","evileye","soulofsharp","hellgem"]],
   "magiclanter": [["magicgem","desertcore","abysscore","frozeningot","hand_torch","hand_torch"]],
   "greenwand": [["magicgem","stick","frozeningot","soulofsharp","forestleaf"]],
-  "magicwand": [["magicgem","stick","abysscore","frozeningot","soulofsharp","desertcore"]],
+  "magicwand": [["magicgem","greenwand","abysscore","frozeningot","soulofsharp","desertcore"]],
   "magicwandofsharp": [["magicwand","magicgem","soulofsharp","soulofsharp","fleshvolume","fleshvolume"]],
-  "hyperblastwand": [["magicwandofsharp","magicgem","magicgem","universefragment","universefragment","coloressence"]],
+  "hyperblastwand": [["magicwandofsharp","magicgem","magicgem","universefragment","coloressence"]],
 }
 let itemsDurabilities = { "pickaxe":90 };
 let yourItemsDurabilities = []; 
@@ -12298,7 +12692,7 @@ function canCraftRecipe(recipe) {
             return false;
         }
     }
-    return true; // All items in this recipe variant are available in required quantities
+    return true; // All items in this recipe variant arerecipesavailable in required quantities
 }
 
 // Checks if a specific item with a required quantity is present
