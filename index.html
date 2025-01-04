@@ -1,9 +1,9 @@
- <!--
+  <!--
 
                  PRIMORIA FEROX
 
 
-FULL BETA                    1.5
+FULL Release                    1.5.+
 
 
        Copyright©  Kashumy Krystian 2024  
@@ -16,10 +16,20 @@ FULL BETA                    1.5
 <html lang="pl" ondblclick="document.querySelector('html').requestFullscreen()">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <script>
+  /*  
+  
+      GAMEVERSION 
+  
+  */
+var gameversion = " 1.5.7.5 demo <br> <a style='text-decoration: none; font-size:8px;' href='https://github.com/Kashumy/Primoria-Ferox-Download/releases/tag/game'>download offline version</a>"
+
+
+
     var yourItems = [];  // Ekwipunek
   </script>
       <style>
 html {
+    
     position:fixed; width:100vw; height: 100vh; overflow: hidden;;
 }
 ::-webkit-scrollbar {
@@ -368,10 +378,15 @@ height: 330px; " ></obb>
     <div style="padding: 10px 50%; background: rgb(50,50,50); color:white;  " > Play <fds onclick=" document.getElementById('gamescontainer').style.display='none' ; " style="color: red; position: absolute ; right:20px; top:5px" >X</fds></div>
     <div id="slotgames" style="white-space: pre-wrap; color:white; margin: 5px; height: 100% width :100% ;">
     </div>
-    <div style="width: 100px; position: absolute; bottom: 10px; height: 20px; left:20px;  background: rgb(200,200,200);" onclick="playgamenew()">
-      new game
-    </div>
+      <div style="width: 100px; position: absolute; bottom: 10px; height: 20px; left:20px;  background: rgb(200,200,200);" onclick="playgamenew()">
+          new game
+      </div>
   </div>
+
+    <pre id="gameversion1" style="position:absolute; z-index:9; top:0; left:0; color:grey;"> commit </pre>
+    <script>
+        
+    </script>
   <div id="aboutcontainer" style="display:none;  position: absolute; top:50vh ; left:50vw; transform: translate(-50%,-50%); width: 75vw; height: 80vh ; background: grey; border:3px solid rgb(50,50,50) ; overflow: hidden scroll ; ">
     <div style="padding: 10px 50%; background: rgb(50,50,50); color:white;  " > About <fds onclick=" document.getElementById('aboutcontainer').style.display='none' ; " style="color: red; position: absolute ; right:20px; top:5px" >X</fds></div>
     <pre style="white-space: pre-wrap; color:white; margin: 5px; height: 100% width :100% ; overflow: hidden scroll;">
@@ -395,6 +410,7 @@ dat : 24.21.12,
 Warning this is a Online Demo this can not work properly like my apk 
 please download orginal android game from my site <a href="https://github.com/Kashumy/Primoria-Ferox-Download/releases/tag/game">Release </a>
 
+
     </pre>
   </div>
 </div>
@@ -409,7 +425,7 @@ please download orginal android game from my site <a href="https://github.com/Ka
 
     <script>
     setTimeout(function(){
-      
+      document.getElementById("gameversion1").innerHTML = gameversion
     },1000);
             const loader = document.getElementById('loader');
             const logo = document.getElementById('logo');
@@ -928,6 +944,7 @@ let options = {
   noclip:0,
   zoomout:0,
   biggerzoomout:0,
+  Fskipping:0
 };
 var blockSize = 32;
 var playerX = 0
@@ -1944,7 +1961,9 @@ dandelionseeds:"./dandelionseeds.png",
    
   
   bread_sample: './bread_sample.png',
-  
+  gypsumhouse: './gypsumhouse.png',
+  gypsumdoor: './gypsumdoor.png',
+  gypsumroof: './gypsumroof.png',
   house_wall: './housewall.png',
 heavybag: './heavybag.png',
   ryeroof: './ryeroof.png',
@@ -2568,7 +2587,7 @@ function generateRandomIsland(x, y) {
       if( distanceFromEdge < 65){
        return "coast"
       }else if(distanceFromEdge < 120){
-       return "sand"
+       return Math.random()<0.05 ? "magnetite" : "sand"
       }else {
  return "grass"
 }
@@ -3501,10 +3520,10 @@ if(generateCave!==0 || nightpower>1.5){
         if (checkIfItems("hand_torch", 1)) {
 const radius5 = 0.5 * blockSize;
 const radius6 = 1.5 * blockSize;
-const playerCenterX = offsetX + canvas.width / 2 * 32 * blockSize;
-const playerCenterY = offsetY + canvas.height / 2 * 32 * blockSize;
-const distX2 = Math.abs(playerCenterX / 32 / 32 - x);
-const distY2 = Math.abs(playerCenterY / 32 / 32 - y);
+const playerCenterX = offsetX + canvas.width / 2 * 32 *32* blockSize;
+const playerCenterY = offsetY + canvas.height / 2 * 32 *32 * blockSize;
+const distX2 = Math.abs(playerCenterX / 32 / 32 /32- x);
+const distY2 = Math.abs(playerCenterY / 32 / 32 /32- y);
 if (distX2 <= radius5 && distY2 <= radius5) {
   return true;
 }
@@ -3516,10 +3535,10 @@ if ((distX2 <= radius6 && distY2 <= radius6)) {
         if (checkIfItems("magiclanter", 1)) {
 const radius5 = 1.5 * blockSize;
 const radius6 = 2.5 * blockSize;
-const playerCenterX = offsetX + canvas.width / 2 * 32 * blockSize;
-const playerCenterY = offsetY + canvas.height / 2 * 32 * blockSize;
-const distX2 = Math.abs(playerCenterX / 32 / 32 - x);
-const distY2 = Math.abs(playerCenterY / 32 / 32 - y);
+const playerCenterX = offsetX + canvas.width / 2 * 32*32 * blockSize;
+const playerCenterY = offsetY + canvas.height / 2 * 32*32 * blockSize;
+const distX2 = Math.abs(playerCenterX / 32 / 32 /32 - x);
+const distY2 = Math.abs(playerCenterY / 32 / 32 /32- y);
 if (distX2 <= radius5 && distY2 <= radius5) {
   return true;
 }
@@ -3550,25 +3569,25 @@ if (yourItems !== undefined) {
   if (checkIfItems("hand_torch", 1)) {
     const radius5 = 0.5 * blockSize;
     const radius6 = 1.5 * blockSize;
-    const playerCenterX = offsetX + canvas.width / 2 * 32 * blockSize;
-    const playerCenterY = offsetY + canvas.height / 2 * 32 * blockSize;
-    const distX2 = Math.abs(playerCenterX / 32 / 32 - x);
-    const distY2 = Math.abs(playerCenterY / 32 / 32 - y);
-    if (distX2 <= radius5 && distY2 <= radius5) {
-      return true;
-    }
-    if ((distX2 <= radius6 && distY2 <= radius6)) {
-      return 0.5;
-    }
+    const playerCenterX = offsetX + canvas.width / 2 * 32 * 32 * blockSize;
+const playerCenterY = offsetY + canvas.height / 2 * 32 * 32 * blockSize;
+const distX2 = Math.abs(playerCenterX / 32 / 32 / 32 - x);
+const distY2 = Math.abs(playerCenterY / 32 / 32 / 32 - y);
+if (distX2 <= radius5 && distY2 <= radius5) {
+    return true;
+}
+if ((distX2 <= radius6 && distY2 <= radius6)) {
+    return 0.5;
+}
   }
 
   if (checkIfItems("magiclanter", 1)) {
     const radius5 = 1.5 * blockSize;
     const radius6 = 2.5 * blockSize;
-    const playerCenterX = offsetX + canvas.width / 2 * 32 * blockSize;
-    const playerCenterY = offsetY + canvas.height / 2 * 32 * blockSize;
-    const distX2 = Math.abs(playerCenterX / 32 / 32 - x);
-    const distY2 = Math.abs(playerCenterY / 32 / 32 - y);
+    const playerCenterX = offsetX + canvas.width / 2 * 32*32 * blockSize;
+    const playerCenterY = offsetY + canvas.height / 2 * 32 *32* blockSize;
+    const distX2 = Math.abs(playerCenterX / 32 / 32 /32- x);
+    const distY2 = Math.abs(playerCenterY / 32 / 32 /32- y);
     if (distX2 <= radius5 && distY2 <= radius5) {
       return true;
     }
@@ -3583,7 +3602,7 @@ if (yourItems !== undefined) {
 
 
 let chunkPositions = []; // Dodajemy do przechowywania pozycji chunków
-var dontcount = ["dirt", "grass", "tallgrass", "yellow", "dandelion", "violet","tree0","pine0","birch0","tree1","pine1","birch1","tree2","pine2","birch2","grasslayer","clayblock","ashfloor","shine","shiny","log_floor","log_wall","log","stone_floor","stone_wall","brickwall","brickfloor","clayblock1","glass","gypsumblock","abyssfloor","abyssescape","snowpine1","snowpine2","snowpine3","stone_floor", "fiber_floor", "grasslayer", "yellow", "violet", "clayblock", "clayblock1", "dandelion", "toadstool", "sandblock2", "gypsumblock", "glass", "fern", "planks_floor", "log_floor", "ashblock", "ashfloor", "brickfloor", "daffodil","flax","myosotis", "fiber_floor", "bed1", "magnetite", "nettle", "stone_floor", "emeraldfloor", "sapphirefloor", "rubyfloor", "clayblock1", "clayblock","violetfloor","grass","toadstool","stones","thistle","ryeroof","houseroof","housewall","brickhouse","gelblock","gypsum_dirt","roadfloor","gypsumblock","gypsumfloor","torch","brickfloor2","door","door2","housegrass","lamp","lamp2","hellwall2","forestgrass","forestleaf","blush","hill1","climbhill","statue1_1","statue1_2","kiln","algae1","algae2","algae0","statue2_2","statue2_1","helltree0","helltree1","helltree2","abysstree2","abysstree1","abysstree0","helllog","abysslog","abyssgrass","hellgrass" ];
+var dontcount = ["dirt", "grass", "tallgrass", "yellow", "dandelion", "violet","tree0","pine0","birch0","tree1","pine1","birch1","tree2","pine2","birch2","grasslayer","clayblock","ashfloor","shine","shiny","log_floor","log_wall","log","stone_floor","stone_wall","brickwall","brickfloor","clayblock1","glass","gypsumblock","abyssfloor","abyssescape","snowpine1","snowpine2","snowpine3","stone_floor", "fiber_floor", "grasslayer", "yellow", "violet", "clayblock", "clayblock1", "dandelion", "toadstool", "sandblock2", "gypsumblock", "glass", "fern", "planks_floor", "log_floor", "ashblock", "ashfloor", "brickfloor", "daffodil","flax","myosotis", "fiber_floor", "bed1", "magnetite", "nettle", "stone_floor", "emeraldfloor", "sapphirefloor", "rubyfloor", "clayblock1", "clayblock","violetfloor","grass","toadstool","stones","thistle","ryeroof","houseroof","housewall","brickhouse","gelblock","gypsum_dirt","roadfloor","gypsumblock","gypsumfloor","torch","brickfloor2","door","door2","housegrass","lamp","lamp2","hellwall2","forestgrass","forestleaf","blush","hill1","climbhill","statue1_1","statue1_2","kiln","algae1","algae2","algae0","statue2_2","statue2_1","helltree0","helltree1","helltree2","abysstree2","abysstree1","abysstree0","helllog","abysslog","abyssgrass","hellgrass" ,"gypsumhouse","gypsumroof","gypsumdoor"];
 let waveTick = 0;
 var fenceconnections={
   "none": "./fence.png",
@@ -4126,7 +4145,7 @@ if (texture && texture.complete && texture.naturalWidth > 0) {
                 if (block.type === 'tree0' || block.type === 'yew0' || block.type === 'pine0') {
                     treesBelowPlayer.push({ type: block.type, x: x, y: y });
                 }
-                if (block.type === 'tree1' || block.type === 'tree2'|| block.type === 'voidblock'|| block.type === 'birch1' || block.type === 'birch2' || block.type === 'yew1' || block.type === 'pine1' || block.type === 'pine2'|| block.type === 'black_elderberry2'|| block.type === 'empty_black_elderberry2'|| block.type === 'houseroof'||block.type === 'ryeroof'||block.type === 'snowpine2'||block.type === 'snowpine3'||block.type === 'lamp2'||block.type === 'statue1_2'||block.type === 'statue2_2'||block.type === 'algae0'||block.type === 'algae2' ||block.type === 'helltree1'||block.type === 'helltree2'||block.type === 'abysstree1'||block.type === 'abysstree2') {
+                if (block.type === 'tree1' || block.type === 'tree2'|| block.type === 'voidblock'|| block.type === 'birch1' || block.type === 'birch2' || block.type === 'yew1' || block.type === 'pine1' || block.type === 'pine2'|| block.type === 'black_elderberry2'|| block.type === 'empty_black_elderberry2'|| block.type === 'houseroof'||block.type === 'ryeroof'||block.type === 'snowpine2'||block.type === 'snowpine3'||block.type === 'lamp2'||block.type === 'statue1_2'||block.type === 'statue2_2'||block.type === 'algae0'||block.type === 'algae2' ||block.type === 'helltree1'||block.type === 'helltree2'||block.type === 'abysstree1'||block.type === 'abysstree2'||block.type === 'gypsumroof') {
                     treesAbovePlayer.push({ type: block.type, x: x, y: y });
                 }
             });
@@ -4164,8 +4183,8 @@ let targetX = offsetX; // Docelowa pozycja X
 let targetY = offsetY; // Docelowa pozycja Y
 let smoothingFactor = 0.40; // Współczynnik gładkości (jak szybko gracz się przesuwa)
 
-const targetFPS = 15; 
-const frameDuration = 1000 / targetFPS; // Duration of each frame in milliseconds
+let targetFPS = 14; 
+let frameDuration = 1000 / targetFPS; // Duration of each frame in milliseconds
 
 
 
@@ -4634,7 +4653,7 @@ var butterflyentities = {
   "butterflyblue": {   },
   "firefly":{}
 };
-var speedmultiply=1.42
+var speedmultiply=1.60
 function updateEnemies() {
   var removebymagic=0;
   if(updfixbug==0){
@@ -6907,7 +6926,7 @@ function synchronizeVisibleChunks() {
         // Synchronizacja drzwi (door)
         
         // Synchronizacja ściany domu (house_wall)
-        if (checkBlockAtOverWorldPosition(x, y, "house_wall")||checkBlockAtOverWorldPosition(x, y, "houseroof")||checkBlockAtOverWorldPosition(x, y, "ryeroof")||checkBlockAtOverWorldPosition(x, y, "brickhouse")) {
+        if (checkBlockAtOverWorldPosition(x, y, "house_wall")||checkBlockAtOverWorldPosition(x, y, "houseroof")||checkBlockAtOverWorldPosition(x, y, "ryeroof")||checkBlockAtOverWorldPosition(x, y, "brickhouse")||checkBlockAtOverWorldPosition(x, y, "gypsumroof")||checkBlockAtOverWorldPosition(x, y, "gypsumhouse")) {
           if(checkBlockAtPosition(x,y,"voidblock")){
             removeBlockAtPosition2(x, y, "voidblock");
             buildBlockAtPositionBefore2(x, y, "housegrass");
@@ -6921,7 +6940,7 @@ function synchronizeVisibleChunks() {
             
         }
         
-        if (checkBlockAtOverWorldPosition(x, y, "door")) {
+        if (checkBlockAtOverWorldPosition(x, y, "door")||checkBlockAtOverWorldPosition(x, y, "gypsumdoor")) {
             // Jeśli w `chunks` nie ma "door", dodaj go
             
                
@@ -7204,8 +7223,21 @@ var zoomedDELTA=0
     let isUpdating = 0;
 
  let weponDelay=0
-
+let fskip=0
 function update() {
+    fskip+=1;
+    if(fskip>2){
+        fskip=0
+    }
+    if(options.Fskipping==1){
+          targetFPS = 10;
+           speedmultiply=1.70
+         frameDuration = 1000 / targetFPS;
+    }else if (options.Fskipping !== 1) {
+    targetFPS = 14;
+    speedmultiply=1.60
+    frameDuration = 1000 / targetFPS;
+    }
     if(weponDelay>0){
         weponDelay-=1
     }
@@ -7267,7 +7299,7 @@ updateHurtEffect()
 }
 if(checkIfItems("broom", 1) && isflying==1){
  updateStamina(-0.10)
-playerSpeed = 6.5
+playerSpeed = 6.5  // 6.5
 }else if (isflying == 1) {
   isflying = 0
 } else if( checkIfItems("speedmedalion",1) ){
@@ -8545,7 +8577,7 @@ delayChangeDimension = 1;
     return;
   }
 
-}else if (block.type === 'door'||block.type === 'door2' && generateCave!==1 && isinhouse==0) {
+}else if (block.type === 'door'||block.type === 'gypsumdoor'||block.type === 'door2' && generateCave!==1 && isinhouse==0) {
   
       const blockAbove = renderedBlocks.find(b =>
         b.x === block.x && b.y === block.y - blockSize // 
@@ -8590,7 +8622,7 @@ if(vartt>5000 ){
 }}
 
 if (nocliping == 0) {
-    if (block.type === 'rock' || block.type === 'log0' || block.type === 'tree0' || block.type === 'house_wall' || block.type === 'voidblock' || block.type === 'empty_black_elderberry' || block.type === 'black_elderberry' || block.type === 'birch0' || block.type === 'snowpine1' || block.type === 'yew0' || block.type === 'pine0' || block.type === 'stone_wall' || block.type === 'log_wall' || block.type === 'log' || block.type === 'sapling' || block.type === 'brickwall' || block.type === 'gypsumblock' || block.type === 'planks' || block.type === 'cave_wall' || block.type === 'broken_cavewall' || block.type === 'rubyblock' || block.type === 'sapphireblock' || block.type === 'emeraldblock' || block.type === 'brickhouse' || block.type === 'underwatersandblock' || block.type === 'abyssblock' || block.type === 'stonewithgypsum' || block.type === 'cavewallwithsalt' || block.type === 'fence' || block.type === 'table' || block.type === 'lamp' || block.type === 'hellwall' || block.type === 'hellwall2' || block.type === 'basalt' || block.type === 'granite'||block.type === 'statue1_1'||block.type === 'statue2_1'
+    if (block.type === 'rock' || block.type === 'log0' || block.type === 'tree0' || block.type === 'house_wall'|| block.type === 'gypsumhouse' || block.type === 'voidblock' || block.type === 'empty_black_elderberry' || block.type === 'black_elderberry' || block.type === 'birch0' || block.type === 'snowpine1' || block.type === 'yew0' || block.type === 'pine0' || block.type === 'stone_wall' || block.type === 'log_wall' || block.type === 'log' || block.type === 'sapling' || block.type === 'brickwall' || block.type === 'gypsumblock' || block.type === 'planks' || block.type === 'cave_wall' || block.type === 'broken_cavewall' || block.type === 'rubyblock' || block.type === 'sapphireblock' || block.type === 'emeraldblock' || block.type === 'brickhouse' || block.type === 'underwatersandblock' || block.type === 'abyssblock' || block.type === 'stonewithgypsum' || block.type === 'cavewallwithsalt' || block.type === 'fence' || block.type === 'table' || block.type === 'lamp' || block.type === 'hellwall' || block.type === 'hellwall2' || block.type === 'basalt' || block.type === 'granite'||block.type === 'statue1_1'||block.type === 'statue2_1'
     ||block.type === 'helllog'||block.type === 'abysslog'||block.type === 'helltree0' ||block.type === 'abysstree0'||block.type === 'hellsapling'||block.type === 'abysssapling') {
         
         // Obliczanie prostokątów kolizji
@@ -9944,7 +9976,7 @@ if (enemy.type == "darkeye") {
 
 
 // Obiekt przechowujący stany bloków
-const floorblocks = ["stone_floor", "fiber_floor", "grasslayer", "yellow", "violet", "clayblock", "clayblock1", "dandelion", "toadstool", "sandblock2", "gypsumblock", "glass", "fern", "planks_floor", "log_floor", "ashblock", "ashfloor", "brickfloor", "daffodil","flax","myosotis" ,"fiber_floor", "bed1", "magnetite", "nettle", "stone_floor", "emeraldfloor", "sapphirefloor", "rubyfloor", "clayblock1", "clayblock","violetfloor","grass","toadstool","stones","thistle","ryeroof","houseroof","housewall","brickhouse","gelblock","gypsum_dirt","roadfloor","brickfloor2","road","deadgrassfloor2","grass2","forestgrasslayer","deadgrassfloor2","deadgrassfloor","forestgrass","forestgrasslayer","hill1","climbhill"];
+const floorblocks = ["stone_floor", "fiber_floor", "grasslayer", "yellow", "violet", "clayblock", "clayblock1", "dandelion", "toadstool", "sandblock2", "gypsumblock", "glass", "fern", "planks_floor", "log_floor", "ashblock", "ashfloor", "brickfloor", "daffodil","flax","myosotis" ,"fiber_floor", "bed1", "magnetite", "nettle", "stone_floor", "emeraldfloor", "sapphirefloor", "rubyfloor", "clayblock1", "clayblock","violetfloor","grass","toadstool","stones","thistle","ryeroof","houseroof","housewall","brickhouse","gelblock","gypsum_dirt","roadfloor","brickfloor2","road","deadgrassfloor2","grass2","forestgrasslayer","deadgrassfloor2","deadgrassfloor","forestgrass","forestgrasslayer","hill1","climbhill","gypsumroof","gypsumhouse","gypsumdoor"];
  
 function deleteFromChunk(x, y, types) {
   
@@ -10025,16 +10057,16 @@ zapobiega nadpisaniu eventu następnym eventem lol
 */
 if (e.changedTouches) {
     for (let i = 0; i < e.changedTouches.length; i++) {
-        const touch = e.changedTouches[i];
-        const rect = canvas.getBoundingClientRect();
-        const scaleX = canvas.width / rect.width;
-        const scaleY = canvas.height / rect.height;
-        if (touch.clientX && touch) {
-            scaledX = (touch.clientX - rect.left) * scaleX + 15 - zoomedDELTA / 3; // Upewnij się, że dodanie 15 jest zamierzone
-            scaledY = (touch.clientY - rect.top) * scaleY + 15 - zoomedDELTA / 3;
-        }
-        console.log(`Scaled X: ${scaledX}, Scaled Y: ${scaledY}`);
+    const touch = e.changedTouches[i];
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    if (touch.clientX && touch) {
+        scaledX = (touch.clientX - rect.left) * scaleX + 15 - zoomedDELTA / 3; // Upewnij się, że dodanie 15 jest zamierzone
+        scaledY = (touch.clientY - rect.top) * scaleY + 15 - zoomedDELTA / 3;
     }
+    console.log(`Scaled X: ${scaledX}, Scaled Y: ${scaledY}`);
+}
 } else {
     const rect = canvas.getBoundingClientRect();
     scaledX = (e.clientX - rect.left) * (canvas.width / rect.width) + 15 - zoomedDELTA / 3;
@@ -10049,12 +10081,12 @@ if (e.changedTouches) {
 
 
     const weapon = checkIfPlayerHasAnyWeapon();
-     x = (Math.floor(scaledX / blockSize) * blockSize) -5 ;
-y = (Math.floor(scaledY / blockSize) * blockSize)  - 5;
-    if(options.zoomout==1 && options.biggerzoomout==1){
-     y = (Math.floor(scaledY / blockSize) * blockSize) +5 ;
-     x = (Math.floor(scaledX / blockSize) * blockSize)+5
-    }
+x = (Math.floor(scaledX / blockSize) * blockSize) - 5;
+y = (Math.floor(scaledY / blockSize) * blockSize) - 5;
+if (options.zoomout == 1 && options.biggerzoomout == 1) {
+    y = (Math.floor(scaledY / blockSize) * blockSize) + 5;
+    x = (Math.floor(scaledX / blockSize) * blockSize) + 5
+}
     removeBatAtPosition(scaledX, scaledY);
     
     if(options.fightmode==1){
@@ -10064,10 +10096,12 @@ y = (Math.floor(scaledY / blockSize) * blockSize)  - 5;
   return; // Nie wykonujemy żadnej dalszej logiki
 }*/
 let radius5=1.5*blockSize
-const playerCenterX = offsetX + canvas.width / 2 * 32 * blockSize;
-const playerCenterY = offsetY + canvas.height / 2 * 32 * blockSize;
-const distX2 = Math.abs(playerCenterX / 32 / 32 - x);
-const distY2 = Math.abs(playerCenterY / 32 / 32 - y);
+const playerCenterX = offsetX + canvas.width / 2 * 32 * 32 * blockSize;
+const playerCenterY = offsetY + canvas.height / 2 * 32 * 32 * blockSize;
+ 
+const distX2 = Math.abs(playerCenterX / blockSize / blockSize / blockSize- x);
+const distY2 = Math.abs(playerCenterY / blockSize / blockSize /blockSize- y);
+ 
 if (distX2 <= radius5 && distY2 <= radius5) {
   
 }else{
@@ -11438,6 +11472,7 @@ overflow-y: scroll ;
     <button data-var="fightmode" onclick="toggleAndStyleButton(this);">fightmode prevent destroying blocks </button>
     <button data-var="zoomout" onclick="toggleAndStyleButton(this);">zoom out</button>
     <button data-var="biggerzoomout" onclick="toggleAndStyleButton(this);">bigger zoom out</button>
+    <button data-var="Fskipping" onclick="toggleAndStyleButton(this);">frames skipping</button>
     <br>
 
     
@@ -11884,6 +11919,9 @@ rainbow:"./rainbow.png",
   
         black_elderberry_tree: './black_elderberry_tree.png',
         house_wall: './housewall.png',
+        gypsumhouse: './gypsumhouse.png',
+    gypsumdoor: './gypsumdoor.png',
+    gypsumroof: './gypsumroof.png',
         heavybag: './heavybag.png',
         houseroof: './rooftop.png',
         ryeroof: './ryeroof.png',
@@ -12103,7 +12141,7 @@ stone_floor: './stone_floor.png',
 "abyssplank": [["abysswood", "abysslog"]],
         };
         var canbedecrafted=["brickwall","clayblock1","ashfloor","cordage","fiber","fireplow","stone_wall","fiber_floor","torch","campfire","brickfloor","fireroll","decrafter","log_floor","log_wall","sharpstone","pointed_stick","thistleroot","woodboard","hand_torch","stoneshovel","stone_axe","iron_spear","copper_spear","fiber_fabric","extrabag","cavemakingpickaxe","pickaxe","opalblock","emeraldblock","emeraldfloor","sapphireblock","sapphirefloor","rubyfloor","rubyblock","planks","planks_floor","houseroof","house_wall","furnace","kiln","campfire","decrafter","log_floor","log_wall","stone_floor","gelblock","aquaspear","goodsword","universesword","sharpsaw","nightsword","fleshsaber","goodmace","truegodsword","trueuniversesword","iron_mace","iron_sword","sharpmace","aquagodshell","deepgodspawner","voltary_essence",
-        "fleshdumbass","housewall","houseroof","housefloor","planks_floor","planks","table","titaniumbuff","titaniumsword","lamptorch","brickfloor2","trueuniversespawner","deepgodspawner","hellbuff","hellsword","moltensword","knive","hellknive","magicwand","magicwandofsharp","hyperblastwand","greenwand","blower","forestleaf","titanium_boomerang","boomerang","good_boomerang"
+        "fleshdumbass","housewall","houseroof","housefloor","planks_floor","planks","table","titaniumbuff","titaniumsword","lamptorch","brickfloor2","trueuniversespawner","deepgodspawner","hellbuff","hellsword","moltensword","knive","hellknive","magicwand","magicwandofsharp","hyperblastwand","greenwand","blower","forestleaf","titanium_boomerang","boomerang","good_boomerang","gypsumroof","gypsumhouse","gypsumdoor"
         ]
 var campfirerecipes = {
 "cooked_thistleroot": [["thistleroot"]],
@@ -12139,6 +12177,9 @@ var wood_manipulator_recipes = {
 "houseroof": [["house_wall","log"]],
 "ryeroof": [["houseroof","rye","rye"]],
 "violetfloor": [["violet", "planks_floor"]],
+"gypsumhouse": [["house_wall", "gypsum"]],
+"gypsumroof": [["houseroof", "gypsum"]],
+"gypsumdoor": [["door", "gypsum"]],
 }
 var furnacerecipes = {
 "copper": [["chalcopyrite", "coal"]],
