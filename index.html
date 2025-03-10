@@ -1,4 +1,4 @@
- <!--
+  <!--
 
                  PRIMORIA FEROX
 
@@ -15,24 +15,34 @@ FULL Release                    1.5.+
 <!DOCTYPE html>
 <html lang="pl" ondblclick="document.querySelector('html').requestFullscreen()">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <!-- In apk Version Link to MyLiblary ( bez niej nie można by było zapisywać plików w mojej grze w apk )-->
+  <script src="./javanative.js"></script>
   <script>
   /*  
-  
-      GAMEVERSION  
-      
-      
-  
-  */
-var gameversion = " 1.5.7.9"
+      Informacje 
+Dodalem nowy plik .pfd  w skrócie primoria ferox data
+plik zawiera informacje o świecie choć nie wszystkie są zakodowane 
+ważne Edycja Plików pfd to cheating ! 
+to twoje sumienie że oszukujesz w grze :)
 
+  */
+var gameversion = " 1.5.8 pre5 "
+var APKversion=true;
 let experimentalmultiplayer=0;
 let gametest=0;
     var yourItems = [];  // Ekwipunek
   </script>
       <style>
+ 
+
+html {
+    font-family: sans-serif;
+}
+
 html {
     
     position:fixed; width:100vw; height: 100vh; overflow: hidden;;
+     
 }
 ::-webkit-scrollbar {
     width: 5px; /* Szerokość paska przewijania */
@@ -144,7 +154,7 @@ html {
           height: 80px;
           top: 30vh;
           image-rendering: pixelated;
-          background: url('./cloud1.png');
+          background: url('./cloud2.png');
           background-size: 100% 100%;
         }
           .bg0_0 {
@@ -153,7 +163,7 @@ html {
            height: 80px;
            top: 30vh;
            image-rendering: pixelated;
-           background: url('./bgclouds.png');
+           background: url('./cloud2.png');
            background-size: 100% 100%;
          }
         .bg2_3 {
@@ -162,7 +172,7 @@ html {
            height: 80px;
            top: 30vh;
            image-rendering: pixelated;
-           background: url('./cloud2.png');
+           background: url('./cloud.png');
            background-size: 100% 100%;
          }
        .bg3_3 {
@@ -176,6 +186,44 @@ html {
           background-size: 100% 100%;
           transform: translate(-50%,0);
         }
+#splashText {
+    position: absolute;
+    height: 200px;
+    top: 58px;
+    left: 50vw;
+    color: #000000;
+    animation: scaling 5s linear infinite;
+    transform: translate(-50%, 0);
+    font-size:8px;
+    white-space: pre-wrap;
+}
+
+@keyframes scaling {
+    0% {
+        transform: translate(-50%, 0) scale(1) rotate(0deg);
+        opacity: 1;
+         
+    }
+    25% {
+        transform: translate(-50%, 10px) scale(1.1) rotate(-1deg);
+        opacity: 0.8;
+        color:#FF004A;
+    }
+    50% {
+        transform: translate(-50%, 18px) scale(1.2) rotate(0deg);
+        opacity: 1;
+        
+    }
+    75% {
+        transform: translate(-50%, 10px) scale(1.1) rotate(1deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, 0px) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
        .bg4_4 {
          position: absolute;
          width: 200px;
@@ -212,6 +260,20 @@ html {
    transform: translate(-50%, 0);
    animation: 170s mountain infinite linear;
  }
+         .bg5_7 {
+          position: absolute;
+          width: 300px;
+          
+          height: 280px;
+          bottom: 0px;
+          left: 140vw;
+          image-rendering: pixelated;
+          background: url('./mountain1.png');
+          background-size: 100% 100%;
+          transform: translate(-50%, 0);
+          animation: 170s mountain infinite linear;
+          animation-delay: -1s;
+        }
         @keyframes clouds{
           0%{
             transform : translate(-90px,0);
@@ -240,34 +302,66 @@ html {
         }
         #startbtn{
           position: absolute;
-          top: calc(50vh - 10px); left:50vw;
-          width:10px; height:10px; padding:5px 20vw;
+          top: calc(50vh - 10px - 15px); left:50vw;
+          width:10px; height:8px; padding:5px 20vw;
           background:#323232;
+          display:flex;
+text-align :center;
+justify-content: center;
           color:#FFFFFF;font-size: 10px;
           transform: translate(-50%,-50%);
         }
                 #continuebtn{
           position: absolute;
-          top: calc(50vh + 40px); left:50vw;
-          width:10px; height:10px; padding:5px 20vw;
+          top: calc(50vh + 59px - 15px); left:50vw;
+          width:10px; height:8px; padding:5px 20vw;
           background:#323232;
           color:#FFFFFF; font-size: 10px;
+          display:flex;
+text-align :center;
+justify-content: center;
           transform: translate(-50%,-50%);
         }
                 #aboutbtn{
           position: absolute;
-          top: calc(50vh + 15px); left:50vw;
-          width:10px; height:10px; padding:5px 20vw;
+          top: calc(50vh + 12.5px - 15px); left:50vw;
+          width:10px; height:8px; padding:5px 20vw;
           background:#323232;
+          color:#FFFFFF;font-size: 10px;
+          display:flex;
+text-align :center;
+justify-content: center;
+          transform: translate(-50%,-50%);
+        }
+#loadbtn{
+          position: absolute;
+          top: calc(50vh + 35px - 15px); left:50vw;
+          width:90px; height:8px; padding:5px calc(20vw - 40px);
+          background:#323232;
+          display:flex;
+          text-align :center;
+          justify-content: center;
           color:#FFFFFF;font-size: 10px;
           transform: translate(-50%,-50%);
         }
+ .bg0_0, .bg2_2 {
+    mix-blend-mode: lighten; /* lub screen dla jaśniejszego efektu */
+}
+
     </style>
 
 <script>
 var cancontinue=0
+var isPlayingGame=0
  function playgamenew(){
-   
+   isPlayingGame=1
+/*   caveChunks={}; housechunks={} ; house2chunks={};
+   overworldChunks={} ; seachunks={} ; hellchunks={}; abysschunks={} ; chunks={};
+   yourItems=[];
+   isinhouse=0; isinhouse2=0; generateCave=0; isunderwater=0; inhell=0; inabyss=0; 
+   playerX=0; playerY=0; */
+   updateTextMenuLoading()
+   splashrandomize()
    document.getElementById('loadingMenu').style.display = 'flex';
    setTimeout(function (){
      abletostart=1;
@@ -277,8 +371,15 @@ var cancontinue=0
    isUpdating=0
    update()
    paused = 1
-  setTimeout(function(){paused=0; update() },1000);
+  setTimeout(function(){paused=0; update() },1500);
+  options.autopause = 1;
+ 
+setTimeout(function() {
+    closeInventory()
+    document.getElementById('advanced').style.display = 'none';
+}, 2000)
    },1500);
+   
  }
  setTimeout(function (){
      if(gametest==1){
@@ -287,11 +388,15 @@ var cancontinue=0
      }
  },100)
  function playgameslot(slot) {
+  splashrandomize()
+  slot=(slot)||"";
+  loadGameState3(slot)
+  isPlayingGame=1
   
   document.getElementById('loadingMenu').style.display = 'flex';
   document.getElementById('loadingMenu').innerHTML=""
-  slot=(slot)||"";
-  loadGameState3(slot)
+  updateTextMenuLoading()
+  
   abletostart = 1;
   setTimeout(function() {
     
@@ -300,18 +405,21 @@ var cancontinue=0
     document.getElementById('MainMenu').style.display = 'none';
     document.getElementById('loadingMenu').style.display = 'none';
     
-    if(paused==1){document.getElementById('advanced').style.display='block';}
-    isUpdating = 0
-update()
+    if(paused==1){ }
+   isUpdating=0
+   update()
    paused = 1
-  setTimeout(function(){paused=0; update() },1000);
-  }, 2000);
+  setTimeout(function(){paused=0; update() },1500);
+   },1500);
+   
+ 
  }
 
   let dat=""
 async function upadtegameslots(){
  document.getElementById('loadingMenu').innerHTML="is loading please wait ..."
- 
+  
+ splashrandomize()
  const saveNames = [];
 
 try {
@@ -326,7 +434,7 @@ try {
       
       if (slot !== undefined) {
         saveNames.push(slot);
-        dat+=`<div onclick="playgameslot('${slot}');" style="width:80%; height:20px; margin-top:5px;  background: rgb(50,50,50); color:white; ">Continue ? : Slot "${slot}" </div>`;
+        dat+=`<div onclick="playgameslot('${slot}');" style="width:80%; height:20px; margin-top:5px;  background: rgb(50,50,50); color:white; "><ste data-lang="continue">Continue ?</ste> : Slot "${slot}" </div>`;
         document.getElementById('slotgames').innerHTML=dat
       }
     });
@@ -352,52 +460,82 @@ try {
   <obb class="bg4_4" ></obb>
   <obb class="bg5_6" style="left:-100px; width: 350px;
 height: 330px; " ></obb>
-  <obb class="bg5_5" ></obb>
-
+  <obb class="bg5_7" ></obb>
+  <obb class="bg5_6" ></obb>
   <obb id="bg1_1" ></obb>
   <obb class="bg3_3" ></obb>
+<pre id="splashText" >Hello World!</pre>
 
-  <obb class="bg2_2" style="top:35vh;  animation: 15s clouds linear infinite;"></obb>
-  <obb class="bg2_2" style="top:30vh;  animation: 20s clouds linear infinite;"></obb>
-  
+  <div style="opacity:0.5">
+      <obb class="bg2_2" style="top:35vh;  animation: 15s clouds linear infinite;"></obb>
+  <obb class="bg2_2" style="top:30vh;  animation: 20s clouds linear infinite;"></obb> 
   <obb class="bg2_3" style="top:65vh;  animation: 40s clouds linear infinite; width: 150px; height: 120px;"></obb>
   <obb class="bg2_3" style="top:10vh;  animation: 36s clouds linear infinite; width: 80px; height: 60px; "></obb>
-  
   <obb class="bg2_3" style="top:25vh;  animation: 12s clouds linear infinite;"></obb>
   <obb class="bg2_3" style="top:40vh;  animation: 23s clouds linear infinite;"></obb>
   <obb class="bg2_2" style="top:20vh;  animation: 14s clouds linear infinite;"></obb>
   <obb class="bg2_3" style="top:60vh; animation: 30s clouds linear infinite;"></obb>
   <obb class="bg2_3" style="top:10vh;  animation: 32s clouds linear infinite;"></obb>
   <obb class="bg2_3" style="top:60vh; animation: 35s clouds linear infinite;"></obb>
-  
+  </div> 
   <div id="startscreen" style="position: absolute">
-   <div id="continuebtn" style="display: none;" onclick=" document.getElementById('MainMenu').style.display = 'none'; document.getElementById('loadingMenu').style.display = 'none'; document.getElementById('advanced').style.display='block'; ">
+   <div id="continuebtn" style="display: none;" onclick=" document.getElementById('MainMenu').style.display = 'none'; document.getElementById('loadingMenu').style.display = 'none'; document.getElementById('advanced').style.display='block'; closeInventory()">
     continue? 
   </div>
-  <div id="startbtn" onclick=" document.getElementById('gamescontainer').style.display='block' ; ">
+  <div id="startbtn" onclick=" document.getElementById('gamescontainer').style.display='block' ; " data-lang="start">
     start
-  </div>
-   <div id="aboutbtn" onclick=" document.getElementById('aboutcontainer').style.display='block' ; ">
+  </div> 
+   <div id="aboutbtn" onclick=" document.getElementById('aboutcontainer').style.display='block' ; " data-lang="about">
     about
   </div>
-  
+  <div id="loadbtn" onclick=" loadPFD() " data-lang="load">
+       load pfd file
+   </div>
+<script>
+function loadPFD() {
+        document.getElementById('fileInput').click(); 
+       
+ }
+ function randomizeCloudsAnimation() {
+    const clouds = document.querySelectorAll('.bg2_3, .bg2_2');
+
+    clouds.forEach(cloud => {
+        // Pobranie duration (w sekundach) z CSS
+        const duration = parseFloat(getComputedStyle(cloud).animationDuration);
+
+        if (!isNaN(duration) && duration > 0) {
+            // Losowy moment rozpoczęcia w ramach cyklu (np. od 0 do duration)
+            const randomOffset = Math.random() * duration;
+
+            // Ustawienie ujemnego animation-delay, by animacja była w trakcie
+            cloud.style.animationDelay = `-${randomOffset}s`;
+        }
+    });
+}
+
+// Uruchomienie funkcji po załadowaniu strony
+window.onload = randomizeCloudsAnimation;
+
+</script>
+<input style="display:none;" type="file" id="fileInput" onchange="loadData22(event)" />
+
   </div>
     <div id="gamescontainer" style="display:none;  position: absolute; top:50vh ; left:50vw; transform: translate(-50%,-50%); width: 75vw; height: 80vh ; background: grey; border:3px solid rgb(50,50,50) ; ">
-    <div style="padding: 10px 50%; background: rgb(50,50,50); color:white;  " > Play <fds onclick=" document.getElementById('gamescontainer').style.display='none' ; " style="color: red; position: absolute ; right:20px; top:5px" >X</fds></div>
+    <div style="padding: 10px 50%; background: rgb(50,50,50); color:white;  " ><sds data-lang="start" > Play</sds> <fds onclick=" document.getElementById('gamescontainer').style.display='none' ; " style="color: red; position: absolute ; right:20px; top:5px" >X</fds></div>
     <div id="slotgames" style="white-space: pre-wrap; color:white; margin: 5px; height: 100% width :100% ;">
     </div>
-      <div style="width: 100px; position: absolute; bottom: 10px; height: 20px; left:20px;  background: rgb(200,200,200);" onclick="playgamenew()">
-          new game
+      <div style="width: 200px; position: absolute; bottom: 10px; height: 20px; left:20px;  background: rgb(200,200,200);" data-lang="newgame" onclick="playgamenew(); closeInventory()" >
+          new game/continue
       </div>
   </div>
 
-    <pre id="gameversion1" style="position:absolute; z-index:9; top:0; left:0; color:grey;"> commit </pre>
+    <pre id="gameversion1" style="position:absolute; z-index:9; top:0; left:0; color:grey;" > commit </pre>
     <script>
         
     </script>
   <div id="aboutcontainer" style="display:none;  position: absolute; top:50vh ; left:50vw; transform: translate(-50%,-50%); width: 75vw; height: 80vh ; background: grey; border:3px solid rgb(50,50,50) ; overflow: hidden scroll ; ">
-    <div style="padding: 10px 50%; background: rgb(50,50,50); color:white;  " > About <fds onclick=" document.getElementById('aboutcontainer').style.display='none' ; " style="color: red; position: absolute ; right:20px; top:5px" >X</fds></div>
-    <pre style="white-space: pre-wrap; color:white; margin: 5px; height: 100% width :100% ; overflow: hidden scroll;">
+    <div style="padding: 10px 50%; background: rgb(50,50,50); color:white;  "  > About <fds onclick=" document.getElementById('aboutcontainer').style.display='none' ; " style="color: red; position: absolute ; right:20px; top:5px" >X</fds></div>
+    <pre style="white-space: pre-wrap; color:white; margin: 5px; height: 100% width :100% ; overflow: hidden scroll;" data-lang="readme" >
 Howdy im Krystian Popiolek a game developer from Poland 
 who like survival games . 
 i spend ± 11 months . so this is my biggest game for now.
@@ -413,9 +551,7 @@ if you have an idea for this game you can tell me it to add at awlie8518@gmail.c
 
 
 kashumy.github.io copyright © all rights reserved 
-dat : 24.21.12,
-
-Im now working on multiplayer 
+dat : 24.21.12, last update dat FEB 15 25
 
 
 ** chesz zmienić język na polski proszę bardzo 
@@ -423,12 +559,276 @@ Im now working on multiplayer
       <option value="pl">Polski</option>
 </select>
  
+ this is a pre version of full update that is comming
+ this version include 
+ 
+ small renderer changes
+ game speed bug on faster devices 
+ new cave system 
     </pre>
   </div>
 </div>
-<div id="loadingMenu" style="display:none; width: 100vw; height:100vh; background: black; color:white; position:absolute; align-items: center; justify-content: center; position: absolute; z-index:999; opacity: 0.5">
+<div id="loadingMenu" style="display:none; width: 100vw; height:100vh; background: black; color:white; position:absolute; align-items: center; justify-content: center; font-size: 13px; position: absolute; z-index:999; opacity: 0.5">
 this isn't a fake loading screen !
 </div>
+
+ 
+<script>
+     var langPlactive=0;
+var langDEactive=0;
+    // Angielskie splash teksty
+    var splashTexts = [
+        "Other side on the other road",
+        "Splash Text is always welcome",
+        "Powered with HTML5!",
+        "Hello World",
+        "Ahh primoria ferox classic soundtrack",
+        "What is Jeremi doing in the washing machine? He clears memories",
+        "The world is as simple as black and white",
+        "Anyone can code. You just need to drink a lot of coffee",
+        "Greetings to my colleagues ;)",
+        "You meet Ohio Rizzler final boss",
+        "Did you know that 100% of living people are alive",
+        "Now on Android with Java!",
+        "console.log('hello world!')",
+        "Scientists have confirmed that yawning repels evil demons",
+        "It's always a good time for coffee!",
+        "No, this isn't Terraria!",
+        "Click Show More to show recipes",
+        "Explore the world and you will find something interesting",
+        "Cut down some trees!",
+        "The diamond is unbreakable.",
+        "Remember, you don't come back after death!",
+        "There are ghosts in the forest, so be careful!",
+        "This game is made in JavaScript, that's why it's so good.",
+        "Don't drown underwater",
+        "Underwater and desert are not the best places to live",
+        "Weapon is a priority!",
+        "Does anyone have an idea for a splash text?",
+        "Go touch some grass",
+        "Made in JS",
+        "Gigachads always code on a phone",
+        "Do you write assembly code?",
+        "~ Nya",
+        "You are the main character!",
+        "Do you like Primoria OSTs?",
+        "You are hacked, lmfao!",
+        "This is not a virus",
+        "printf(\"hello world!\")",
+        "Why is '2' Not a Number?!",
+        "I'm not an alcoholic, I'm 15",
+        "My name is Yes",
+        "Pōrando!",
+        "We have 60% DNA from bananas",
+        "Meow meow, I'm a bird",
+        "I tell you a secret: spam save button to get an achievement",
+        "OMG, I didn't know that grass is green!",
+        "0/0 & √(-1) == undefined",
+        "The aliens will cooperate",
+        "Mice dream about cheese castles",
+        "If you can do 5 push-ups, then you can definitely pet a dog",
+        "Cats are not missiles!",
+        "Remember that cats have 9 lives and humans only have one",
+        "The game looks like it was made in Ohio, but it's in Poland",
+        "Omae wa mou shindeiru",
+        "[Object Object] is my love",
+        "Primoria Bizarre Adventure",
+        "Universe!",
+        "Two plus two is five!",
+        "2 * 2 + 2 = 8!",
+        "Aliens will come, it's only a matter of time",
+        "I don't have ideas for brainrot splash text",
+        "Jikan wa sugite modoranai",
+        "Game is 'Gluten Free'",
+        "If mitochondria are the powerhouse of the cell, then your fridge is the powerhouse of snacks",
+        "If you know the speed of light, you can surely outrun a snail",
+        "If you can see your Stand, then you definitely have schizophrenia.",
+        "Anime is real",
+        "If you don't learn to swim, you'll drown.",
+        "Au revoir, je ne reviens pas",
+        "Bonjour le monde",
+        "Rest is a priority"
+    ];
+
+    // Polskie tłumaczenia
+    var splashTextsPL = [
+        "Druga strona na drugiej drodze",
+        "Tekst powitalny zawsze mile widziany",
+        "Działa na HTML5!",
+        "Witaj świecie",
+        "Ahh, klasyczna ścieżka dźwiękowa Primoria Ferox",
+        "Co robi Jeremi w pralce? Czyści wspomnienia",
+        "Świat jest tak prosty jak czerń i biel",
+        "Każdy może kodować. Wystarczy dużo kawy",
+        "Pozdrowienia dla moich kolegów ;)",
+        "Spotykasz ostatecznego bossa Ohio Rizzlera",
+        "Czy wiesz, że 100% żyjących ludzi żyje?",
+        "Teraz na Androidzie z Java!",
+        "console.log('witaj świecie!')",
+        "Naukowcy potwierdzili, że ziewanie odpędza złe demony",
+        "Zawsze jest dobry czas na kawę!",
+        "Nie, to nie jest Terraria!",
+        "Kliknij Pokaż więcej, aby zobaczyć przepisy",
+        "Eksploruj świat, a znajdziesz coś ciekawego",
+        "Ścinaj drzewa!",
+        "Diament jest niezniszczalny.",
+        "Pamiętaj, po śmierci nie wracasz!",
+        "W lesie są duchy, bądź ostrożny!",
+        "Ta gra jest napisana w JavaScript, dlatego jest taka dobra.",
+        "Nie ton pod wodą",
+        "Woda i pustynia to nie najlepsze miejsca do życia",
+        "Broń to priorytet!",
+        "Ktoś ma pomysł na tekst powitalny?",
+        "Idź dotknij trawy",
+        "Zrobione w JS",
+        "Gigachady zawsze kodują na telefonie",
+        "Piszesz w asemblerze?",
+        "~ Nya",
+        "Jesteś głównym bohaterem!",
+        "Lubisz OST-y Primorii?",
+        "Zostałeś zhakowany, haha!",
+        "To nie jest wirus",
+        "printf(\"witaj świecie!\")",
+        "Dlaczego '2' nie jest liczbą?!",
+        "Nie jestem alkoholikiem, mam 15 lat",
+        "Nazywam się Tak",
+        "Polska!",
+        "Mamy 60% DNA z bananów",
+        "Miau, jestem ptakiem",
+        "Powiem ci sekret: spamuj przycisk zapisu, aby zdobyć osiągnięcie",
+        "Omg, nie wiedziałem, że trawa jest zielona!",
+        "0/0 & √(-1) == undefined",
+        "Obcy będą współpracować",
+        "Myszy śnią o zamkach z sera",
+        "Jeśli umiesz zrobić 5 pompek, możesz pogłaskać psa",
+        "Kot to nie pocisk!",
+        "Pamiętaj, że koty mają 9 żyć, a ludzie tylko jedno",
+        "Gra wygląda, jakby była zrobiona w Ohio, ale to Polska",
+        "Omae wa mou shindeiru",
+        "[Object Object] to moja miłość",
+        "Primoria Dziwna Przygoda",
+        "Wszechświat!",
+        "Dwa plus dwa to pięć!",
+        "2 * 2 + 2 = 8!",
+        "Obcy przybędą, to tylko kwestia czasu",
+        "Nie mam pomysłów na tekst powitalny",
+        "Jikan wa sugite modoranai",
+        "Gra jest 'Bezglutenowa'",
+        "Jeśli mitochondria to siłownia komórki, to lodówka to siłownia przekąsek",
+        "Jeśli znasz prędkość światła, na pewno prześcigniesz ślimaka",
+        "Jeśli widzisz swojego Standa, to masz schizofrenię.",
+        "Anime jest prawdziwe",
+        "Jeśli nie nauczysz się pływać, utoniesz.",
+        "Au revoir, nie wrócę",
+        "Witaj świecie",
+        "Odpoczynek to priorytet"
+    ];
+
+    function splashrandomize() {
+        const splash = document.getElementById('splashText');
+        const texts = langPlactive ? splashTextsPL : splashTexts;
+        splash.innerText = texts[Math.floor(Math.random() * texts.length)];
+    }
+
+    splashrandomize();
+    
+    
+    
+    
+    
+    const loadingTexts = [
+            "Loading... go touch some grass!",
+            "Please wait, we're fetching the stars!",
+            "Hang tight! The magic is happening.",
+            "Loading your dreams...",
+            "Just a moment, we're brewing some coffee!",
+            "Almost there, enjoy the view!",
+            "Loading... think about your next adventure!",
+            "Please wait, checking with the universe...",
+            "Loading... grab a snack!",
+            "Hang on! We're putting things together!",
+            "Wait umm you know .. This is a settimeout lol ",
+            "We hate fake loading screen. So i made one",
+            "Loading... don't worry, it's not a black hole! iTs jUsT a BlAcK sCrEeN",
+    "Please hold on, we're training squirrels to fetch data!",
+    "Just a sec! We're synchronizing with the cat memes database.",
+    "Almost there! Counting clouds and unicorns.",
+    "Hang tight! We're checking if the coffee is strong enough.",
+    "Loading... time to ponder the meaning of life!",
+    "Please wait, our robot is doing a little dance.",
+    "Loading... remember to breathe and stretch!",
+    "Just a moment, we're negotiating with the Wi-Fi gremlins!",
+    "Hold off! The area is under construction.",
+"Do you know what is Sigma Skidibi?",
+"Wait! we're trying to connect with Earendel!",
+"Loading... searching for lost socks and missing keys!",
+    "Please hang on, we're calibrating the time machine!",
+    "Loading... contemplating the mysteries of the universe!",
+    "Just a moment, our team of hamsters is hard at work!",
+    "Loading... counting the grains of sand on the beach!",
+    "Please wait, we're tuning the cosmic radio!",
+    "Loading... waiting for the next episode of life!",
+    "Hang tight! Our ducks are in a row... sort of!",
+    ".. you knew no one cared  ",
+"Not only people work. Computers too..",
+"Code Treatment Clinic?",
+"be patient, loading can take some time ...",
+"Dont worry this will always annoy you ..",
+        ];
+        const loadingTextsPL = [
+    "Ładowanie... idź dotknąć trawy!",
+    "Proszę czekać, łapiemy gwiazdy!",
+    "Trzymaj się! Dzieje się magia.",
+    "Ładowanie twoich marzeń...",
+    "Chwila, parzymy kawę!",
+    "Prawie gotowe, podziwiaj widoki!",
+    "Ładowanie... pomyśl o swojej kolejnej przygodzie!",
+    "Proszę czekać, konsultujemy się z wszechświatem...",
+    "Ładowanie... weź sobie przekąskę!",
+    "Chwila! Składamy wszystko do kupy!",
+    "Czekaj... wiesz, że to tylko setTimeout? Lol",
+    "Nienawidzimy fałszywych ekranów ładowania, więc zrobiłem jeden",
+    "Ładowanie... spokojnie, to nie czarna dziura! To tYlKo cZaRnY eKrAn",
+    "Proszę chwilę poczekać, szkolimy wiewiórki do zbierania danych!",
+    "Chwila! Synchronizujemy się z bazą memów o kotach.",
+    "Prawie gotowe! Liczymy chmury i jednorożce.",
+    "Trzymaj się! Sprawdzamy, czy kawa jest wystarczająco mocna.",
+    "Ładowanie... czas zastanowić się nad sensem życia!",
+    "Proszę czekać, nasz robot wykonuje mały taniec.",
+    "Ładowanie... pamiętaj, żeby oddychać i się rozciągnąć!",
+    "Chwila! Negocjujemy z gremlinami Wi-Fi!",
+    "Zatrzymaj się! Obszar w budowie.",
+    "Czy wiesz, czym jest Sigma Skidibi?",
+    "Czekaj! Próbujemy połączyć się z Earendel!",
+    "Ładowanie... szukamy zaginionych skarpetek i kluczy!",
+    "Proszę czekać, kalibrujemy wehikuł czasu!",
+    "Ładowanie... rozważamy tajemnice wszechświata!",
+    "Chwila! Nasza ekipa chomików ciężko pracuje!",
+    "Ładowanie... liczymy ziarenka piasku na plaży!",
+    "Proszę czekać, dostrajamy kosmiczne radio!",
+    "Ładowanie... czekamy na kolejny odcinek życia!",
+    "Trzymaj się! Nasze kaczki są w rządku... mniej więcej!",
+    ".. wiedziałeś, że nikogo to nie obchodzi",
+    "Nie tylko ludzie pracują. Komputery też...",
+    "Klinika leczenia kodu?",
+    "Bądź cierpliwy, ładowanie może chwilę potrwać...",
+    "Nie martw się, to zawsze będzie Cię irytować..."
+];
+ 
+        function updateTextMenuLoading() {
+            
+            const loadingMenu = document.getElementById('loadingMenu');
+            const texts = langPlactive ? loadingTextsPL : loadingTexts;
+loadingMenu.innerText = texts[Math.floor(Math.random() * texts.length)]; 
+console.log(loadingMenu.innerText )
+             if(document.getElementById('loadingScreen')){
+                 document.getElementById('loadingScreen').innerText=loadingMenu.innerText 
+             }
+        }
+        updateTextMenuLoading();
+</script>
+
+
 <script></script>
     <div class="loader" id="loader">
         <img src="./logo.png" alt="Logo" class="logo" id="logo" style="width: 42%; image-rendering: pixelated ;">
@@ -436,14 +836,108 @@ this isn't a fake loading screen !
 
 
 
-    <script>
+    <script> 
+    const htmltranslations = {
+      "pl": {
+                "readme": `
+Cześć, jestem Krystian Popiołek, twórca gier z Polski,
+który lubi gry survivalowe.
+
+Spędziłem około 11 miesięcy na tworzeniu tej gry,
+więc jest to jak dotąd mój największy projekt.
+
+Stworzyłem każdą muzykę, każdy sprite – wszystko od podstaw.
+
+Mam nadzieję, że spodoba Ci się ta gra!
+
+ 
+
+Gra została stworzona w pełni w JavaScript – bez silników, bez bibliotek itd.
+Nie wydaję pieniędzy na FL Studio do tworzenia muzyki, skoro Jummbox jest lepszy i darmowy :)
+
+ 
+Jeśli masz pomysł na rozwój tej gry, możesz się ze mną skontaktować:
+**E-mail:** awlie8518@gmail.com
+ **GitHub (Primoria Ferox - Issues):** Kashumy
+
+ **Strona:** [kashumy.github.io]
+ kashumy.github.io copyright © wszelkie prawa zastrzeżone 
+ 
+
+ Chcesz zmienić język na polski? Proszę bardzo!
+<select id="languageSelect" onchange="changeLanguage()">
+  <option value="en">English</option>
+  <option value="pl" selected>Polski</option>
+</select>
+`
+      },
+      "en": {
+"readme":`Howdy im Krystian Popiolek a game developer from Poland 
+who like survival games . 
+i spend ± 11 months . so this is my biggest game for now.
+i maded every music every sprite everything. 
+
+i hope you like this game 
+
+     game is maded with full javascript no engine no libraries etc 
+     i dont spend money on fl to make music when jummbox is better and free  :) .  
+     
+     
+if you have an idea for this game you can tell me it to add at awlie8518@gmail.com or Kashumy Github Primoria ferox issues
+
+
+kashumy.github.io copyright © all rights reserved 
+
+
+** chesz zmienić język na polski proszę bardzo 
+<select id="languageSelect" onchange="changeLanguage()"> <option value="en">English</option>
+      <option value="pl">Polski</option>
+</select>
+ 
+ this is a pre version of full update that is comming
+ this version include 
+ 
+ small renderer changes
+ game speed bug on faster devices 
+ new cave system `
+      }
+    }
+    
+    const translations = {
+    "pl": {
+        "start": "Graj",
+        "about": "oMnie",
+        "load":"Wczytaj plik pfd",
+        "newgame":"Nowa Gra/Kontynuuj",
+        "continue":"Kontynuuj ?",
+
+    },
+    "en": {
+        "start": "Play",
+        "about": "About",
+        "load": "load pfd file",
+        "newgame":"new game/continue ",
+        "continue":"Continue ?",
+
+    }
+};
+function translatePage(lang) { document.querySelectorAll("[data-lang]").forEach((el) => {let key = el.getAttribute("data-lang");if(translations[lang][key]){el.innerText = translations[lang][key];} });
+  
+  document.querySelectorAll("[data-lang]").forEach((el) => {let key = el.getAttribute("data-lang");if(htmltranslations[lang][key]){el.innerHTML = htmltranslations[lang][key];} });
+}
+
+
 function changeLanguage() {
 const selectElement = document.getElementById('languageSelect');
 const selectedValue = selectElement.value;
     if (selectedValue === 'pl') {
         langPlactive = 1; // Ustaw na 1 dla języka polskiego
+        translatePage("pl");
+        splashrandomize();
     } else {
         langPlactive = 0; // Ustaw na 0 dla języka angielskiego
+        translatePage("en");
+        splashrandomize();
     }
 }
     setTimeout(function(){
@@ -481,10 +975,10 @@ setTimeout(() => {
       .health-bar-container {
         position: fixed;
 z-index: 0;
-        right: 5px;
+        right: 20px;
         top: 0;
         width: 100px;
-        height: 5px;
+        height: 6px;
         background-color: #2E0000;
         /* Ciemnoczerwone tło - pasek straconego życia */
 opacity: 0.8
@@ -493,10 +987,10 @@ opacity: 0.8
       .stamina-bar-container {
         position: fixed;
 z-index: 0;
-        right: 5px;
+        right: 20px;
         top: 7px;
         width: 100px;
-        height: 5px;
+        height: 6px;
         background-color: #2E2A00;
         /* Ciemnoczerwone tło - pasek straconego życia */
 opacity: 0.8
@@ -507,7 +1001,7 @@ opacity: 0.8
         position: fixed;
         display: none;
         z-index: 1;
-        right: 0;
+        right: 20px;
         top: 24px;
         width: 100px;
         height: 10px;
@@ -547,6 +1041,28 @@ opacity: 0.8
       <div id="hungerBar" class="hunger-bar"></div>
     </div>
     <script>
+    let options = {
+  autoclose: 0,
+  dontbreakfloor: 0,
+  dropany: 0,
+  creativemode: 0,
+  autopause: 1,
+  fightmode: 0,
+  fancygraphic: 0,
+  quickinventory: 1,
+  noclip: 0,
+  zoomout: 0,
+  biggerzoomout: 0,
+  Fskipping: 0,
+  hideBlocksnumber: 0,
+  showEveryBlocksNumber: 0,
+  invertControls: 0,
+  fancynight: 1,
+  oldlight: 1,
+  editblocks: 1,
+  shoot: 1,
+  nomusic: 0,
+};
     let takedamage = new Audio('./hit.mp3');
 let deathsound = new Audio('./dead.mp3');
 let collectsound = new Audio('./collect.mp3');
@@ -574,6 +1090,7 @@ function playcollectsound() {
   collectsound.play();
 }
 function playhitmp3() {
+  if( options.nomusic==1)return;
   takedamage.play();
 }
 function checkIfItems(item, amount) {
@@ -595,6 +1112,9 @@ function checkIfItems(item, amount) {
         }} else if(checkIfItems("titaniumbuff",1)){
           if(amount<1){
           amount=amount/1.3
+        }}else if(checkIfItems("osmiumbuff",1)){
+          if(amount<1){
+          amount=amount*2
         }}
         currentHP = Math.max(0, Math.min(maxHP, currentHP + amount));
 playhitmp3()
@@ -611,7 +1131,7 @@ if(currentHP<50){
           options.dropany=1
           for(let i =0; i< yourItems.length; i++){
            if(yourItems[i]!==""&&yourItems[i]!==" "&&yourItems[i]!==undefined){
-           dropItemAtPlayerPosition(yourItems[i])
+           dropItemAtPlayerPosition2(yourItems[i])
           }}
           yourItems=[] 
        /*   chunks={}
@@ -625,22 +1145,22 @@ if (isunderwater == 1) {
     chunks = overworldChunks;
     isunderwater = 0;
 
-}if (generateChunk == 1) {
+}else if (generateCave == 1) {
     caveChunks = { ...chunks };
-    chunks = caveChunks;
-    generateChunk = 0;
+    chunks = overworldChunks;
+    generateCave = 0;
 
-}  if (inhell == 1) {
+} else if (inhell == 1) {
     seachunks = { ...chunks };
     chunks = overworldChunks;
     inhell = 0;
     
-}if (inabyss == 1) {
+}else if (inabyss == 1) {
     abysschunks = { ...chunks };
     chunks = overworldChunks;
     inabyss = 0;
     
-}if (isinhouse == 1) {
+}else if (isinhouse == 1) {
     housechunks = { ...chunks };
     chunks = overworldChunks;
     isinhouse = 0;
@@ -656,12 +1176,6 @@ offsetX = player.spawnX;
 offsetY = player.spawnY;
 
 renderedEnemies = [];
- 
- 
- 
-
-
-
 paused=0
           
           achievementget("You died LMFAO ",0)
@@ -695,6 +1209,9 @@ if(nightpower<0){
         }} else if(checkIfItems("titaniumbuff",1)){
           if(amount<1){
           amount=amount/1.3
+        }}else if(checkIfItems("osmiumbuff",1)){
+          if(amount<1){
+          amount=amount*1
         }}
         currentHP = Math.max(0, Math.min(maxHP, currentHP + amount));
 //playhitmp3()
@@ -833,7 +1350,7 @@ healthBar.style.width = healthPercentage + '%';
             position: absolute;
             top:50vh;
             left:50vw;
-            width:calc(auto + 100px);
+            width:calc(auto + 150px);
             height:calc(100% + 50px);
            transform: translate(-50%,-50%) scale(123%,100%);
             background-color: #87CEEB00; /* Niebo */
@@ -892,11 +1409,12 @@ healthBar.style.width = healthPercentage + '%';
 <div style="position: absolute; top:0; left:0; z-index: 9999999999999999999999999999999999999999; background: black; color: white;" id="ggsvbdnfnnfnnxkrgjgmvmfjrhf">
 </div><script>function scanvarible(data){document.getElementById('ggsvbdnfnnfnnxkrgjgmvmfjrhf').innerText=data }</script>
 <!--
-<script src="//cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script> 
--->
-<style>
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 
+<script>eruda.init();</script>
+
+<style>
+-->
 </style>
 <canvas id="gameCanvas" width="420" height="350"></canvas>
 
@@ -945,7 +1463,43 @@ healthBar.style.width = healthPercentage + '%';
 
 <script>
 var paused=0;
- 
+ // script.js
+ var style = document.createElement('style');
+ style.type = 'text/css';
+ style.innerHTML = `#infotoast {
+    position: fixed;
+    bottom: 20px;
+    left: 50% ;
+    transform: translateX( -50% );
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 3px;
+    border-radius: 8px;
+    display: none; 
+    font-size:10px;
+    z-index: 1000;
+    transition: opacity 0.5 s ease,
+    bottom 0.5 s ease;
+}`;
+document.head.appendChild(style);
+       
+function TextPopUp(text) {
+    let toast = document.createElement('div');
+    toast.id = 'infotoast';
+    toast.innerText = text;
+    document.body.appendChild(toast);
+    toast.style.display = 'block';
+    toast.style.opacity = '1';
+    toast.style.bottom = '20px';
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.bottom = '50px';
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 500); 
+    }, 3000);
+}
+
 // Obiekt przechowujący stany zmiennych
 // Function to create and display a custom customAlert
 function customAlert(message) {
@@ -1041,24 +1595,7 @@ function customAlert(message) {
 
  var nocliping=0
 
-let options = {
-  autoclose: 0,
-  dontbreakfloor:0,
-  dropany:0,
-  creativemode:0,
-  autopause:1,
-  fightmode:0,
-  fancygraphic:0,
-  quickinventory:1,
-  noclip:0,
-  zoomout:0,
-  biggerzoomout:0,
-  Fskipping:0,
-  hideBlocksnumber:0,
-  showEveryBlocksNumber:0,
-  invertControls:0,
-  oldlight:0,
-};
+
 var blockSize = 32;
 var playerX = 0
 var playerY = 0
@@ -1082,7 +1619,7 @@ function isPlayerInWater() {
             playerCenterX >= block.x && playerCenterX <= block.x + blockSize &&
             playerCenterY >= block.y && playerCenterY <= block.y + blockSize
         ) {
-            if (block.type === 'water'||block.type === 'underwaterentrance'||block.type === 'water1') {
+            if (block.type === 'water'||block.type === 'underwaterentrance'||block.type === 'water1'||block.type === 'shallowwater') {
                 isInWater = true;
             }
             // Jeśli gracz jest na bloku z waterBuilder, zwróć false
@@ -1099,6 +1636,7 @@ let norspeed = 5;
 let playerSpeed = 5;
 let Aplayerid=0;
 let pvpactive=0; 
+/*
 function updateTabCount(delta) {
     const currentCount = parseInt(localStorage.getItem('tabCount')) || 0;
     localStorage.setItem('tabCount', currentCount + delta);
@@ -1119,7 +1657,7 @@ window.addEventListener('storage', (event) => {
     }
 });
 Aplayerid = getOpenTabCount();
-
+*/
 let worldsdimensions = {
     "currentdim": "ovw",
     "ovw": {},
@@ -1260,24 +1798,17 @@ let player = {
         stayright: ['./moveright0.png'],
         moveleft: ['./moveleft0.png', './moveleft1.png'],
         moveright: ['./moveright0.png', './moveright1.png'],
-        
         movedown: ['./movedown0.png', './movedown1.png'],
         moveupright: ['./upright0.png','./upright1.png'],
         moveupleft: ['./upleft0.png','./upleft1.png'],
         stayupleft: ['./upleft0.png'],
         stayupright: ['./upright0.png'],
-        
-  
   inwater_moveleft: ['./swimleft0.png', './swimleft1.png'],
   inwater_moveright: ['./swimright0.png', './swimright1.png'],
 
   inwater_movedown: ['./swimdown0.png', './swimdown1.png'],
   inwater_moveup: ['./swimup0.png', './swimup1.png'],
-  
-
-        
     },
-        
 };
 let armourstextures={
       "dracobuff": {
@@ -1321,6 +1852,27 @@ let armourstextures={
   inwater_moveright: ['./swimright0.png', './swimright1.png'],
   inwater_movedown: ['./swimdown0.png', './swimdown1.png'],
   inwater_moveup: ['./swimup0.png', './swimup1.png'],
+  },
+    "osmiumbuff": {
+    staydown: ['./osmstaydown.png'],
+    stayup: ['./osmstayup.png'],
+    moveup: ['./osmup1.png', './osmup2.png'],
+    stayupright: ['./osmright1.png'],
+    stayupleft: ['./osmleft1.png'],
+    stayleft: ['./osmleft1.png'],
+    stayright: ['./osmright1.png'],
+    moveleft: ['./osmleft1.png', './osmleft2.png'],
+    moveright: ['./osmright1.png', './osmright2.png'],
+    movedown: ['./osmdown1.png', './osmdown2.png'],
+    moveupright: ['./osmright1.png', './osmright2.png'],
+    moveupleft: ['./osmleft1.png', './osmleft2.png'],
+    stayupleft: ['./osmleft1.png'],
+    stayupright: ['./osmright1.png'],
+    
+    inwater_moveleft: ['./swimleft0.png', './swimleft1.png'],
+    inwater_moveright: ['./swimright0.png', './swimright1.png'],
+    inwater_movedown: ['./swimdown0.png', './swimdown1.png'],
+    inwater_moveup: ['./swimup0.png', './swimup1.png'],
   },
   "hellbuff": {
     staydown: ['./hellarmourstaydown.png'],
@@ -1410,8 +1962,9 @@ for (const armour in armourstextures) {
  
  
 player.texture = player.textures[player.currentAnimation][0];
-
+let stonestep = new Audio('./stonestep.wav');
 let footstepSound = new Audio('./step2.mp3');
+stonestep.loop = true;
 let windsound = new Audio('./wind.mp3');
 footstepSound.loop = true; // Ustawienie pętli dla dźwięku
 let swimSound = new Audio('./swim.mp3');
@@ -1424,12 +1977,20 @@ let hitenemysound = new Audio('./hit (1).mp3');
 let slashsound3 = new Audio('./slash2.mp3');
 let slashsound4 = new Audio('./slash3.mp3');
 function playFootstepSound() {
+  if(options.nomusic==1)return;
+  if(isStayOn("cave_floor")){
+    if (stonestep.paused) {
+        stonestep.play();
+    }
+  }else{
     if (footstepSound.paused) {
         footstepSound.play();
     }
+  }
 }
 
 function playslash() {
+  if(options.nomusic==1)return;
   let slashsound2 = new Audio();
   if(Math.random()<0.3){
    slashsound2.src = slashsound.src
@@ -1442,6 +2003,7 @@ function playslash() {
     slashsound2.play();
 }
 function playslash2() {
+  if(options.nomusic==1)return;
   let slashsound2 = new Audio();
   if (Math.random() < 0.3) {
     slashsound2.src = slashsound.src
@@ -1454,14 +2016,17 @@ function playslash2() {
   slashsound2.play();
 }
 function blockedsound() {
+  if(options.nomusic==1)return;
     noucant.play();
 }
 function playswimsound() {
+  if(options.nomusic==1)return;
   if (swimSound.paused) {
     swimSound.play();
   }
 }
 function playwindsound() {
+  if(options.nomusic==1)return;
   if (windsound.paused) {
     windsound.volume=0.15;
     windsound.play();
@@ -1478,6 +2043,10 @@ function stopFootstepSound() {
         footstepSound.pause();
         footstepSound.currentTime = 0; // Resetowanie dźwięku po zatrzymaniu
     }
+    if (!stonestep.paused) {
+  stonestep.pause();
+  stonestep.currentTime = 0; // Resetowanie dźwięku po zatrzymaniu
+}
 }
 var issmoking=0;
 let lastDirection = 'down'; // Domyślny kierunek patrzenia
@@ -1612,6 +2181,7 @@ const musicTracks = [
   "./Overflow drain.mp3",
   "./primoria resonance (1).mp3", 
   "./PrimoriaFerox.mp3",
+  "./Primoria Division.mp3",
   "./primoria-lunatic.mp3",
   "./sleeping over.mp3",
 ];
@@ -1621,20 +2191,29 @@ const musicTracks2 = [
   "./coldnight.mp3",
   "./ovw3.mp3",
   "./go-ahead.mp3",
+  "./sleeping over.mp3",
   "./key1.mp3",
   "./chiptune2.mp3",
 "./springstring.mp3",
 "./Overflow drain.mp3",
-"./chickenchip.mp3",
+"./Explorer3.mp3", 
+"./nightstand.mp3",
 ];
 const nightmusicTracks = [
+
+
+"./primoriWorld.mp3",
+"./primoriaferox7.mp3",
   "./night.mp3",
- "./night5.mp3",
+  "./night5.mp3",
+"./KaputDeFerxo.mp3",
  "./night4.mp3",
  "./%4NIGHTP - BBS -.mp3",
  "./tonight.mp3",
-"./Comfortable Night.mp3",
-"./Comfortable Night.mp3"
+// "./Comfortable Night.mp3",
+ "./Comfortable Night.mp3",
+ "./night4.mp3",
+// "./chickenchip.mp3",
 ];
  
 const audioInstances = musicTracks.map(track => new Audio(track));
@@ -1647,14 +2226,23 @@ const boss4 = new Audio('./soulreinforcement.mp3');
 const boss1 = new Audio('./electric force.mp3');
 const trueTrack = new Audio('./TRUE.mp3');
 const desertTrack = new Audio('./SandInEyes.mp3');
+const desertnightTrack = new Audio('./ruins.mp3');
 const snowyTrack = new Audio('./snowy.mp3');
 const snowyTrack2 = new Audio('./Ethernia cold.mp3');
+const foresttrack = new Audio('./mightNight.mp3');
 const abyssumTrack = new Audio('./abyssum.mp3');
 const hellTrack = new Audio('./The Magma.mp3');
-const aquamarine = new Audio('./aquamarine.mp3');
+const aquamarine = new Audio('./deep in abyss.mp3');
 let currentTrack = null;
-
+function stopMusic() {
+  if (currentTrack) {
+    currentTrack.pause();
+    currentTrack.currentTime = 0;
+    currentTrack = null
+  }
+}
 function playRandomMusic() {
+  if(options.nomusic==1)return;
     if(currentTrack){
     currentTrack.pause();
     currentTrack.currentTime = 0;
@@ -1685,10 +2273,11 @@ randomTrack.currentTime = 0;
   currentTrack = randomTrack;
 currentTrack.play()//.catch(() => {
 //});
+var randomDelay = getRandomInt(1000, 2000);
   currentTrack.onended = function () {
       currentTrack.pause();
     currentTrack = null;
-    const randomDelay = getRandomInt(1000, 2000);
+     randomDelay = getRandomInt(1000, 2000);
     setTimeout(playMusic, randomDelay);
   };
 
@@ -1704,9 +2293,10 @@ currentTrack.currentTime = 0;
     */
   };
 }}
-
+console.log("Primoriaferox copyright allrights reserved ")
 function playMusic() {
-  
+  if(options.nomusic==1)return;
+  if(!((isStayOn("forestgrasslayer") || isStayOn("forestgrass"))&& nightpower>1 ) ){
   if(!(checkIfHasEnemy("trueuniversehead",1))&&!(checkIfHasEnemy("deepgodhead",1))&&!(checkIfHasEnemy("flesh",1))&&!(checkIfHasEnemy("insaneuniversegod",1)) &&!(checkIfHasEnemy("2medusa",1)) &&!(checkIfHasEnemy("darkeye",1)) ){
    
   if (isStayOn("water") && isPlayingSnowyMusic) {
@@ -1762,7 +2352,7 @@ if (inabyss === 1 && (!checkIfHasEnemy("trueuniversehead", 1))) {
 }else if ((checkIfHasEnemy("2medusa", 1))) {
   playBoss4()
 }
-}
+}}
 function playBoss4() {
   if (currentTrack) {
     currentTrack.pause();
@@ -1929,7 +2519,9 @@ document.querySelector("html").addEventListener("click", () => {
 let isPlayingDesertMusic = false;
 let isPlayingSnowyMusic =false;
 function playDesertMusic() {
-  if (currentTrack === desertTrack) return; // Jeśli już odtwarzamy pustynną muzykę, nic nie rób
+  if(options.nomusic==1)return;
+  
+  if (currentTrack === desertTrack||currentTrack === desertnightTrack) return; // Jeśli już odtwarzamy pustynną muzykę, nic nie rób
 
   if (currentTrack) {
     fadeOut(currentTrack, () => {
@@ -1942,6 +2534,8 @@ function playDesertMusic() {
   }
 }
 function playSnowyMusic() {
+  if(options.nomusic==1)return;
+  
   if (currentTrack === snowyTrack ||currentTrack === snowyTrack2 ) return; // Jeśli już odtwarzamy pustynną muzykę, nic nie rób
 
   if (currentTrack) {
@@ -1957,9 +2551,16 @@ function playSnowyMusic() {
 
 function startDesertTrack() {
   if(!(checkIfHasEnemy("trueuniversehead",1))){
+    if(nightpower<2){
   currentTrack = desertTrack;
   currentTrack.volume = 0;
-  currentTrack.play().then(() => fadeIn(desertTrack));
+currentTrack.play().then(() => fadeIn(desertTrack));
+    }else{
+currentTrack = desertnightTrack;
+currentTrack.volume = 0;
+currentTrack.play().then(() => fadeIn(desertnightTrack));
+    }
+  
 
   isPlayingDesertMusic = true;
 
@@ -1986,10 +2587,56 @@ currentTrack.play().then(() => fadeIn(snowyTrack2));
     isPlayingSnowyMusic = false;
   };
 }}
+var isPlayingForest=false; 
+function startForest() {
+  if(!(checkIfHasEnemy("trueuniversehead",1))){
+      if(nightpower>1.5){
+        if(currentTrack) { currentTrack.pause()
+          currentTrack.currentTime = 0;
+          currentTrack=null
+        }
+ currentTrack = foresttrack;
+currentTrack.volume = 0;
+currentTrack.loop=true;
+currentTrack.play().then(() => fadeIn(foresttrack));
+
+  isPlayingForest = true;
+
+  currentTrack.onended = () => {
+    currentTrack = null;
+   // isPlayingForest = false;
+  };
+      }
+}}
+function stopForest() {
+    
+    if (currentTrack === foresttrack||isPlayingForest) {
+        currentTrack.pause();
+currentTrack.currentTime = 0;
+isPlayingForest = false;
+        fadeOut(foresttrack, () => {
+            foresttrack.pause();
+            foresttrack.currentTime = 0;
+            isPlayingForest = false;
+
+            // Po zakończeniu wyciszenia pustynnej muzyki uruchom losową
+            if (inabyss === 1) {
+                playAbyssumTrack();
+            } else if (checkIfHasEnemy("trueuniversehead", 1)) {
+                playTrueTrack();
+            } else {
+                playRandomMusic();
+            }
+        });
+    }
+}
 function checkPlayerOnDesertSand() {
-  
-   if (((isStayOn("grass") || isStayOn("water"))&& !isStayOn("snowgrass")) &&!isStayOn("snowgrass2") && isPlayingDesertMusic || isPlayingSnowyMusic) {
+  if( isPlayingForest ) return; 
+if (  ((isStayOn("forestgrasslayer") || isStayOn("forestgrass"))&& nightpower>2 && !isPlayingForest)   ) {
+    startForest(); // Zatrzymaj pustynną muzykę
+}else if (((isStayOn("grass") || isStayOn("water")) && (isPlayingDesertMusic || isPlayingSnowyMusic|| isPlayingForest))) {
      stopSnowyMusic();
+     stopForest();
     stopDesertMusic();  // Zatrzymaj pustynną muzykę
   }else if (( isStayOn("snowgrass") ||isStayOn("snowgrass2") )&& !isPlayingSnowyMusic) {
       achievementget("Cold island",0)
@@ -2007,7 +2654,7 @@ function stopDesertMusic() {
       desertTrack.currentTime = 0;
       isPlayingDesertMusic = false;
 
-      // Po zakończeniu wyciszenia pustynnej muzyki uruchom losową
+
         if (inabyss === 1) {
     playAbyssumTrack();
   } else if (checkIfHasEnemy("trueuniversehead", 1)) {
@@ -2016,16 +2663,31 @@ function stopDesertMusic() {
     playRandomMusic();
   }
     });
+  }else if(currentTrack === desertnightTrack){
+    fadeOut(desertnightTrack, () => {
+  desertnightTrack.pause();
+  desertnightTrack.currentTime = 0;
+  isPlayingDesertMusic = false;
+  if (inabyss === 1) {
+    playAbyssumTrack();
+  } else if (checkIfHasEnemy("trueuniversehead", 1)) {
+    playTrueTrack();
+  } else {
+    playRandomMusic();
+  }
+});
   }
 }
 function stopSnowyMusic() {
   if ((isStayOn("water")||isStayOn("grass"))&& !isStayOn("snowgrass") &&!isStayOn("snowgrass2")) {
   if (currentTrack === snowyTrack) {
+      
     fadeOut(snowyTrack, () => {
       snowyTrack.pause();
       snowyTrack.currentTime = 0;
       isPlayingDesertMusic = false;
       isPlayingSnowyMusic = false;
+      
 
       // Po zakończeniu wyciszenia pustynnej muzyki uruchom losową
       if (inabyss === 1) {
@@ -2081,9 +2743,36 @@ const textures = {};
 
 // Definicja nazw tekstur i ich ścieżek
 const textureSources = {
+  wolframite: "./wolframite.png",
+  cavebuilder: "./cavebuilder.png",
+  wolframaxe: "./wolframaxe.png",
+  chest: "./chest.png",
+  uraniumaxe: "./uraniumaxe.png",
+  wolfram: "./wolfram.png", 
+  
+  shallowwater:"./shallowwater1.png",
+  zombieflesh:"./flesh.png",
+  coalore:"./coalore.png",
+  cavedirt:"./cavedirt.png",
+  randomrock1:"./randomrock1.png",
+  randomrock2:"./randomrock2.png",
+  hypersword:"./hypersword.png",
+  osm:"./osm.png",
+  osmiumbar:"./osmiumbar.png",
+  osmiumbuff:"./osmiumbuff.png",
+  osmiumsword:"./osmiumsword.png",
+  osmium:"./osmium.png",
+  uranium:"./uranium.png",
+  toxicsword:"./toxicsword.png",
+   
+  
     stairsup: "./stairsup.png",
     stairsdown: "./stairsdown.png",
-    
+    templewall:"./templewall.png",
+    templefloor:"./templefloor.png",
+    templekey:"./templekey.png",
+    flesh:"./flesh.png",
+    eyeball:"./eyeball.png",
     rainbowbow: "./rainbowbow.png",
     quantumbow: "./quantumbow.png", 
     moltenbow: "./moltenbow.png",
@@ -2717,6 +3406,10 @@ water: {
   frames: ['./water.png', './water2.png'], // Klatki animacji
   speed: 0.9 // Czas trwania jednej klatki (w sekundach)
 },
+shallowwater: {
+  frames: ['./shallowwater1.png', './shallowwater2.png'], // Klatki animacji
+  speed: 0.9 // Czas trwania jednej klatki (w sekundach)
+},
 coast: {
  frames: ['./coast1.png', './coast2.png'], // Klatki animacji
  speed: 0.9 // Czas trwania jednej klatki (w sekundach)
@@ -2834,20 +3527,41 @@ Gdy dodajesz struktury i losowe elementy pamietaj by dać to do json object
 // cavesempty cavesempty3 cavesempty4 cavesempty5 cavesempty6 cavesempty2 deadlands grassroad islands
 let cavesempty = [];
 function generateCaves(x, y) {
-    const islandChance = 0.05; 
+    const islandChance = 0.025 ; 
     const minDistance = 500;
     const distanceFromCenter = Math.sqrt(x ** 2 + y ** 2);
     for (const island of cavesempty) {
         const distToIslandCenter = Math.sqrt((x - island.x) ** 2 + (y - island.y) ** 2);
         const distanceFromEdge = Math.abs(distToIslandCenter - island.radius);
-        if (distToIslandCenter <= island.radius) {
-if (distanceFromEdge < 30) {return true;
-} else { return true;}}}
+        if (distToIslandCenter <= island.radius && island.typ ) {
+if (island.typ == 1) {
+  return 1;
+}else if (island.typ == 3) {
+  return 3;
+} else { 
+  return 2;
+}
+          
+}}
 if (distanceFromCenter > minDistance && Math.random() < islandChance) {
-const radius = Math.floor(Math.random() * 100) + 10;
-const islandX = x + Math.floor(Math.random() * 300) - 250; 
-const islandY = y + Math.floor(Math.random() * 300) - 250;
-cavesempty.push({ x: islandX, y: islandY, radius: radius });
+  let radius = Math.floor(Math.random() * 150) + 20;
+  let type = 0
+if (Math.random() < 0.75 ) {
+  type = 2
+  radius = Math.floor(Math.random() * 155) + 70;
+}else if (Math.random() < 0.65) {
+  type = 3
+  radius = Math.floor(Math.random() * 155) + 70;
+} else {
+  type = 1
+  radius = Math.floor(Math.random() * 120) + 20;
+}
+
+const islandX = x ;
+const islandY = y ;
+
+
+cavesempty.push({ x: islandX, y: islandY, radius: radius, typ: type });
 let dta=Math.sqrt((x - islandX) ** 2 + (y - islandY) ** 2)
         if(dta<=radius){ return true; }else{ return false;}
     }
@@ -2867,7 +3581,7 @@ if (distanceFromCenter > minDistance && Math.random() < islandChance) {
 const radius = Math.floor(Math.random() * 100) + 10;
 const islandX = x + Math.floor(Math.random() * 300) - 250; 
 const islandY = y + Math.floor(Math.random() * 300) - 250;
-cavesempty3.push({ x: islandX, y: islandY, radius: radius });
+cavesempty3.push({ x: islandX, y: islandY, radius: radius  });
 let dta=Math.sqrt((x - islandX) ** 2 + (y - islandY) ** 2)
         if(dta<=radius){ return true; }else{ return false;}
     }
@@ -3088,27 +3802,21 @@ function generateHills(x, y) {
             console.log(minRequiredDistance);
             return "inside";
         }
-
-        // Sprawdzanie, czy nowe wzgórze nachodzi na istniejące
         if (distToIslandCenterX < minRequiredDistance && distToIslandCenterY < minRequiredDistance) {
             return "hill"; // Punkt znajduje się w zasięgu istniejącego wzgórza
         }
     }
-
-    // Generowanie wzgórza, jeśli spełnione są warunki
     if (distanceFromCenter > minDistance && Math.random() < islandChance) {
      let scale =(Math.random()*6)+5
-        const width = scale * 32;  // Szerokość: 4 bloki
-        const height = scale * 32; // Wysokość: 4 bloki
+        const width = scale * 32;  
+        const height = scale * 32; 
         const islandX = x;
         const islandY = y;
-
         hills.push({ x: islandX, y: islandY, width: width, height: height });
-
-        return true; // Wzgórze zostało dodane pomyślnie
+        return true; 
     }
 
-    return false; // Wzgórze nie zostało dodane
+    return false; 
 }
 
 
@@ -3142,6 +3850,7 @@ let inabyss = 0;
 let isflying=0
  
 let inhell = 0;
+ 
 function generateChunk(chunkX, chunkY) {
   const chunkKey = `${Math.floor(chunkX)},${Math.floor(chunkY)}`;
  // if(!isinhouse){
@@ -3217,7 +3926,10 @@ blocks.push({ x: i * blockSize, y: (j - 2) * blockSize, type: 'palm2' });
   } else if (Math.random() < 0.05) {
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'desertsand' });
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'bush' });
-  } else {
+}else if (Math.random() < 0.009) {
+    blocks.push({ x: i * blockSize, y: j * blockSize, type: 'desertsand' });
+    blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cactus' });
+} else {
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'desertsand' });
   }
 
@@ -3407,6 +4119,9 @@ blocks.push({ x: i * blockSize, y: (j - 3) * blockSize, type: 'pine2' });
 }else if (!isInSpawnArea && Math.random() < 0.02) {
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'grass' });
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'rock' });
+}else if (!isInSpawnArea && Math.random() < 0.007) {
+    blocks.push({ x: i * blockSize, y: j * blockSize, type: 'grass' });
+    blocks.push({ x: i * blockSize, y: j * blockSize, type: 'longstick' });
 }else if (!isInSpawnArea && Math.random() < 0.005) {
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'grass' });
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'wildcarrot' });
@@ -3523,55 +4238,93 @@ const isNearCaveEntrance = allCaveEntrances.some(([entranceX, entranceY]) => {
   return Math.abs(entranceX - blockPosX) <= blockSize * 3 && Math.abs(entranceY - blockPosY) <= blockSize * 3;
 });
 const shouldPlaceHole = Math.random() < 0.05; // Ustal prawdopodobieństwo tworzenia dziury
-
-if (generateCaves(blockPosX, blockPosY)) {
+var shcave=generateCaves(blockPosX, blockPosY);
+if (shcave == 1) {
   blocks.push({ x: 0, y: 0, type: 'cave_floor' });
   
+}else if (shcave == 3) {
+  blocks.push({ x: 0, y: 0, type: 'cave_floor' });
+  blocks.push({ x: 0, y: 0, type: 'cavedirt' });
+  blocks.push({ x: 0, y: 0, type: 'shallowwater' });
+}else if (shcave == 2) {
+  blocks.push({ x: 0, y: 0, type: 'cave_floor' });
+  blocks.push({ x: 0, y: 0, type: 'cavedirt' });
+  
+if (Math.random() < 0.12) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'stones' });
+}else if (Math.random() < 0.05) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'rock' });
+}else if (Math.random() < 0.01) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'kite1' });
+}else if (Math.random() < 0.012) { 
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'water1' });
+}else if (Math.random() < 0.012) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'shallowwater' });
+}else if (Math.random() < 0.09) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'bush' });
+}else if (Math.random() < 0.07) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'randomrock1' });
+}else if (Math.random() < 0.07) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'randomrock2' });
+} 
 }else if (generateGranite(blockPosX, blockPosY)) {
   blocks.push({ x: 0, y: 0, type: 'cave_floor' });
 blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
 blocks.push({ x: i * blockSize, y: j * blockSize, type: 'granite' });
-}else {
+}else if(!shcave){
 if (shouldPlaceHole) {
-blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_floor' });
+ blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_floor' });
+  blocks.push({ x: 0, y: 0, type: 'cavedirt' });
 }else
 if(isNearCaveEntrance){
 blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_floor' });
 }else{
 blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_floor' });
-if(Math.random()<0.05){
+if(Math.random()<0.04){
 blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
 blocks.push({ x: i * blockSize, y: j * blockSize, type: 'sapphire' });
-}else if (Math.random() < 0.05) {
+}else if (Math.random() < 0.04) {
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'ruby' });
-}else if (Math.random() < 0.002) {
+}else if (Math.random() < 0.019) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'coalore' });
+}else if (Math.random() < 0.0018) {
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
     blocks.push({ x: i * blockSize, y: j * blockSize, type: 'diamante1' });
-}else if (Math.random() < 0.005) {
+}else if (Math.random() < 0.004) {
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'abyssentrance' });
   allabyssportals.push([blockPosX, blockPosY])
-}else if (Math.random() < 0.005) {
+}else if (Math.random() < 0.004) {
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'hell_entrance' });
   allHellCaveEntrances.push([blockPosX, blockPosY])
-}else if (Math.random() < 0.02) {
+}else if (Math.random() < 0.018) {
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cinnabar' });
-}else if (Math.random() < 0.02) {
+}else if (Math.random() < 0.018) {
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'ilmenite' });
+}else if (Math.random() < 0.011) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'osmium' });
+}else if (Math.random() < 0.004) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'uranium' });
 }else if (Math.random() < 0.02) {
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'opal' });
-}else if (Math.random() < 0.05) {
+}else if (Math.random() < 0.04) {
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'emerald' });
-}else if (Math.random() < 0.09) {
+}else if (Math.random() < 0.06) {
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'pyritestone' });
-}else if (Math.random() < 0.05) {
+}else if (Math.random() < 0.008) {
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
+  blocks.push({ x: i * blockSize, y: j * blockSize, type: 'wolframite' });
+}else if (Math.random() < 0.04) {
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'cave_wall' });
   blocks.push({ x: i * blockSize, y: j * blockSize, type: 'stonewithgypsum' });
 }else if (Math.random() < 0.02) {
@@ -3865,7 +4618,13 @@ function drawTreesBelowPlayer(trees) {
 function drawTreesAbovePlayer(trees) {
     trees.forEach(tree => {
 //if (textures[tree.type].complete && textures[tree.type].naturalWidth > 0) { // Sprawdzenie, czy tekstura istnieje
-let x =tree.x
+let addgap = 0.2;
+let rmxy=0
+if (zoomedDELTA > 0) {
+  addgap = 0.5;
+  rmxy=1
+} else {} 
+let x =tree.x 
 let y =tree.y
 if (animatedTextures[tree.type] ) {
         const anim = animatedTextures[tree.type];
@@ -3873,8 +4632,8 @@ if (animatedTextures[tree.type] ) {
     if (currentTime - anim.lastFrameTime > anim.speed) {
       anim.currentFrame = (anim.currentFrame + 1) % anim.frames.length; anim.lastFrameTime = currentTime;}
     if (anim.frames[anim.currentFrame] && anim.frames[anim.currentFrame].complete && anim.frames[anim.currentFrame].naturalWidth > 0) {
-      ctx.drawImage(anim.frames[anim.currentFrame], x, y, blockSize, blockSize); }  } else  {
-    if (textures[tree.type] && textures[tree.type].complete && textures[tree.type].naturalWidth > 0) { ctx.drawImage(textures[tree.type], x, y, blockSize, blockSize); } }
+      ctx.drawImage(anim.frames[anim.currentFrame], x, y, blockSize+addgap, blockSize+addgap); }  } else  {
+    if (textures[tree.type] && textures[tree.type].complete && textures[tree.type].naturalWidth > 0) { ctx.drawImage(textures[tree.type], x, y, blockSize+addgap, blockSize+addgap); } }
          //   ctx.drawImage(textures[tree.type], tree.x, tree.y, blockSize, blockSize);
         /*} else {
              
@@ -3894,7 +4653,7 @@ ctx.fillText(textarr[i].text, x + blockSize / 2, y - 5);
 let renderedBlocks = []; // Przechowywanie bloków widocznych na ekranie
 let nightpower = 0;  // Początkowa wartość (dzień)
 const maxNightpower = 3;  // Maksymalna wartość (pełna noc)
-let dayNightCycleSpeed = 0.0001;  // Prędkość cyklu dnia i nocy (można dostosować)
+let dayNightCycleSpeed = 0.0002;  // Prędkość cyklu dnia i nocy (można dostosować)  normal  0001 0002
 let dayNightCycleSpeed2 = 0.0002;  // Prędkość cyklu dnia i nocy (można dostosować)
 let increasing = true;  // Kontroluje, czy nightpower wzrasta (noc) czy maleje (dzień)
 var surviveddays=0
@@ -3905,9 +4664,12 @@ function updateDayNightCycle() {
             nightpower = maxNightpower;
             increasing = false;  // Zacznij zmniejszać (dzień)
         }
+ if (nightpower > 2.5) {
+    achievementget("Its Night Now !", 0)
+}
     } else {
         nightpower -= dayNightCycleSpeed2;
-        achievementget("Its Night Now !",0)
+        
         if (nightpower <= 0) {
             nightpower = 0;
             increasing = true;  // Zacznij zwiększać (noc)
@@ -4179,7 +4941,7 @@ if (checkIfItems("hallucinate", 1)) {
 
 
 let chunkPositions = []; // Dodajemy do przechowywania pozycji chunków
-var dontcount = ["dirt", "grass", "tallgrass", "yellow", "dandelion", "violet","tree0","pine0","birch0","tree1","pine1","birch1","tree2","pine2","birch2","grasslayer","clayblock","ashfloor","shine","shiny","log_floor","log_wall","log","stone_floor","stone_wall","brickwall","brickfloor","clayblock1","glass","gypsumblock","abyssfloor","abyssescape","snowpine1","snowpine2","snowpine3","stone_floor", "fiber_floor", "grasslayer", "yellow", "violet", "clayblock", "clayblock1", "dandelion", "toadstool", "sandblock2", "gypsumblock", "glass", "fern", "planks_floor", "log_floor", "ashblock", "ashfloor", "brickfloor", "daffodil","flax","myosotis", "fiber_floor", "bed1", "magnetite", "nettle", "stone_floor", "emeraldfloor", "sapphirefloor", "rubyfloor", "clayblock1", "clayblock","violetfloor","grass","toadstool","stones","thistle","ryeroof","houseroof","housewall","brickhouse","gelblock","gypsum_dirt","roadfloor","gypsumblock","gypsumfloor","torch","brickfloor2","door","door2","housegrass","lamp","lamp2","hellwall2","forestgrass","forestleaf","blush","hill1","climbhill","statue1_1","statue1_2","kiln","algae1","algae2","algae0","statue2_2","statue2_1","helltree0","helltree1","helltree2","abysstree2","abysstree1","abysstree0","helllog","abysslog","abyssgrass","hellgrass" ,"gypsumhouse","gypsumroof","gypsumdoor","carpet","polishedfloor","sing","palm1","palm2","coconutpalm","palm12","palm32","stonesing","cauldron","textstone","fountain"];
+var dontcount = ["dirt", "grass", "tallgrass", "yellow", "dandelion", "violet","tree0","pine0","birch0","tree1","pine1","birch1","tree2","pine2","birch2","grasslayer","clayblock","ashfloor","shine","shiny","log_floor","log_wall","log","stone_floor","stone_wall","brickwall","brickfloor","clayblock1","glass","gypsumblock","abyssfloor","abyssescape","snowpine1","snowpine2","snowpine3","stone_floor", "fiber_floor", "grasslayer", "yellow", "violet", "clayblock", "clayblock1", "dandelion", "toadstool", "sandblock2", "gypsumblock", "glass", "fern", "planks_floor", "log_floor", "ashblock", "ashfloor", "brickfloor", "daffodil","flax","myosotis", "fiber_floor", "bed1", "magnetite", "nettle", "stone_floor", "emeraldfloor", "sapphirefloor", "rubyfloor", "clayblock1", "clayblock","violetfloor","grass","toadstool","stones","thistle","ryeroof","houseroof","housewall","brickhouse","gelblock","gypsum_dirt","roadfloor","gypsumblock","gypsumfloor","torch","brickfloor2","door","door2","housegrass","lamp","lamp2","hellwall2","forestgrass","forestleaf","blush","hill1","climbhill","statue1_1","statue1_2","kiln","algae1","algae2","algae0","statue2_2","statue2_1","helltree0","helltree1","helltree2","abysstree2","abysstree1","abysstree0","helllog","abysslog","abyssgrass","hellgrass" ,"gypsumhouse","gypsumroof","gypsumdoor","carpet","polishedfloor","sing","palm1","palm2","coconutpalm","palm12","palm32","stonesing","cauldron","textstone","fountain","candle","grassdeco","grassdeco1"];
 let waveTick = 0;
 var fenceconnections={
   "none": "./fence.png",
@@ -4577,21 +5339,28 @@ function drawChunks() {
             generateChunk(chunkX, chunkY);
             const chunkKey = `${chunkX},${chunkY}`;
             const blocks = chunks[chunkKey];
-
+let addgap = 0.2;
+let rmxy = 0
+if (zoomedDELTA > 0) {
+  addgap = 0.5;
+  rmxy = 1
+} else {}
             // Zbieranie pozycji chunków
             const chunkPosition = {
-                x: chunkX * blockSize - offsetX +zoomedDELTA/2,
-                y: chunkY * blockSize - offsetY+zoomedDELTA/2,
+                x: ( chunkX * blockSize - offsetX +zoomedDELTA/2-rmxy) ,
+                y: (chunkY * blockSize - offsetY+zoomedDELTA/2-rmxy) ,
                 width: blockSize,
                 height: blockSize
             };
+            
             chunkPositions.push(chunkPosition);
+let blo = 0;
 
             // Rysowanie bloków
             blocks.forEach((block, index) => {
-                const x = block.x + chunkX * blockSize - offsetX +zoomedDELTA/2;
-                const y = block.y + chunkY * blockSize - offsetY +zoomedDELTA/2;
-renderedBlocks.push({ type: block.type, x: x, y: y }); // Zbieranie bloków
+                const x = parseVar( block.x + chunkX * blockSize - offsetX +zoomedDELTA/2-rmxy , 1) ;
+                const y = parseVar(block.y + chunkY * blockSize - offsetY +zoomedDELTA/2-rmxy ,1);
+renderedBlocks.push({ type: block.type, x: block.x + chunkX * blockSize - offsetX +zoomedDELTA/2-rmxy , y: block.y + chunkY * blockSize - offsetY +zoomedDELTA/2-rmxy  }); // Zbieranie bloków
 
 
 if(block.type !== 'fence'&&block.type !== 'road' && block.type !== 'grass2' && block.type !== 'coast'&& block.type !== 'water' && block.type !== "hill1"&& block.type !== "climbhill"){
@@ -4605,11 +5374,11 @@ if(block.type !== 'fence'&&block.type !== 'road' && block.type !== 'grass2' && b
                     }
                     if (anim.frames[anim.currentFrame] && anim.frames[anim.currentFrame].complete && anim.frames[anim.currentFrame].naturalWidth > 0) {
                         // Rysowanie animowanej tekstury
-                        ctx.drawImage(anim.frames[anim.currentFrame], x, y, blockSize, blockSize);
+                        ctx.drawImage(anim.frames[anim.currentFrame], x, y, blockSize+addgap, blockSize+addgap);
                     }
                 } else {
                     if (textures[block.type] && textures[block.type].complete && textures[block.type].naturalWidth > 0) {
-                        ctx.drawImage(textures[block.type], x, y, blockSize, blockSize);
+                        ctx.drawImage(textures[block.type], x, y, blockSize+addgap, blockSize+addgap);
                     }
                 }
 }else if ( block.type == 'coast' ) {
@@ -4618,7 +5387,7 @@ const y2 = block.y + chunkY * blockSize - Math.floor(offsetY)
 const connection = getFenceConnection(Math.floor(x2), Math.floor(y2), 3);
 const texture = watertextures[connection];
 if (texture && texture.complete && texture.naturalWidth > 0) {
-  ctx.drawImage(texture, x, y, blockSize, blockSize);
+  ctx.drawImage(texture, x, y, blockSize+addgap, blockSize+addgap);
   return;
 }
   if (animatedTextures[block.type] && connection=="none") {
@@ -4627,15 +5396,15 @@ if (texture && texture.complete && texture.naturalWidth > 0) {
     if (currentTime - anim.lastFrameTime > anim.speed) {
       anim.currentFrame = (anim.currentFrame + 1) % anim.frames.length; anim.lastFrameTime = currentTime;}
     if (anim.frames[anim.currentFrame] && anim.frames[anim.currentFrame].complete && anim.frames[anim.currentFrame].naturalWidth > 0) {
-      ctx.drawImage(anim.frames[anim.currentFrame], x, y, blockSize, blockSize); }  } else  {
-    if (textures[block.type] && textures[block.type].complete && textures[block.type].naturalWidth > 0) { ctx.drawImage(textures[block.type], x, y, blockSize, blockSize); } }
+      ctx.drawImage(anim.frames[anim.currentFrame], x, y, blockSize+addgap, blockSize+addgap); }  } else  {
+    if (textures[block.type] && textures[block.type].complete && textures[block.type].naturalWidth > 0) { ctx.drawImage(textures[block.type], x, y, blockSize+addgap, blockSize+addgap); } }
 }else if ( block.type == 'water' ) {
   const x2 = block.x + chunkX * blockSize - Math.floor(offsetX)
 const y2 = block.y + chunkY * blockSize - Math.floor(offsetY)
 const connection = getFenceConnection(Math.floor(x2), Math.floor(y2), 3);
 const texture = watertextures2[connection];
 if (texture && texture.complete && texture.naturalWidth > 0) {
-  ctx.drawImage(texture, x, y, blockSize, blockSize);
+  ctx.drawImage(texture, x, y, blockSize+addgap, blockSize+addgap);
   return;
 }
   if (animatedTextures[block.type] && connection=="none") {
@@ -4644,8 +5413,8 @@ if (texture && texture.complete && texture.naturalWidth > 0) {
     if (currentTime - anim.lastFrameTime > anim.speed) {
       anim.currentFrame = (anim.currentFrame + 1) % anim.frames.length; anim.lastFrameTime = currentTime;}
     if (anim.frames[anim.currentFrame] && anim.frames[anim.currentFrame].complete && anim.frames[anim.currentFrame].naturalWidth > 0) {
-      ctx.drawImage(anim.frames[anim.currentFrame], x, y, blockSize, blockSize); }  } else  {
-    if (textures[block.type] && textures[block.type].complete && textures[block.type].naturalWidth > 0) { ctx.drawImage(textures[block.type], x, y, blockSize, blockSize); } }
+      ctx.drawImage(anim.frames[anim.currentFrame], x, y, blockSize+addgap, blockSize+addgap); }  } else  {
+    if (textures[block.type] && textures[block.type].complete && textures[block.type].naturalWidth > 0) { ctx.drawImage(textures[block.type], x, y, blockSize+addgap, blockSize+addgap); } }
 } else if (block.type === 'fence') {
  if (block.type === 'fence') {
   const x2 = block.x + chunkX * blockSize - Math.floor(offsetX)
@@ -4654,7 +5423,7 @@ if (texture && texture.complete && texture.naturalWidth > 0) {
   const texture = fencetextures[connection];
 
   if (texture && texture.complete && texture.naturalWidth > 0) {
-   ctx.drawImage(texture, x, y, blockSize, blockSize);
+   ctx.drawImage(texture, x, y, blockSize+addgap, blockSize+addgap);
 
    return;
   }
@@ -4667,7 +5436,7 @@ if (texture && texture.complete && texture.naturalWidth > 0) {
   const texture = climbhill1textures[connection];
 
   if (texture && texture.complete && texture.naturalWidth > 0) {
-   ctx.drawImage(texture, x, y, blockSize, blockSize);
+   ctx.drawImage(texture, x, y, blockSize+addgap, blockSize+addgap);
 
    return;
   }
@@ -4679,7 +5448,7 @@ if (texture && texture.complete && texture.naturalWidth > 0) {
   const connection = getFenceConnection(Math.floor(x2), Math.floor(y2), 2);
   const texture = grasstextures[connection];
   if (texture && texture.complete && texture.naturalWidth > 0) {
-   ctx.drawImage(texture, x, y, blockSize, blockSize);
+   ctx.drawImage(texture, x, y, blockSize+addgap, blockSize+addgap);
    return;
   }
  }
@@ -4690,7 +5459,7 @@ if (texture && texture.complete && texture.naturalWidth > 0) {
   const connection = getFenceConnection(Math.floor(x2), Math.floor(y2), 5);
   const texture = hill1textures[connection];
   if (texture && texture.complete && texture.naturalWidth > 0) {
-   ctx.drawImage(texture, x, y, blockSize, blockSize);
+   ctx.drawImage(texture, x, y, blockSize+addgap, blockSize+addgap);
    return;
   }
  }
@@ -4701,7 +5470,7 @@ if (texture && texture.complete && texture.naturalWidth > 0) {
     const connection = getFenceConnection(Math.floor(x2), Math.floor(y2), 0);
     const texture = roadtextures[connection];
     if (texture && texture.complete && texture.naturalWidth > 0) {
-      ctx.drawImage(texture, x, y, blockSize, blockSize);
+      ctx.drawImage(texture, x, y, blockSize+addgap, blockSize+addgap);
       return;
     }
   }
@@ -4762,9 +5531,11 @@ updateWaveEffect()
 var oned=0
 let targetX = offsetX; // Docelowa pozycja X
 let targetY = offsetY; // Docelowa pozycja Y
-let smoothingFactor = 0.40; // Współczynnik gładkości (jak szybko gracz się przesuwa)
-
-let targetFPS = 14; 
+let smoothingFactor = 0.50; // Współczynnik gładkości (jak szybko gracz się przesuwa)
+function parseVar(value, bynum) {
+  return Math.round(value / bynum) * bynum;
+}
+let targetFPS = 15; 
 let frameDuration = 1000 / targetFPS; // Duration of each frame in milliseconds
 
 
@@ -4870,6 +5641,16 @@ const textureDefinitions = {
     'blueslime2': './blue2.png',
     'blueslime3': './blue3.png',
     
+    
+    'zombieR1': './zombieR1.png',
+    'zombieR2': './zombieR2.png',
+    'zombieL1': './zombieL1.png',
+    'zombieL2': './zombieL2.png',
+    'zombieU1': './zombieU1.png',
+    'zombieU2': './zombieU2.png',
+    'zombieD1': './zombieD1.png',
+    'zombieD2': './zombieD2.png',
+
     'skellybonesright1': './skellybonesright1.png',
     'skellybonesright2': './skellybonesright2.png',
     'skellybonesleft1': './skellybonesleft1.png',
@@ -4982,6 +5763,7 @@ const enemies = {
   "blueslime": { hp: 25, atk: -0.5 },
   "pinkslime": { hp: 40, atk: -0.5 },
   "skellybones": { hp: 40, atk: -0.5 },
+  "zombie": { hp: 30, atk: -0.5 },
   "wasp": { hp: 4, atk: -1 },
   "raven": { hp: 15, atk: -1 },
   "voltary": { hp: 1000, atk: -2 },
@@ -6166,7 +6948,7 @@ break;
 case 2: // right
 enemy.x -= (enemy.speed*fixedspeed)*speedmultiply
 break;
-}}}else if(enemy.type=="skellybones"||enemy.type=="voidguardian"){
+}}}else if(enemy.type=="skellybones"||enemy.type=="zombie"||enemy.type=="voidguardian"){
 
   
   if(distanceToPlayer> 5* blockSize ){
@@ -6233,7 +7015,7 @@ enemy.x -= (enemy.speed*fixedspeed)*speedmultiply
 break;
 }}
 if (enemy.type in arrows) {} else if (enemy.type in magicspellsfromentities) {}else{
-if (distanceToPlayer < enemyDespawnDistance&& enemy.type!=="bunny"&& enemy.type!=="duck"&& enemy.type!=="soulcat"&& enemy.type!=="pinkslime"&& enemy.type!=="blueslime"&& enemy.type!=="greenslime"&& enemy.type!=="skellybones"&&enemy.type!=="voidguardian"&& enemy.type!=="voltary" && enemy.type!=="spikegod"&&enemy.type!=="darkeye"&&enemy.type!=="flesh"&&enemy.type!=="2medusa"&&enemy.type!=="insaneuniversegod"&&enemy.type!=="aquagod"&&enemy.type!=="trueuniversebody"&&enemy.type!=="trueuniversehead"&&enemy.type!=="abyssdevourerbody"&&enemy.type!=="abyssdevourerhead" &&enemy.type !== "desertscourgehead"&&enemy.type !== "desertscourgebody"&&enemy.type !== "hellscourgebody"&&enemy.type !== "hellscourgehead"&& enemy.type !== "crimsonprojectile"&&enemy.type !== "deepgodhead"&&enemy.type !== "deepgodtorso"&& enemy.type !== "aquablast"&&enemy.type !== "trueprojectile"&&enemy.type !== "universeblast" && !(enemy.type in butterflyentities)) {
+if (distanceToPlayer < enemyDespawnDistance&& enemy.type!=="bunny"&& enemy.type!=="duck"&& enemy.type!=="soulcat"&& enemy.type!=="pinkslime"&& enemy.type!=="blueslime"&& enemy.type!=="greenslime"&& enemy.type!=="skellybones"&&enemy.type!=="zombie"&&enemy.type!=="voidguardian"&& enemy.type!=="voltary" && enemy.type!=="spikegod"&&enemy.type!=="darkeye"&&enemy.type!=="flesh"&&enemy.type!=="2medusa"&&enemy.type!=="insaneuniversegod"&&enemy.type!=="aquagod"&&enemy.type!=="trueuniversebody"&&enemy.type!=="trueuniversehead"&&enemy.type!=="abyssdevourerbody"&&enemy.type!=="abyssdevourerhead" &&enemy.type !== "desertscourgehead"&&enemy.type !== "desertscourgebody"&&enemy.type !== "hellscourgebody"&&enemy.type !== "hellscourgehead"&& enemy.type !== "crimsonprojectile"&&enemy.type !== "deepgodhead"&&enemy.type !== "deepgodtorso"&& enemy.type !== "aquablast"&&enemy.type !== "trueprojectile"&&enemy.type !== "universeblast" && !(enemy.type in butterflyentities)) {
 enemy.despawnTickCount = 0;
 const moveX = (diffX / distanceToPlayer) * (enemy.speed*fixedspeed)
 const moveY = (diffY / distanceToPlayer) * (enemy.speed*fixedspeed);
@@ -6252,7 +7034,7 @@ const moveX = (diffX / distanceToPlayer) * (enemy.speed * fixedspeed)
 const moveY = (diffY / distanceToPlayer) * (enemy.speed * fixedspeed);
 enemy.x += moveX*speedmultiply;
 enemy.y += moveY*speedmultiply;
-} else if(enemy.type!=="bunny"&& enemy.type!=="duck"&& enemy.type!=="pinkslime"&& enemy.type!=="soulcat"&& enemy.type!=="blueslime"&& enemy.type!=="greenslime"&& enemy.type!=="skellybones"&&enemy.type!=="voidguardian"&&enemy.type!=="voltary"&& enemy.type!=="spikegod"&& enemy.type!=="2medusa" && enemy.type!=="darkeye" &&enemy.type!=="flesh" &&enemy.type!=="insaneuniversegod"&&enemy.type!=="aquagod"&&enemy.type!=="trueuniversebody"&&enemy.type!=="trueuniversehead"&&enemy.type!=="abyssdevourerbody"&&enemy.type!=="abyssdevourerhead"&&enemy.type !== "desertscourgehead"&&enemy.type !== "desertscourgebody"&&enemy.type !== "hellscourgebody"&&enemy.type !== "hellscourgehead"&& enemy.type !== "crimsonprojectile"&&enemy.type !== "trueprojectile"&&enemy.type !== "deepgodhead"&&enemy.type !== "deepgodtorso"&& enemy.type !== "aquablast"&&enemy.type !== "universeblast" && !(enemy.type in butterflyentities)){
+} else if(enemy.type!=="bunny"&& enemy.type!=="duck"&& enemy.type!=="pinkslime"&& enemy.type!=="soulcat"&& enemy.type!=="blueslime"&& enemy.type!=="greenslime"&& enemy.type!=="skellybones"&&enemy.type!=="zombie"&&enemy.type!=="voidguardian"&&enemy.type!=="voltary"&& enemy.type!=="spikegod"&& enemy.type!=="2medusa" && enemy.type!=="darkeye" &&enemy.type!=="flesh" &&enemy.type!=="insaneuniversegod"&&enemy.type!=="aquagod"&&enemy.type!=="trueuniversebody"&&enemy.type!=="trueuniversehead"&&enemy.type!=="abyssdevourerbody"&&enemy.type!=="abyssdevourerhead"&&enemy.type !== "desertscourgehead"&&enemy.type !== "desertscourgebody"&&enemy.type !== "hellscourgebody"&&enemy.type !== "hellscourgehead"&& enemy.type !== "crimsonprojectile"&&enemy.type !== "trueprojectile"&&enemy.type !== "deepgodhead"&&enemy.type !== "deepgodtorso"&& enemy.type !== "aquablast"&&enemy.type !== "universeblast" && !(enemy.type in butterflyentities)){
 enemy.despawnTickCount = (enemy.despawnTickCount || 0) + 1;
 if (enemy.despawnTickCount > despawnTicks) {
 return false; 
@@ -6328,9 +7110,20 @@ return false; break;}
  
 
  
-        if(enemy.type=='bat'||enemy.type=='bat1'||enemy.type=='greenslime'||enemy.type=='blueslime'||enemy.type=='pinkslime'||enemy.type=='wasp'||enemy.type=='wasp1'||enemy.type=='bunny'|| enemy.type=="skellybones"  ){
+  if(enemy.type=='bat'|| enemy.type=='wasp'|| enemy.type=='bat1'||enemy.type=='greenslime'||enemy.type=='blueslime'||enemy.type=='pinkslime'||enemy.type=='bunny'|| enemy.type=="skellybones"  ||enemy.type=="zombie"){
         for (let block of renderedBlocks) {
-          if (block.type === 'rock' || block.type === 'tree0' || block.type === 'birch0' || block.type === 'yew0' || block.type === 'pine0' || block.type === 'stone_wall' || block.type === 'log_wall'|| block.type === 'log' || block.type === 'brickwall'|| block.type === 'gypsumblock'|| block.type === 'planks'|| block.type === 'cave_wall' ||block.type === 'rubyblock'||block.type === 'sapphireblock'||block.type === 'emeraldblock'||block.type === 'voidblock'||block.type === 'housegrass'||block.type === 'abyssblock' ||block.type === 'fence' || block.type === 'hellwall' ||block.type === 'hellwall2'|| block.type === 'basalt' ||block.type === 'granite' || block.type === 'basalt' ) {
+            if(enemy.type=='bat'|| enemy.type=='wasp'){
+                      if ( block.type === 'stone_wall' || block.type === 'log_wall' || block.type === 'brickwall'|| block.type === 'gypsumblock'|| block.type === 'planks'|| block.type === 'cave_wall' ||block.type === 'rubyblock'||block.type === 'sapphireblock'||block.type === 'emeraldblock'||block.type === 'voidblock'||block.type === 'housegrass'||block.type === 'abyssblock' ||block.type === 'fence' || block.type === 'hellwall' ||block.type === 'hellwall2'|| block.type === 'basalt' ||block.type === 'granite'|| block.type === 'basalt') {
+let dx = (enemy.x + enemy.width / 2) - offsetX - (block.x + blockSize / 2);
+let dy = (enemy.y + enemy.height / 2) - offsetY - (block.y + blockSize / 2);
+let distanceToBlock = Math.sqrt(dx * dx + dy * dy);
+if (distanceToBlock < collisionRadius) {
+collisionDetected = true;break;}else if(distanceToBlock<collisionRadius-3){
+    return false;
+}
+              
+          }
+            }else if (block.type === 'rock' || block.type === 'tree0' || block.type === 'birch0' || block.type === 'yew0' || block.type === 'pine0' || block.type === 'stone_wall' || block.type === 'log_wall'|| block.type === 'log' || block.type === 'brickwall'|| block.type === 'gypsumblock'|| block.type === 'planks'|| block.type === 'cave_wall' ||block.type === 'rubyblock'||block.type === 'sapphireblock'||block.type === 'emeraldblock'||block.type === 'voidblock'||block.type === 'housegrass'||block.type === 'abyssblock' ||block.type === 'fence' || block.type === 'hellwall' ||block.type === 'hellwall2'|| block.type === 'basalt' ||block.type === 'granite'|| block.type === 'basalt'|| block.type === 'snowpine1'|| block.type === 'palmlog'|| block.type === 'lamp'|| block.type === 'palm1' ) {
 let dx = (enemy.x + enemy.width / 2) - offsetX - (block.x + blockSize / 2);
 let dy = (enemy.y + enemy.height / 2) - offsetY - (block.y + blockSize / 2);
 let distanceToBlock = Math.sqrt(dx * dx + dy * dy);
@@ -6351,7 +7144,7 @@ for (let block of renderedBlocks) {
 if (distanceToBlock < collisionRadius) {collisionDetected2 = true; break;}}}}
 var collisionwithwater1 = false;
 
-if (enemy.type == "bunny"|| enemy.type == "pinkslime" ||enemy.type == "greenslime" ||enemy.type == "blueslime"||enemy.type == "skellybones") {
+if (enemy.type == "bunny"|| enemy.type == "pinkslime" ||enemy.type == "greenslime" ||enemy.type == "blueslime"||enemy.type == "skellybones"||enemy.type=="zombie") {
 for (let block of renderedBlocks) {
 if (block.type == 'water' || block.type == 'water1') {
 let dx = (enemy.x + enemy.width / 2) - offsetX - (block.x + blockSize / 2);
@@ -6365,7 +7158,7 @@ collisionwithwater1 = true; break;
 }}}}}
 if (collisionDetected && enemy.type !== 'shark' ) {
 enemy.x = prevX;enemy.y = prevY;
-} if (collisionDetected2 &&(enemy.type === 'shark') ) { return false;  } else if (collisionwithwater1 &&( enemy.type === 'bunny'||enemy.type === 'skellybones' ||enemy.type === 'pinkslime'||enemy.type === 'greenslime'|| enemy.type === 'blueslime')) { return false; }
+} if (collisionDetected2 &&(enemy.type === 'shark') ) { return false;  } else if (collisionwithwater1 &&( enemy.type === 'bunny'||enemy.type === 'skellybones' ||enemy.type=="zombie"||enemy.type === 'pinkslime'||enemy.type === 'greenslime'|| enemy.type === 'blueslime')) { return false; }
 /* Animacje !  LOL 😆 */
 if(enemy.type=="voltary" ){
 enemy.tickCount++;
@@ -6886,6 +7679,26 @@ else if (enemy.type == "skellybones") {
       enemy.height
     );
   }
+}else if (enemy.type == "zombie") {
+let enemyTexture;
+drawEnemyHealthBar(enemy);
+if (enemy.direction == 0) {
+enemyTexture = enemy.animationFrame === 0 ? enemyTextures['zombieU1'] : enemyTextures['zombieU2'];}
+if (enemy.direction == 1) {
+enemyTexture = enemy.animationFrame === 0 ? enemyTextures['zombieD1'] : enemyTextures['zombieD2'];}
+if (enemy.direction == 2) {
+enemyTexture = enemy.animationFrame === 0 ? enemyTextures['zombieL1'] : enemyTextures['zombieL2'];}
+if (enemy.direction == 3) {
+enemyTexture = enemy.animationFrame === 0 ? enemyTextures['zombieR1'] : enemyTextures['zombieR2'];}
+if (enemyTexture.complete && enemyTexture.naturalWidth > 0) {
+ctx.drawImage(
+enemyTexture,
+enemy.x - offsetX,
+enemy.y - offsetY,
+enemy.width,
+enemy.height
+);
+}
 }else if(enemy.type=="bunny"){
   drawEnemyHealthBar(enemy);
         switch (enemy.direction) {
@@ -6948,6 +7761,16 @@ function growTreeInVisibleChunks() {
           removeBlockAtPosition(Math.floor(((globalX - offsetX) / 32) * 32), Math.floor(((globalY - offsetY) / 32) * 32), 'lit_furnace');
           buildBlockAtPosition(Math.floor(((globalX - offsetX) / 32) * 32), Math.floor(((globalY - offsetY) / 32) * 32), 'furnace'); 
           
+        }}else if (Math.random() < 0.095 && Math.random() < 0.055 && isRaining) {
+        if (block.type === 'dirt') {
+          // Obliczamy globalne współrzędne bloku
+          const globalX = block.x + 3 + (parseInt(chunkKey.split(',')[0]) * blockSize);
+          const globalY = block.y + 3 + (parseInt(chunkKey.split(',')[1]) * blockSize);
+
+          // Usuwamy sadzonkę
+          removeBlockAtPosition(Math.floor(((globalX - offsetX) / 32) * 32), Math.floor(((globalY - offsetY) / 32) * 32), 'dirt');
+          buildBlockAtPosition(Math.floor(((globalX - offsetX) / 32) * 32), Math.floor(((globalY - offsetY) / 32) * 32), 'grass'); 
+          buildBlockAtPosition(Math.floor(((globalX - offsetX) / 32) * 32), Math.floor(((globalY - offsetY) / 32) * 32), 'water'); 
         }}else if (Math.random() < 0.095 && Math.random() < 0.075) {
         if (block.type === 'lit_kiln') {
           // Obliczamy globalne współrzędne bloku
@@ -7367,7 +8190,7 @@ function drawRainEffectOnBlocks() {
   if(anableleaves==1&& Math.random()<0.015){
     playwindsound()
   }
-  if (generateCave !== 1 && isinhouse !== 1 && inhell !== 1 && (isStayOn("grass") || isStayOn("grasslayer")|| isStayOn("forestgrass")) && options.fancygraphic === 1 && anableleaves==1 && !isRaining) {
+  if (generateCave !== 1 && isinhouse !== 1&& isinhouse2 !== 1 && inhell !== 1 && (isStayOn("grass") || isStayOn("grasslayer")|| isStayOn("forestgrass")) && options.fancygraphic === 1 && anableleaves==1 && !isRaining) {
     ctx.globalAlpha = 0.2;
 
     // Zwiększ licznik ticków
@@ -7467,7 +8290,7 @@ if (rainTextureIndex >= loadedsandstormTxt.length) {
     }
   });
   ctx.globalAlpha = 1.0;
-} else if (isRaining && generateCave!==1&& inhell!==1&& isinhouse!==1 ) {
+} else if (isRaining && generateCave!==1&& inhell!==1&& isinhouse!==1 && isinhouse2 !== 1) {
       
       playRain()
         // Ustawienie przezroczystości deszczu
@@ -7613,7 +8436,7 @@ function updateLightning2() {
 
 
 function drawLightning() {
-    if (lightningActive && isRaining&& generateCave!==1&& isinhouse!==1) {
+    if (lightningActive && isRaining&& generateCave!==1&& isinhouse!==1 && isinhouse2 !== 1) {
         // Rysowanie błyskawicy z animacją przezroczystości
         ctx.fillStyle = `rgba(255, 255, 255, ${lightningOpacity})`;
         ctx.fillRect(0, 0, canvas.width, canvas.height); // rysuj prostokąt na całym ekranie
@@ -7653,7 +8476,7 @@ function updateLightning() {
         }
     }
 }
-var toggleNightVison=false
+var toggleNightVison=false;  
 function synchronizeVisibleChunks2() {
   if (Array.isArray(house2chunks)) {
   house2chunks = {}; // zmienna staje się pustym obiektem
@@ -7680,7 +8503,13 @@ function synchronizeVisibleChunks2() {
             }
             
         }
-        
+        if(checkBlockAtPosition(x, y, "stairsdown")){
+        if (checkBlockAtHousePosition(x, y, "stairsup")) {
+        }else{
+            removeBlockAtPosition2(x, y, "stairsdown");
+            removeBlockAtPosition2(x, y, "stairsdown");
+        }
+        }
         if (checkBlockAtHousePosition(x, y, "stairsup")) {
             // Jeśli w `chunks` nie ma "door", dodaj go
 if (checkBlockAtPosition(x, y, "voidblock")) {
@@ -7878,9 +8707,9 @@ function checkBlockAtHousePosition(x, y, type) {
 }
 
 const itemsAndDamage = {
-  "pointed_stick": { dmg: 1, kill: ["voltary", "giantbat", "bunny","duck"], duration: 80, cooldown: 80, range: 75},
-  "bone_sword": { dmg: 1, kill: ["voltary", "giantbat", "bunny"], duration: 50, cooldown: 30, range: 75 },
-  "long_spear": { dmg: 3, kill: ["shark"], duration: 85, cooldown: 120, range: 90 },
+  "pointed_stick": { dmg: 1, kill: ["voltary", "giantbat","duck"], boost:{ "bunny":-0.7},  duration: 80, cooldown: 80, range: 75},
+  "bone_sword": { dmg: 1, kill: ["voltary"], boost:{ "giantbat":-0.6}, duration: 50, cooldown: 30, range: 75 },
+  "long_spear": { dmg: 3, kill: ["shark"], boost:{ "giantbat":-0.5}, duration: 85, cooldown: 120, range: 90 },
 "magicwand": { dmg: 20, kill: [], duration: 40, cooldown: 50, range: 73 },
 "godwand": { dmg: 20, kill: [], duration: 150, cooldown: 600, range: 63 },
 "greenwand": { dmg: 10, kill: [], duration: 40, cooldown: 50, range: 73 },
@@ -7892,7 +8721,7 @@ const itemsAndDamage = {
 "good_boomerang": { dmg: 0.0, kill: [], duration: 0, cooldown: 0, range: 0},
 "hell_boomerang": { dmg: 0.0, kill: [], duration: 0, cooldown: 0, range: 0},
 "draco_boomerang": { dmg: 0.0, kill: [], duration: 0, cooldown: 0, range: 0},
-  "copper_spear": { dmg: 5, kill: [], duration: 50, cooldown: 50, range: 80 },
+  "copper_spear": { dmg: 5, kill: [], duration: 50, cooldown: 50, range: 80 , boost:{ "giantbat":15} } ,
   "iron_spear": { dmg: 10, kill: [], duration: 100, cooldown: 50, range: 85 },
   "iron_sword": { dmg: 18, kill: [], duration: 50, cooldown: 70, range: 90 },
   "bow": { dmg: 2, kill: [], duration: 50, cooldown: 70, range: 80 },
@@ -7904,6 +8733,9 @@ const itemsAndDamage = {
   "darkbow": { dmg: 2, kill: [], duration: 50, cooldown: 70, range: 83 },
   "iron_mace": { dmg: 25, kill: [], duration: 400, cooldown: 120, range: 65 },
   "titaniumsword": { dmg: 40, kill: [], duration: 40, cooldown: 50, range: 90 },
+  "wolframaxe": { dmg: 50, kill: [], duration: 50, cooldown: 80, range: 90 },
+  "uraniumaxe": { dmg: 70, kill: [], duration: 60, cooldown: 50, range: 90 },
+  "osmiumsword": { dmg: 50, kill: [], duration: 40, cooldown: 50, range: 90 },
   "thundersword": { dmg: 85, kill: [], duration: 60, cooldown: 50, range: 95 },
   "nightsword": { dmg: 80, kill: [], duration: 60, cooldown: 50, range: 90 },
   "aquaspear": { dmg: 100, kill: [], duration: 50, cooldown: 70, range: 100 },
@@ -7917,12 +8749,14 @@ const itemsAndDamage = {
   
   "titaniummace": { dmg: 60, kill: [], duration: 50, cooldown: 150, range: 65 },
   "universesword": { dmg: 500, kill: [], duration: 20, cooldown: 100, range: 100 },
-  "trueuniversesword": { dmg: 999, kill: [], duration: 80, cooldown: 100, range: 100 },
+  "trueuniversesword": { dmg: 999, kill: [], duration: 80, cooldown: 100, range: 95 },
+  "hypersword": { dmg: 1100, kill: [], duration: 80, cooldown: 100, range: 110 },
+  "toxicsword": { dmg: 1000, kill: [], duration: 40, cooldown: 50, range: 120 },
   "rainbow": { dmg: 420, kill: [], duration: 20, cooldown: 100, range: 100 },
   
 "truegodsword": { dmg: 3785320, kill: [], duration: 80, cooldown: 10, range: 100 },
 
-"magiclanter": { dmg: 10, kill: [], duration: 20, cooldown: 100, range: 90 },
+"magiclanter": { dmg: 10, kill: [], duration: 20, cooldown: 100, range: 90 ,boost:{ "frozenghost":-2},},
 };
 
 var weaponSpearAnimation=["long_spear","iron_spear","copper_spear","aquaspear","magiclanter","pointed_stick","magicwand",'greenwand',"hyperblastwand",'magicwandofsharp',"godwand","bow","hellbow","nightbow","darkbow","quantumbow","rainbowbow","moltenbow"]
@@ -8072,7 +8906,7 @@ var zoomedDELTA=0
  let weponDelay=0
 let fskip=0
 let onbigbed=0
-
+let currentBuff="none"
 function updatePlayerAnimation() {
   
     const inWater = isPlayerInWater(); // Sprawdzenie, czy gracz jest w wodzie
@@ -8153,16 +8987,19 @@ if (issmoking !== 0) {
     // alert("_")
 }else if (checkIfItems("broom", 1) && isflying == 1) {
   newTexture = armourstextures.broom[player.currentAnimation][player.frameIndex];
-  
+  currentBuff="broom"
 }else if (checkIfItems("dracobuff", 1)) {
     newTexture = armourstextures.dracobuff[player.currentAnimation][player.frameIndex];
-
+currentBuff="dracobuff"
 } else   if (checkIfItems("hellbuff", 1)) {
   newTexture=armourstextures.hellbuff[player.currentAnimation][player.frameIndex];
-  
-} else if( checkIfItems("titaniumbuff",1)){
-      newTexture = armourstextures.titaniumbuff[player.currentAnimation][player.frameIndex];
-      
+  currentBuff='hellbuff'
+} else if (checkIfItems("titaniumbuff", 1)) {
+  newTexture = armourstextures.titaniumbuff[player.currentAnimation][player.frameIndex];
+  currentBuff="titaniumbuff"
+}else if (checkIfItems("osmiumbuff", 1)) {
+  newTexture = armourstextures.osmiumbuff[player.currentAnimation][player.frameIndex];
+  currentBuff="osmiumbuff"
 }else{
     
 }
@@ -8179,10 +9016,19 @@ if (options.noclip == 1) {
   nocliping = 1
 }
 }
-
+var unfixable=0
+let isUpdating2 = false;
+var zmiennaBruh=0
 function update() {
+  if(options.nomusic==undefined){ options.nomusic=0} 
+  if(options.Fskipping){ options.Fskipping=0}
+if (isUpdating) return; 
+if(abletostart==1&&paused!==1 && unfixable==0){
+    isUpdating = true;
+}
+
     players[yourname].x=Math.floor(offsetX/32); players[yourname].y=Math.floor(offsetY/32);
-    
+    unfixable=0
     if(gametest==1){
         activatedCheats=1;
         options.creativemode=1;
@@ -8207,6 +9053,7 @@ function update() {
         weponDelay-=1
     }
  if(by5>14){
+    // unfixable=1
          if (options.invertControls == 1) {
         document.getElementById("joystick").style.left = ""
         document.getElementById("joystick").style.right = offsetboxGui
@@ -8243,7 +9090,7 @@ zoomedDELTA=0
   
   if (isUpdating>1) {
       isUpdating=0
-  }else if(paused!==1){
+  }else if(paused!==1 && unfixable==0){
       multiplayerLoop()
 const startTime = performance.now();
  if(players[yourname]){
@@ -8279,10 +9126,16 @@ if (checkIfItems("dracobuff", 1)) {
     if (checkIfItems("staminaregenerator", 1)) {
       updateStamina(0.08);
     }
-    
-  if (checkIfItems("hellbuff", 1)) {
+
+if (checkIfItems("hellbuff", 1)) {
   updateHealth2(0.2)
-}}
+}
+if (checkIfItems("osmiumbuff", 1)) {
+  if(currentBuff=="osmiumbuff"){
+  updateHealth2(0.5)
+  }
+}
+  }
 if(checkIfItems("broom", 1) && isflying==1){
  updateStamina(-0.10)
 playerSpeed = 6.5  // 6.5
@@ -8347,7 +9200,7 @@ if(!checkIfHasEnemy("butterflyyellow",3)&&!checkIfHasEnemy("butterflyred",3)&&!c
         if(!checkIfHasEnemy("ghost",2)){
   const slimeTypes = [ "ghost"];
   const randomSlime = slimeTypes[Math.floor(Math.random() * slimeTypes.length)];
-  const spawnDistance = 8 * blockSize;
+  const spawnDistance = 9 * blockSize ;
 
   function spawnEnemyNearPlayer() {
     const enemyX = Math.random() >= 0.3 ? offsetX + spawnDistance : offsetX - spawnDistance;
@@ -8360,7 +9213,7 @@ if(!checkIfHasEnemy("butterflyyellow",3)&&!checkIfHasEnemy("butterflyred",3)&&!c
 }}
     }
     if(isStayOn("forestgrass")&& nightpower>=2.0){
-      if (Math.random() <= 0.015) {
+      if (Math.random() <= 0.021) {
         if(!checkIfHasEnemy("firefly",3)){
   const slimeTypes = [ "firefly"];
   const randomSlime = slimeTypes[Math.floor(Math.random() * slimeTypes.length)];
@@ -8388,7 +9241,7 @@ if(!checkIfHasEnemy("butterflyyellow",3)&&!checkIfHasEnemy("butterflyred",3)&&!c
 if (Math.random() <= 0.015) {
   const slimeTypes = ['voidguardian',"soulcat","skellybones","voidguardian"];
   const randomSlime = slimeTypes[Math.floor(Math.random() * slimeTypes.length)];
-  const spawnDistance = 8 * blockSize;
+  const spawnDistance = 8.5 * blockSize;
   function spawnEnemyNearPlayer() {
     const enemyX = Math.random() >= 0.3 ? offsetX + spawnDistance : offsetX - spawnDistance;
     const enemyY = Math.random() >= 0.3 ? offsetY + spawnDistance : offsetY - spawnDistance;
@@ -8486,6 +9339,26 @@ if (Math.random() >= 0.3) {enemyY = offsetY + spawnDistance; } else { enemyY = o
 
 
 }
+if (Math.random() <= 0.003) {
+    let bat = new Enemy(8 * blockSize + offsetX, 8 * blockSize + offsetY, 'zombie');
+    const spawnDistance = 9 * blockSize;
+    function spawnBatNearPlayer() {
+        let batX, batY;
+        if (Math.random() >= 0.3) {
+            batX = offsetX + spawnDistance; 
+        } else {
+            batX = offsetX; 
+        }
+        if (Math.random() >= 0.3) {
+            batY = offsetY + spawnDistance; 
+        } else {
+            batY = offsetY; 
+        }
+        let bat = new Enemy(batX, batY, 'zombie');
+        renderedEnemies.push(bat); 
+    }
+    spawnBatNearPlayer();
+}
 
             if (Math.random() <= 0.007) {
         let bat = new Enemy(8 * blockSize + offsetX, 8 * blockSize + offsetY, 'giantbat');
@@ -8517,9 +9390,29 @@ if (Math.random() >= 0.3) {enemyY = offsetY + spawnDistance; } else { enemyY = o
       }
     }
     if(nightpower>=2){
+        if (Math.random() <= 0.004) {
+    let bat = new Enemy(8 * blockSize + offsetX, 8 * blockSize + offsetY, 'zombie');
+    const spawnDistance = 9.5 * blockSize;
+    function spawnBatNearPlayer() {
+        let batX, batY;
+        if (Math.random() >= 0.3) {
+            batX = offsetX + spawnDistance; 
+        } else {
+            batX = offsetX; 
+        }
+        if (Math.random() >= 0.3) {
+            batY = offsetY + spawnDistance; 
+        } else {
+            batY = offsetY; 
+        }
+        let bat = new Enemy(batX, batY, 'zombie');
+        renderedEnemies.push(bat); 
+    }
+    spawnBatNearPlayer();
+}
                   if (Math.random() <= 0.007) {
         let bat = new Enemy(8 * blockSize + offsetX, 8 * blockSize + offsetY, 'skellybones');
-        const spawnDistance = 9 * blockSize;
+        const spawnDistance = 9.5 * blockSize;
         function spawnBatNearPlayer() {
           let batX, batY;
           if (Math.random() >= 0.3) {
@@ -8560,7 +9453,7 @@ if (Math.random() >= 0.3) {enemyY = offsetY + spawnDistance; } else { enemyY = o
       batX = offsetX + spawnDistance; // 10 bloków w prawo od gracza
     } else {
       batX = offsetX; // 10 bloków w lewo od gracza
-    }
+    } 
 
     // Losowanie pozycji Y: 10 bloków w górę (-) lub w dół (+)
     if (Math.random() >= 0.3) {
@@ -8846,29 +9739,42 @@ if(moveDown || moveUp || moveLeft || moveRight){
     if (!moveDown && !moveUp && !moveRight && !moveLeft) {
         targetX = (Math.floor(offsetX / 32) * 32)+17 ; // Zaokrąglamy offsetX
         targetY = (Math.floor(offsetY / 32) * 32)+10 ; // Zaokrąglamy offsetY
+ if (zmiennaBruh >= 0) {
+  zmiennaBruh -= 1
+}
+    }else{
+      zmiennaBruh=4
+      
     }
-
+offsetX=parseVar(offsetX,1)
+offsetY=parseVar(offsetY,1)
     // Gładkie przesuwanie do docelowej pozycji
     if (!moveDown && !moveUp && !moveRight && !moveLeft) {
-        offsetX += (targetX - offsetX) * smoothingFactor;
-        offsetY += (targetY - offsetY) * smoothingFactor;
+        offsetX += parseVar((targetX - offsetX) * smoothingFactor,2);
+        offsetY += parseVar((targetY - offsetY) * smoothingFactor,2);
         if (Math.abs(offsetX - targetX) < 0.1 && Math.abs(offsetY - targetY) < 0.1) {
-            offsetX = targetX;
-            offsetY = targetY;
+            offsetX = parseVar(targetX,2);
+            offsetY = parseVar(targetY,2);
+ offsetX = (Math.floor(offsetX / 32) * 32) + 17;  
+offsetY = (Math.floor(offsetY / 32) * 32) + 10;  
         }
     }
+    if(zmiennaBruh<=0){ 
+offsetX = (Math.floor(offsetX / 32) * 32) + 17;
+offsetY = (Math.floor(offsetY / 32) * 32) + 10;
+    }
 
-    const { treesBelowPlayer, treesAbovePlayer } = drawChunks();
+    var { treesBelowPlayer, treesAbovePlayer } = drawChunks();
 
     const playerCenterX = player.x + offsetX + player.width * 2;
     const playerCenterY = player.y + offsetY + player.height * 2;
 
     let collision = checkCollisionWithRock(playerCenterX, playerCenterY);
-    if (collision && warped!==1) {
+    if (collision && ((warped!==1)||(generateCave==1)) ) {
         offsetX = previousOffsetX;
         offsetY = previousOffsetY;
         console.log('Kolizja z blokiem rock, cofanie ruchu.');
-    }else if(! collision && warped==1){
+    }else if(((! collision)) && warped==1){
         warped=0;
     }
 
@@ -8980,13 +9886,15 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 const maxLightRadius = 150; // Maksymalny zasięg światła
-const lightDecay = 0.2; // Współczynnik zmniejszania się 
+const lightDecay = 0.0; // Współczynnik zmniejszania się 
 if (checkIfItems("hallucinate", 1)) {
     ctx.fillStyle = `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, 0.20)`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     updateHealth2(-0.35);
 } 
-    
+var adjW=0.1;
+var adjH=0.135 ;
+  
 if(!toggleNightVison){
 chunkPositions.forEach(chunk => {
     if(options.oldlight==0){
@@ -9000,20 +9908,21 @@ chunkPositions.forEach(chunk => {
   darknessOpacity = nightpower / maxNightpower;
 }
 if (generateCave == 1 || isinhouse == 1) {
-  darknessOpacity = 0.98;
+  darknessOpacity = 0.85;
 }
 if (isinhouse == 1 || isinhouse2 == 1) {
-    darknessOpacity = 0.50;
+  darknessOpacity = 0.50;
 }
 
         ctx.fillStyle = `rgba(0, 0, 0, ${darknessOpacity-0.3})`;
-        const adjustedX = Math.round(chunk.x);
-const adjustedY = Math.round(chunk.y);
-const adjustedWidth = chunk.width + 0.1;
-const adjustedHeight = chunk.height + 0.135;
+        const adjustedX = Math.round(chunk.x) ;
+const adjustedY = Math.round(chunk.y) ;
+
+const adjustedWidth = chunk.width + adjW;
+const adjustedHeight = chunk.height + adjH;
 ctx.fillRect(adjustedX, adjustedY, adjustedWidth, adjustedHeight);
       }} else if ((!checkIfHasEnemy("flesh",1))) {
-  let darknessOpacity = 0.99;
+  let darknessOpacity = 0.85;
 if(generateCave!==1 && isinhouse!==1 ){
   if(isunderwater==1){
 darknessOpacity = (nightpower / maxNightpower)-0.4
@@ -9021,7 +9930,7 @@ darknessOpacity = (nightpower / maxNightpower)-0.4
 darknessOpacity = nightpower / maxNightpower;
 }
 }else{
-   darknessOpacity = 0.98;
+   darknessOpacity = 0.85;
 }
 if(inabyss){
   darknessOpacity = 0.55;
@@ -9032,8 +9941,11 @@ if (inhell==1) {
 if(darknessOpacity > 0.96){
   darknessOpacity = 0.97;
 }
+if (darknessOpacity > 0.80 ) {
+  darknessOpacity = 0.80;
+} 
 if (generateCave == 1) {
-    darknessOpacity = 0.98;
+    darknessOpacity = 0.955;
 }
 if (isinhouse == 1||isinhouse2 == 1) {
     darknessOpacity = 0.50;
@@ -9041,18 +9953,19 @@ if (isinhouse == 1||isinhouse2 == 1) {
 if (inabyss==1 && Math.random() < 0.03) {
   ctx.fillStyle = `rgba(${Math.random()*10}, ${Math.random()*10}, ${Math.random()*10}, ${darknessOpacity + ((Math.random()*2-1)/130)})`;
 }else if(isRaining && Math.random()<0.025){
-        ctx.fillStyle = `rgba(0, 0, 0, ${darknessOpacity + ((Math.random()*2-1)/40)})`;
+        ctx.fillStyle = `rgba(0, 0, 0, ${darknessOpacity + ((Math.random()*2-1)/100)})`;
 }else{
   
   ctx.fillStyle = `rgba(0, 0, 0, ${darknessOpacity})`;
   if(Math.random()<0.008){
-    ctx.fillStyle = `rgba(5, 5, 5, ${darknessOpacity+ ((Math.random()*2-1)/60)})`;
+    ctx.fillStyle = `rgba(5, 5, 5, ${darknessOpacity+ ((Math.random()*2-1)/200)})`;
   }
 }
-        const adjustedX = Math.round(chunk.x);
-        const adjustedY = Math.round(chunk.y);
-        const adjustedWidth = chunk.width+0.1; 
-        const adjustedHeight = chunk.height + 0.135; 
+        const adjustedX = Math.round(chunk.x) ;
+const adjustedY = Math.round(chunk.y) ;
+
+        const adjustedWidth = chunk.width + adjW;
+const adjustedHeight = chunk.height + adjH;
         ctx.fillRect(adjustedX, adjustedY, adjustedWidth, adjustedHeight);
     }else{
       
@@ -9064,8 +9977,8 @@ if (inabyss==1 && Math.random() < 0.03) {
         const adjustedY = Math.round(chunk.y);
 
         // Dodanie dodatkowych pikseli do rozmiaru, aby uniknąć przerw
-        const adjustedWidth = chunk.width + 0.1; // dodanie 1 piksela do szerokości
-        const adjustedHeight = chunk.height + 0.1; // dodanie 1 piksela do wysokości
+        const adjustedWidth = chunk.width + 0.2; // dodanie 1 piksela do szerokości
+        const adjustedHeight = chunk.height + 0.2; // dodanie 1 piksela do wysokości
 
         ctx.fillRect(adjustedX, adjustedY, adjustedWidth, adjustedHeight);
     }
@@ -9073,7 +9986,7 @@ if (inabyss==1 && Math.random() < 0.03) {
 }else{
     if(isNearTorch(renderedBlocks, chunk.x, chunk.y)==true){ if(!checkIfHasEnemy("flesh",1)){
       }}  else if ((!checkIfHasEnemy("flesh",1))) {
-  let darknessOpacity = 0.99;
+  let darknessOpacity = 0.85;
 if(generateCave!==1 && isinhouse!==1 ){
   if(isunderwater==1){
 darknessOpacity = (nightpower / maxNightpower)-0.4
@@ -9081,7 +9994,7 @@ darknessOpacity = (nightpower / maxNightpower)-0.4
 darknessOpacity = nightpower / maxNightpower;
 }
 }else{
-   darknessOpacity = 0.98;
+   darknessOpacity = 0.85 ;
 }
 if(inabyss){
   darknessOpacity = 0.55;
@@ -9089,11 +10002,11 @@ if(inabyss){
 if (inhell==1) {
   darknessOpacity = 0.20;
 }
-if(darknessOpacity > 0.96){
-  darknessOpacity = 0.97;
+if (darknessOpacity > 0.85) {
+  darknessOpacity = 0.85;
 }
 if (generateCave == 1 ) {
-    darknessOpacity = 0.98;
+    darknessOpacity = 0.96;
 }
 if (isinhouse == 1 || isinhouse2 == 1) {
     darknessOpacity = 0.50;
@@ -9101,12 +10014,12 @@ if (isinhouse == 1 || isinhouse2 == 1) {
 if (inabyss==1 && Math.random() < 0.03) {
   ctx.fillStyle = `rgba(${Math.random()*10}, ${Math.random()*10}, ${Math.random()*10}, ${darknessOpacity + ((Math.random()*2-1)/130)})`;
 }else if(isRaining && Math.random()<0.025){
-        ctx.fillStyle = `rgba(0, 0, 0, ${darknessOpacity + ((Math.random()*2-1)/40)})`;
+        ctx.fillStyle = `rgba(0, 0, 0, ${darknessOpacity + ((Math.random()*2-1)/120)})`;
 }else{
   
   ctx.fillStyle = `rgba(0, 0, 0, ${darknessOpacity})`;
   if(Math.random()<0.008){
-    ctx.fillStyle = `rgba(5, 5, 5, ${darknessOpacity+ ((Math.random()*2-1)/60)})`;
+    ctx.fillStyle = `rgba(5, 5, 5, ${darknessOpacity+ ((Math.random()*2-1)/220)})`;
   }
 }
         const adjustedX = Math.round(chunk.x);
@@ -9140,6 +10053,16 @@ updateOxygen();
 drawOxygenBar(ctx);
 //chunkPositions.forEach(chunk => {
      // if (isNearTorch2(renderedBlocks, chunk.x, chunk.y)) {
+     
+if(!checkIfHasEnemy("darkeye",1)&&!generateCave && options.fancynight==1){
+if(nightpower>2.3){
+ctx.fillStyle = `rgba(5, 0, 220, 0.08)`;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+}else if (nightpower > 1.9) {
+  ctx.fillStyle = `rgba(5, 50, 200, 0.08)`;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}}
+     
      if (options.fancygraphic !== 0) {
        
 if (inhell == 1) {
@@ -9225,11 +10148,13 @@ drawLightning2();
     const endTime = performance.now();
     const timeTaken = endTime - startTime;
     const timeToWait = Math.max(0, frameDuration - timeTaken);
-
-    setTimeout(function(){isUpdating = 0;update();}, frameDuration); // Wywołanie update ponownie
+setTimeout(function(){isUpdating = 0;isUpdating = false; update();  }, frameDuration); // Wywołanie update ponownie
+    
   }
   
-}}
+}
+    
+} 
 
 
 let hitboxShowEnabled = 0;  // Zmienna kontrolująca widoczność hitboxów
@@ -9491,8 +10416,6 @@ if (nocliping == 1 && options.noclip!==1) {
       ctx.fillRect(block.x, block.y, blockSize, blockSize);
     }
     if (distance < collisionRadius - 2) {
-      // Jeśli kolizja, zaznacz blok na czerwono
-
       collisionDetected = true; // Kolizja wykryta
     }
   }
@@ -9563,7 +10486,7 @@ overworldChunks = null; // Wyczyść zapis
         let distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < 20) { // Zakładając promień kolizji 10 dla uproszczenia
-            if (block.type === 'cave_entrance'||block.type === 'customcaveentrance'&& generateCave === 0) {
+            if ((block.type === 'cave_entrance'||block.type === 'customcaveentrance'&& generateCave === 0) &&!checkBlockAtPosition(block.x,block.y, "cavebuilder")) {
                 const blockAbove = renderedBlocks.find(b => 
                     b.x === block.x && b.y === block.y - blockSize
                 );
@@ -9585,9 +10508,10 @@ overworldChunks = null; // Wyczyść zapis
                 chunks = overworldChunks; 
                 delayChangeDimension = 1;
                 overworldChunks = null; 
-                
+                warped=1
                 return;
             } else if (block.type === 'hell_entrance' || block.type === 'hell_entrance' && inhell === 0) {
+              warped=1
   const blockAbove = renderedBlocks.find(b =>
     b.x === block.x && b.y === block.y - blockSize
   );
@@ -9648,7 +10572,7 @@ if (delayChangeDimension !== 1) {
   let distance = Math.sqrt(dx * dx + dy * dy);
 
   if (distance < 5) { 
-    if (block.type === 'underwaterescape' || block.type === 'underwaterentrance' && generateCave !== 1 &&    isinhouse !== 1 && inabyss !== 1 ) {
+    if (block.type === 'underwaterescape' || block.type === 'underwaterentrance' && !checkBlockAtPosition(block.x,block.y, "water1") && generateCave !== 1 &&    isinhouse !== 1 && inabyss !== 1 ) {
   const blockAbove = renderedBlocks.find(b =>
     b.x === block.x && b.y === block.y - blockSize // 
   );
@@ -9783,41 +10707,79 @@ if(vartt>5000 ){
 }
 }}
 
+ 
+  
+
+
+
 if (nocliping == 0) {
-    if (block.type === 'rock' || block.type === 'log0' || block.type === 'tree0' || block.type === 'house_wall'|| block.type === 'gypsumhouse' || block.type === 'voidblock' || block.type === 'empty_black_elderberry' || block.type === 'black_elderberry' || block.type === 'birch0' || block.type === 'snowpine1' || block.type === 'yew0' || block.type === 'pine0' || block.type === 'stone_wall' || block.type === 'log_wall' || block.type === 'log' || block.type === 'sapling' || block.type === 'brickwall' || block.type === 'gypsumblock' || block.type === 'planks' || block.type === 'cave_wall' || block.type === 'broken_cavewall' || block.type === 'rubyblock' || block.type === 'sapphireblock' || block.type === 'emeraldblock' || block.type === 'brickhouse' || block.type === 'underwatersandblock' || block.type === 'abyssblock' || block.type === 'stonewithgypsum' || block.type === 'cavewallwithsalt' || block.type === 'fence' || block.type === 'table' || block.type === 'lamp' || block.type === 'hellwall' || block.type === 'hellwall2' || block.type === 'basalt' || block.type === 'granite'||block.type === 'statue1_1'||block.type === 'statue2_1'
-    ||block.type === 'helllog'||block.type === 'abysslog'||block.type === 'helltree0' ||block.type === 'abysstree0'||block.type === 'hellsapling'||block.type === 'abysssapling'||block.type === 'palmlog'||block.type === 'palm1'||block.type === 'palmsapling'||block.type === 'palm12'||block.type === 'can'||block.type === 'cinnabargeode'||block.type === 'fountain'||block.type === 'cauldron') {
-        
-        // Obliczanie prostokątów kolizji
-        let playerRect = {
-            x: player.x,
-            y: player.y,
-            width: player.width-7,
-            height: player.height-7
-        };
-
-        let blockRect = {
-            x: block.x,
-            y: block.y,
-            width: blockSize-7,
-            height: blockSize-7
-        };
-
-        // Sprawdzanie kolizji prostokątów
-        let collides = !(playerRect.x > blockRect.x + blockRect.width ||
-                         playerRect.x + playerRect.width < blockRect.x ||
-                         playerRect.y > blockRect.y + blockRect.height ||
-                         playerRect.y + playerRect.height < blockRect.y);
-
-        if (hitboxShowEnabled == 1) {
-            ctx.fillStyle = 'red';
-            ctx.fillRect(block.x, block.y, blockSize, blockSize);
-        }
-
-        if (collides) {
-            // Jeśli kolizja, zaznacz blok na czerwono
-            collisionDetected = true; // Kolizja wykryta
-        }
-    }
+    if (block.type === 'tree0' || block.type === 'pine0' || block.type === 'birch0' || block.type === 'snowpine1' || block.type === 'helltree0' || block.type === 'abysstree0' || block.type === 'palm1' || block.type === 'palm12') {
+  let playerRect = {
+    x: player.x,
+    y: player.y,
+    width: player.width - 7,
+    height: player.height - 7
+  };
+  let blockRect = {
+    x: block.x,
+    y: block.y,
+    width: blockSize - 7,
+    height: blockSize - 7
+  };
+  let collides = !(playerRect.x > blockRect.x + blockRect.width ||
+    playerRect.x + playerRect.width < blockRect.x ||
+    playerRect.y > blockRect.y + blockRect.height ||
+    playerRect.y + playerRect.height < blockRect.y);
+ blockRect = {
+  x: block.x+8,
+  y: block.y+8,
+  width: blockSize - 25,
+  height: blockSize - 25
+};
+let collides2 = !(playerRect.x > blockRect.x + blockRect.width ||
+  playerRect.x + playerRect.width < blockRect.x ||
+  playerRect.y > blockRect.y + blockRect.height ||
+  playerRect.y + playerRect.height < blockRect.y);
+if (collides2) {
+  warped = 1; // Kolizja wykryta
+}else if (collides) {
+  warped = 0;
+  collisionDetected = true; // Kolizja wykryta
+}
+}else if (block.type === 'rock' || block.type === 'log0' || block.type === 'tree0' || block.type === 'house_wall' || block.type === 'gypsumhouse' || block.type === 'voidblock' || block.type === 'empty_black_elderberry' || block.type === 'black_elderberry' || block.type === 'birch0' || block.type === 'snowpine1' || block.type === 'yew0' || block.type === 'pine0' || block.type === 'stone_wall' || block.type === 'log_wall' || block.type === 'log' || block.type === 'sapling' || block.type === 'brickwall' || block.type === 'gypsumblock' || block.type === 'planks' || block.type === 'cave_wall' || block.type === 'broken_cavewall' || block.type === 'rubyblock' || block.type === 'sapphireblock' || block.type === 'emeraldblock' || block.type === 'brickhouse' || block.type === 'underwatersandblock' || block.type === 'abyssblock' || block.type === 'stonewithgypsum' || block.type === 'cavewallwithsalt' || block.type === 'fence' || block.type === 'table' || block.type === 'lamp' || block.type === 'hellwall' || block.type === 'hellwall2' || block.type === 'basalt' || block.type === 'granite' || block.type === 'statue1_1' || block.type === 'statue2_1' ||
+  block.type === 'helllog' || block.type === 'abysslog' || block.type === 'helltree0' || block.type === 'abysstree0' || block.type === 'hellsapling' || block.type === 'abysssapling' || block.type === 'palmlog' || block.type === 'palm1' || block.type === 'palmsapling' || block.type === 'palm12' || block.type === 'can' || block.type === 'cinnabargeode' || block.type === 'fountain' || block.type === 'cauldron'|| block.type == "plantmaker"|| block.type == "randomrock1"|| block.type == "randomrock2"|| block.type == "chest") {
+  
+  // Obliczanie prostokątów kolizji
+  let playerRect = {
+    x: player.x,
+    y: player.y,
+    width: player.width - 7,
+    height: player.height - 7
+  };
+  
+  let blockRect = {
+    x: block.x,
+    y: block.y,
+    width: blockSize - 7,
+    height: blockSize - 7
+  };
+  
+  // Sprawdzanie kolizji prostokątów
+  let collides = !(playerRect.x > blockRect.x + blockRect.width ||
+    playerRect.x + playerRect.width < blockRect.x ||
+    playerRect.y > blockRect.y + blockRect.height ||
+    playerRect.y + playerRect.height < blockRect.y);
+  
+  if (hitboxShowEnabled == 1) {
+    ctx.fillStyle = 'red';
+    ctx.fillRect(block.x, block.y, blockSize, blockSize);
+  }
+  
+  if (collides) {
+    // Jeśli kolizja, zaznacz blok na czerwono
+    collisionDetected = true; // Kolizja wykryta
+  }
+} 
 }
 
                 
@@ -9827,7 +10789,7 @@ if (nocliping == 0) {
 
 
             let distance = Math.sqrt(dx * dx + dy * dy);
-            if (hitboxShowEnabled == 1) {
+            if (hitboxShowEnabled == 1) { 
               ctx.fillStyle = 'red';
               ctx.fillRect(block.x, block.y, blockSize, blockSize);
             }
@@ -10047,11 +11009,136 @@ if (!chunks[chunkKey]) {
 chunks[chunkKey].push({ x: 0, y: 0, type: item , text:text});
  
 });}
-function dropItemAtPlayerPosition(item) {
-    // Zaokrąglij pozycję gracza do siatki bloków 32x32
-    playhitmp3()
+
+function dropItemAtPlayerPosition2(item) {
     let playerX = Math.floor((offsetX + player.x) / blockSize) * blockSize;
-    let playerY = Math.floor((offsetY + player.y+1) / blockSize) * blockSize;
+let playerY = Math.floor((offsetY + player.y + 1) / blockSize) * blockSize;
+    // Zaokrąglij pozycję gracza do siatki bloków 32x32
+    switch (lastDirection) {
+    case 'up':
+        playerY -= blockSize;
+        break;
+    case 'down':
+        playerY += blockSize;
+        break;
+    case 'left':
+        playerX -= blockSize;
+        break;
+    case 'right':
+        playerX += blockSize;
+        break;
+    case 'right-up':
+        playerX += blockSize;
+        playerY -= blockSize;
+        break;
+    case 'left-up':
+        playerX -= blockSize;
+        playerY -= blockSize;
+        break;
+}
+var newBlock = {
+    x: playerX / blockSize, // Skala bloków
+    y: playerY / blockSize,
+    type: item
+};
+var chunkKey = `${Math.floor(newBlock.x)},${Math.floor(newBlock.y)}`;
+
+
+
+            TextPopUp("Go find your items !");
+             
+ 
+
+    
+    playhitmp3()
+    if (!chunks[chunkKey]) {
+        chunks[chunkKey] = [];
+    }
+
+    // Dodanie bloku do chunka
+    chunks[chunkKey].push({x:0,y:0,type:item});
+if(paused==1){
+  paused=0
+  update()
+    paused=1
+ 
+}
+    updateInventory()
+    updateCrafting()
+    
+}
+
+function dropItemAtPlayerPosition(item) {
+  
+ if (activeChest) {
+  if (!chestsData[`${activeChest[0]},${activeChest[1]}`]) {
+    chestsData[`${activeChest[0]},${activeChest[1]}`] = [];
+  }
+  let chestItems = chestsData[`${activeChest[0]},${activeChest[1]}`];
+  if (chestItems.length < 20) {  
+    chestsData[`${activeChest[0]},${activeChest[1]}`].push( item );
+    updateCrafting();
+ } else {
+   if(langPlactive){
+    TextPopUp("Skrzynia jest pełna!");
+   }else{
+     TextPopUp("Chest is full!");
+   }
+    addItem(item,1)
+  }
+  return; //hehehe nowy update skrzynek ??
+}
+  
+  
+    let playerX = Math.floor((offsetX + player.x) / blockSize) * blockSize;
+let playerY = Math.floor((offsetY + player.y + 1) / blockSize) * blockSize;
+    // Zaokrąglij pozycję gracza do siatki bloków 32x32
+    switch (lastDirection) {
+    case 'up':
+        playerY -= blockSize;
+        break;
+    case 'down':
+        playerY += blockSize;
+        break;
+    case 'left':
+        playerX -= blockSize;
+        break;
+    case 'right':
+        playerX += blockSize;
+        break;
+    case 'right-up':
+        playerX += blockSize;
+        playerY -= blockSize;
+        break;
+    case 'left-up':
+        playerX -= blockSize;
+        playerY -= blockSize;
+        break;
+}
+var newBlock = {
+    x: playerX / blockSize, // Skala bloków
+    y: playerY / blockSize,
+    type: item
+};
+var chunkKey = `${Math.floor(newBlock.x)},${Math.floor(newBlock.y)}`;
+if(item=="chest"){
+   
+}
+
+if (chunks[chunkKey] && chunks[chunkKey].length > 13) {
+        addItem(item, 1); // Dodaj przedmiot do ekwipunku
+        if (langPlactive == 1) {
+            TextPopUp("maksymalna to 13.");
+        } else {
+            TextPopUp("max blocks on position is 13.");
+             
+        }
+        return; 
+    }
+
+    
+    playhitmp3()
+    
  
 
 if (item == "blackberry-fruit") {
@@ -10273,7 +11360,7 @@ if (item == "briar-fruit") {
     return;
   }
 }
-if (item == "bowl_with_water") {
+if (item == "bowl_with_water" && options.dropany==1) {
   if (currentHP > 90) {
 
   } else {
@@ -10281,14 +11368,24 @@ if (item == "bowl_with_water") {
     dropItemAtPlayerPosition("bowl")
     return;
   }
+}else if (item == "bowl_with_water") {
+  
+  addItem("bowl", 1)
+  item = "shallowwater"
+  
 }
-if (item == "leafbowlwithcleanwater") {
+if (item == "leafbowlwithcleanwater" && options.dropany==1) {
   if (currentHP > 90) {
   } else {
     updateHealth(20)
     dropItemAtPlayerPosition("leafbowl")
     return;
   }
+}else if (item == "leafbowlwithcleanwater") {
+  
+  addItem("leafbowl", 1)
+  item = "shallowwater"
+  
 }
 if (item == "cooked_salmon") {
   if (currentHP > 90) {
@@ -10314,28 +11411,7 @@ if (item == "cooked_trout") {
 return;
 } 
     // Zmiana pozycji na podstawie ostatniego kierunku
-    switch (lastDirection) {
-        case 'up':
-            playerY -= blockSize;
-            break;
-        case 'down':
-            playerY += blockSize;
-            break;
-        case 'left':
-            playerX -= blockSize;
-            break;
-        case 'right':
-            playerX += blockSize;
-            break;
-        case 'right-up':
-            playerX += blockSize;
-            playerY -= blockSize;
-            break;
-        case 'left-up':
-            playerX -= blockSize;
-            playerY -= blockSize;
-            break;
-    }
+    
 
 if (item == "bowl_with_seawater") {
   
@@ -10371,11 +11447,7 @@ if (item == "itemroad") {
   }
 }
     // Dodanie nowego bloku z zaokrąglonymi współrzędnymi
-    const newBlock = {
-        x: playerX / blockSize,  // Skala bloków
-        y: playerY / blockSize,
-        type: item
-    };
+    
 if (item == "black_elderberry_tree") {
   const newBlock1 = {
   x: playerX / blockSize, // Skala bloków
@@ -10478,8 +11550,7 @@ if (item == "bed") {
 
 }
     // Klucz chunka na podstawie współrzędnych bloków
-    const chunkKey = `${Math.floor(newBlock.x)},${Math.floor(newBlock.y)}`;
-
+    
     // Jeśli chunk nie istnieje, stwórz go
     if (!chunks[chunkKey]) {
         chunks[chunkKey] = [];
@@ -10926,10 +11997,12 @@ playerCenterY -= 32 + 33;
         (enemy.x - playerCenterX) ** 2 + (enemy.y - playerCenterY) ** 2
       );
       if (distanceClick <= range && distanceFromPlayer <= range && enemy.hp<(9999*99)) {
+        if(options.nomusic!==1){
 let slashsound6 = new Audio();
 slashsound6.src = hitenemysound.src
 slashsound6.volume = 0.25;
 slashsound6.play();
+}
 }});
  if(weapon=="godwand"){
     updateStamina(-1)
@@ -10986,6 +12059,7 @@ updateStamina(-2)
         
 updateStamina(-2)
 let boostatk=0
+if(options.shoot==1){
 if(checkIfItems("goodarrows",1)){
     useItemDurability2(-1,"goodarrows")
     weponDelay=8
@@ -11016,7 +12090,7 @@ if(checkIfItems("goodarrows",1)){
   }  
     spawnEnemyNearPlayer();
     
-    }
+    }}
         
         
     }}else if(weapon=="nightbow"){
@@ -11025,7 +12099,7 @@ if(checkIfItems("goodarrows",1)){
 updateStamina(-2);
 
 let boostatk=25
-if(options.dropany==0){
+if(options.shoot==1){
 if(checkIfItems("goodarrows",1)){
     useItemDurability2(-1,"goodarrows")
     weponDelay=8
@@ -11067,8 +12141,8 @@ if(checkIfItems("goodarrows",1)){
          
 updateStamina(-2);
 
-let boostatk=40
-if(options.dropany==0){
+let boostatk=40 
+if(options.shoot==1){
 if(checkIfItems("goodarrows",1)){
     useItemDurability2(-1,"goodarrows")
     weponDelay=8
@@ -11111,7 +12185,7 @@ if(checkIfItems("goodarrows",1)){
 updateStamina(-2);
 
 let boostatk=60
-if(options.dropany==0){
+if(options.shoot==1){
 if(checkIfItems("goodarrows",1)){
     useItemDurability2(-1,"goodarrows")
     weponDelay=2
@@ -11154,7 +12228,7 @@ if(checkIfItems("goodarrows",1)){
 updateStamina(-2);
 
 let boostatk=60
-if(options.dropany==0){
+if(options.shoot==1){
 if(checkIfItems("goodarrows",1)){
     useItemDurability2(-1,"goodarrows")
     weponDelay=8
@@ -11197,7 +12271,7 @@ if(checkIfItems("goodarrows",1)){
 updateStamina(-2);
 
 let boostatk=200
-if(options.dropany==0){
+if(options.shoot==1){
 if(checkIfItems("goodarrows",1)){
     useItemDurability2(-1,"goodarrows")
     weponDelay=8
@@ -11240,7 +12314,7 @@ if(checkIfItems("goodarrows",1)){
 updateStamina(-2);
 
 let boostatk=140
-if(options.dropany==0){
+if(options.shoot==1){
 if(checkIfItems("goodarrows",1)){
     useItemDurability2(-1,"goodarrows")
     weponDelay=8
@@ -11366,8 +12440,11 @@ let fddg=0
 }
       if (checkIfItems(weapon, 1) && !itemsAndDamage[weapon].kill.includes(enemy.type)) {
         updateStamina(-0.5)
-        enemy.hp -= itemsAndDamage[weapon].dmg;
-
+        if(itemsAndDamage[weapon].boost&&itemsAndDamage[weapon].boost[enemy.type]){
+enemy.hp -= itemsAndDamage[weapon].dmg + itemsAndDamage[weapon].boost[enemy.type];
+        }else{
+        enemy.hp -= itemsAndDamage[weapon].dmg ;
+}
       } else {
  if (langPlactive == 1) {
     showTextInCanvas("ta broń nie działa na : " + enemy.type);
@@ -11483,6 +12560,26 @@ if (enemy.type == "soulcat") {
   buildBlockAtPosition(r, r2, "abyssgem")
   }  if (Math.random() < 0.005) {
     buildBlockAtPosition(r, r2, "warporb")
+}
+}
+if (enemy.type == "skellybones") {
+  let r = Math.floor((dx + player.x * 32) / 32)
+  let r2 = Math.floor((dy + player.y * 32) / 32)
+  if(Math.random()<0.11){
+  buildBlockAtPosition(r, r2, "bone")
+  }  if (Math.random() < 0.005) {
+    buildBlockAtPosition(r, r2, "bone_sword")
+}
+}
+if (enemy.type == "zombie") {
+  let r = Math.floor((dx + player.x * 32) / 32)
+  let r2 = Math.floor((dy + player.y * 32) / 32)
+  if(Math.random()<0.2){
+  buildBlockAtPosition(r, r2, "zombieflesh")
+  } else if (Math.random() < 0.005) {
+    buildBlockAtPosition(r, r2, "sapling")
+}else if (Math.random() < 0.021) {
+  buildBlockAtPosition(r, r2, "sharpstone")
 }
 }
 if (enemy.type == "frozenghost") {
@@ -11833,20 +12930,21 @@ setTimeout(function() {
   Delay = 0
 }, 500)
   if(!(checkIfHasEnemy("trueuniversehead",1))&&!(checkIfHasEnemy("deepgodhead",1))&&!(checkIfHasEnemy("flesh",1))&&!(checkIfHasEnemy("insaneuniversegod",1)) &&!(checkIfHasEnemy("2medusa",1)) &&!(checkIfHasEnemy("darkeye",1)) ){
-       if (!currentTrack || currentTrack.paused) {
+    if (!currentTrack || currentTrack.paused && isPlayingGame==1) {
       playMusic();
 
     }
 
-      if (((isStayOn("grass") || isStayOn("water")) && !isStayOn("snowgrass") &&!isStayOn("snowgrass2")) && isPlayingDesertMusic || isPlayingSnowyMusic) {
+      if ( (( (isStayOn("grass") || isStayOn("water")) && !isStayOn("snowgrass") &&!isStayOn("snowgrass2")) && isPlayingDesertMusic || isPlayingSnowyMusic ) && !isPlayingForest ) {
         stopDesertMusic();
       }
-      if (isStayOn("water") && isPlayingSnowyMusic) {
+      if (isStayOn("water") && (isPlayingSnowyMusic||isPlayingForest) ) {
         stopSnowyMusic();
+        stopForest();
       }
-      if (isStayOn("desertsand") || isStayOn("snowgrass") ||isStayOn("snowgrass2")) {
+//    if (isStayOn("desertsand") || isStayOn("snowgrass") ||isStayOn("snowgrass2")||isStayOn("forestgrass")||isStayOn("forestgrasslayer")) {
         checkPlayerOnDesertSand();
-      }
+//}
   }else{
 stopDesertMusic(); stopSnowyMusic();
   }
@@ -11916,7 +13014,34 @@ showTextInCanvas("you are not close enough")
 */
 return;
 }
-                
+if(options.editblocks==1){
+if (checkBlockAtPosition(x, y, "chest")) {
+  let fuckingDataFunction=getKeyBlockAtPosition(x,y,"chest")
+  activeChest=[fuckingDataFunction[0] ,fuckingDataFunction[1]]
+  if(!chestsData[`${parseInt(fuckingDataFunction[0])},${parseInt(fuckingDataFunction[1])}`]){
+    chestsData[`${parseInt(fuckingDataFunction[0])},${parseInt(fuckingDataFunction[1])}`]=[];
+  }
+  openInventory2(); 
+  return;
+}}else {
+  
+if (checkBlockAtPosition(x, y, "chest") && checkEmptySlots(0)) {
+  let fuckingDataFunction = getKeyBlockAtPosition(x, y, "chest")
+    
+ if (Array.isArray(chestsData[`${parseInt(fuckingDataFunction[0])},${parseInt(fuckingDataFunction[1])}`]) && chestsData[`${parseInt(fuckingDataFunction[0])},${parseInt(fuckingDataFunction[1])}`].length > 0) { //o my fucking gosh holy moly i hate json XP
+   if(!langPlactive){
+   TextPopUp("Clear Chest First ! ")
+ //  alert(JSON.stringify(chestsData[`${parseInt(fuckingDataFunction[0]) },${parseInt(fuckingDataFunction[1])}`])) 
+   }else{
+TextPopUp("Pierw wyczyść skrzynkę ! ")
+   }
+   return; 
+ }else{
+    
+ }
+  
+}
+}
 
     console.log(`Click Position: (${x}, ${y})`);
 const blockTypes = ["stones", "rock", "sticks", "nettle", "kite", "tallgrass", "yellow", "violet", "treebark", "toadstool", "fern", "shiny", "blackberry","stick","fiber","stone_axe","handrill-kit","blackberry-fruit","woodboard","briar","kite"];
@@ -11941,6 +13066,11 @@ if (["a1bed"].some(tree => checkBlockAtPosition(x, y, tree))) {
         showTextInCanvas("no space for bed ");
     }
     return;
+}
+if (checkBlockAtPosition(x, y, "coalore") && checkEmptySlots(0)) {
+  addItem("coal", 1)
+  removeBlockAtPosition(x, y, "coalore")
+  return;
 }
 if ( checkBlockAtPosition(x, y, "fence") && checkEmptySlots(0)) {
   addItem("itemfence",1)
@@ -12260,7 +13390,7 @@ if (checkBlockAtPosition(x, y, "carrot2") && checkEmptySlots(1)) {
     // Sprawdzenie, jaki blok został kliknięty
     Object.keys(allItems).forEach(itemName => {
   if (checkBlockAtPosition(x, y, itemName) && checkEmptySlots(0)) {
-    if (itemName !== "blackberry-fruit" && itemName !== "briar-fruit" && itemName !== "grasslayer" && itemName !== "clayblock" && itemName !== "clayblock1" && itemName !== "sandblock2" && itemName !== "fireplow" && itemName !== "fireroll" && itemName !== "furnace"&& itemName !== "kiln"&& itemName!=="extinguished_campfire"&& itemName !== "magnetite"&& itemName !== "blackberry-fruit"&& itemName !== "cooked_thistleroot"&& itemName !== "cooked_bunnmeat"&& itemName !== "cooked_sharkmeat"&& itemName !== "briar-fruit"&& itemName !== "kite"&& itemName !== "rock"&& itemName !== "cave_wall"&& itemName !== "cavewall"&& itemName !== "black_elderberries"&& itemName !== "hill1"&& itemName !== "tallgrass"&& itemName !== "snowgrass2"&& itemName !== "forestgrasslayer"&& itemName !== "deadgrassfloor2"&& itemName !== "deadgrassfloor") {
+    if (itemName !== "blackberry-fruit" && itemName !== "briar-fruit" && itemName !== "grasslayer" && itemName !== "clayblock" && itemName !== "clayblock1" && itemName !== "sandblock2" && itemName !== "fireplow" && itemName !== "fireroll" && itemName !== "furnace"&& itemName !== "kiln"&& itemName!=="extinguished_campfire"&& itemName !== "magnetite"&& itemName !== "blackberry-fruit"&& itemName !== "cooked_thistleroot"&& itemName !== "cooked_bunnmeat"&& itemName !== "cooked_sharkmeat"&& itemName !== "briar-fruit"&& itemName !== "kite"&& itemName !== "rock"&& itemName !== "cave_wall"&& itemName !== "cavewall"&& itemName !== "black_elderberries"&& itemName !== "hill1"&& itemName !== "tallgrass"&& itemName !== "snowgrass2"&& itemName !== "forestgrasslayer"&& itemName !== "deadgrassfloor2"&& itemName !== "deadgrassfloor"&& itemName !== "cavedirt") {
       addItem(itemName, 1); // Dodajemy przedmiot o tej samej nazwie, co nazwa w allItems
       removeBlockAtPosition(x, y, itemName); // Usuwamy blok po kliknięciu
 
@@ -12539,7 +13669,7 @@ return;
 
     }
     if (checkBlockAtPosition(x, y, "sticks") && checkEmptySlots(0)) {
-        const randomItem = Math.random() < 0.5 ? "stick" : (Math.random() < 0.5 ? "treebark" : "longstick");
+        const randomItem = Math.random() < 0.5 ? "stick" : (Math.random() < 0.6 ? "treebark" : "longstick");
         addItem(randomItem, 1);  // Możesz zdobyć stick, treebark lub longstick
         updateStamina(-2)
   removeBlockAtPosition(x, y, "sticks")
@@ -12714,6 +13844,29 @@ if (checkBlockAtPosition(x, y, "fireroll") && checkEmptySlots(0)) {
 }
 }
 return;
+}
+if (checkBlockAtPosition(x, y, "shallowwater") && checkEmptySlots(0) && checkIfItems("leafbowl", 1)) {
+  achievementget("Cave clean water!", 0)
+  removeBlockAtPosition(x, y, "shallowwater");
+  deleteItems("leafbowl", 1)
+  updateStamina(-5);
+  addItem("leafbowlwithcleanwater", 1);
+  return;
+}
+if (checkBlockAtPosition(x, y, "shallowwater") && checkEmptySlots(0) && checkIfItems("bowl", 1)) {
+  achievementget("Cave clean water!", 0)
+  removeBlockAtPosition(x, y, "shallowwater");
+  deleteItems("bowl", 1)
+  updateStamina(-5);
+  addItem("bowl_with_water", 1);
+  return;
+}
+if (checkBlockAtPosition(x, y, "cavedirt") && checkEmptySlots(0) && (checkIfItems("stoneshovel", 1) || checkIfItems("iron_shovel", 1))) {
+  removeBlockAtPosition(x, y, "cavedirt");
+  addItem("cavedirt", 1);
+  achievementget(" Cave Robber", 0)
+  updateStamina(-2)
+  return;
 }
 if (checkBlockAtPosition(x, y, "forestgrasslayer") && checkEmptySlots(0) && (checkIfItems("stoneshovel", 1) || checkIfItems("iron_shovel", 1))) {
     // Przeszukujemy otaczające bloki w promieniu 64px i zamieniamy "fiber" na "ignited_fiber"
@@ -13121,8 +14274,92 @@ if (isPC()) {
 
 }
 
-
-
+function returnBlockAtPosition(x, y, type) {
+  // Oblicz pozycje globalne z przesunięciem
+  const globalX = x + offsetX;
+  const globalY = y + offsetY;
+  if (floorblocks.includes(type) && options.dontbreakfloor == 1) {
+    return false;
+  }
+  // Funkcja zaokrąglająca do najbliższej wielokrotności rozmiaru bloku
+  const snappedGlobalX = Math.floor(globalX / blockSize) * blockSize;
+  const snappedGlobalY = Math.floor(globalY / blockSize) * blockSize;
+  
+  // Iterowanie przez chunki, ale tylko te, które są w pobliżu kliknięcia
+  const chunkX = Math.floor(snappedGlobalX / blockSize);
+  const chunkY = Math.floor(snappedGlobalY / blockSize);
+  
+  const neighboringChunks = [
+    `${chunkX},${chunkY}`, // dokładnie ten chunk
+    
+  ];
+  
+  // Sprawdzamy tylko sąsiednie chunki
+  for (let chunkKey of neighboringChunks) {
+    let chunkBlocks = chunks[chunkKey];
+    if (!chunkBlocks) continue; // pomiń chunk, jeśli nie istnieje
+    
+    // Iterujemy przez wszystkie bloki w danym chunku
+    for (let i = 0; i < chunkBlocks.length; i++) {
+      let block = chunkBlocks[i];
+      
+      // Sprawdzamy najpierw, czy typ pasuje, aby ograniczyć liczbę operacji
+      if (block.type !== type) continue;
+      
+      let blockGlobalX = block.x + chunkX * blockSize;
+      let blockGlobalY = block.y + chunkY * blockSize;
+      
+      // Jeśli pasuje współrzędna, zwracamy true
+      if (blockGlobalX === snappedGlobalX && blockGlobalY === snappedGlobalY) {
+        return block;
+      }
+    }
+  }
+  return false; // Nie znaleziono bloku o zadanym typie
+}
+function getKeyBlockAtPosition(x, y, type) {
+  // Oblicz pozycje globalne z przesunięciem
+  const globalX = x + offsetX;
+  const globalY = y + offsetY;
+  if (floorblocks.includes(type) && options.dontbreakfloor == 1) {
+    return false;
+  }
+  // Funkcja zaokrąglająca do najbliższej wielokrotności rozmiaru bloku
+  const snappedGlobalX = Math.floor(globalX / blockSize) * blockSize;
+  const snappedGlobalY = Math.floor(globalY / blockSize) * blockSize;
+  
+  // Iterowanie przez chunki, ale tylko te, które są w pobliżu kliknięcia
+  const chunkX = Math.floor(snappedGlobalX / blockSize);
+  const chunkY = Math.floor(snappedGlobalY / blockSize);
+  
+  const neighboringChunks = [
+    `${chunkX},${chunkY}`, // dokładnie ten chunk
+    
+  ];
+  
+  // Sprawdzamy tylko sąsiednie chunki
+  for (let chunkKey of neighboringChunks) {
+    let chunkBlocks = chunks[chunkKey];
+    if (!chunkBlocks) continue; // pomiń chunk, jeśli nie istnieje
+    
+    // Iterujemy przez wszystkie bloki w danym chunku
+    for (let i = 0; i < chunkBlocks.length; i++) {
+      let block = chunkBlocks[i];
+      
+      // Sprawdzamy najpierw, czy typ pasuje, aby ograniczyć liczbę operacji
+      if (block.type !== type) continue;
+      
+      let blockGlobalX = block.x + chunkX * blockSize;
+      let blockGlobalY = block.y + chunkY * blockSize;
+      
+      // Jeśli pasuje współrzędna, zwracamy true
+      if (blockGlobalX === snappedGlobalX && blockGlobalY === snappedGlobalY) {
+        return [chunkX,chunkY];
+      }
+    }
+  }
+  return false; // Nie znaleziono bloku o zadanym typie
+}
 
 // Funkcja sprawdzająca, czy na danej pozycji znajduje się blok typu 'type'
 function checkBlockAtPosition(x, y, type) {
@@ -13296,7 +14533,7 @@ document.addEventListener('keydown', function(event) {
 /* Ciemny retro styl */
 
 .inventory-container {
-    position: fixed;
+    position: absolute;
     font-family: 'Courier New', Courier, monospace;
     color: white;
     top: 0;
@@ -13322,17 +14559,57 @@ document.addEventListener('keydown', function(event) {
     padding: 5px 10px;
     cursor: pointer;
 }
-
+#slotsContainer {
+     
+     height: 90px;
+     overflow: hidden scroll;
+     
+}
 .slots {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
     gap: 10px;
-    width:100vw; height :85px; overflow: hidden scroll;
     margin-top: 20px;
+    height: 85px;
     width: 100%; /* Gwarantuje dopasowanie do szerokości */
     box-sizing: border-box;
 }
+.slots2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+    height: 85px;
+    width: 100%; /* Gwarantuje dopasowanie do szerokości */
+    box-sizing: border-box;
+}
+.chestslot {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 1/1; /* Gwarantuje, że sloty są kwadratowe */
+    background-color: #0C0C0C;
+    border: 1px solid #454545;
+    justify-content: center;
+    font-size: 13px;
+    border-radius: 5px;
+ 
+}
 
+.chestslot img {
+  width: 70%;
+  image-rendering: pixelated;
+  height: auto;
+}
+
+.chestslot-name {
+  margin-top: 3px;
+  font-size: 10px;
+  color: white;
+  max-width: 100%;
+  word-wrap: break-word;
+}
 .slot {
     display: flex;
     flex-direction: column;
@@ -13340,11 +14617,11 @@ document.addEventListener('keydown', function(event) {
     width: 100%;
     aspect-ratio: 1/1; /* Gwarantuje, że sloty są kwadratowe */
     background-color: #0C0C0C;
-    border: 2px solid #474747;
+    border: 1px solid #454545;
     justify-content: center;
-    border-radius: 2px;
+    font-size: 13px;
+    border-radius: 5px;
 }
-
 .slot img {
     max-width: 70%;
     max-height: 70%;
@@ -13357,13 +14634,13 @@ document.addEventListener('keydown', function(event) {
 }
 
 .crafting-recipes {
-    display: flex;
+     display: flex;
     flex-direction: column;
     font-size: 10px;
     margin-bottom: 0px;
     width: calc(100% - 70px );
     max-height: calc(100% - 95px);
-    overflow-y: auto; /* W przypadku dużej liczby receptur, pojawi się przewijanie */
+    overflow-y: auto; /* W przypadku dużej liczby receptur, pojawi się przewijanie */  
 }
 
 .recipe {
@@ -13477,7 +14754,7 @@ document.getElementById("allachievements2").innerHTML+=d
     <div class="inventory-container" style="overflow: scroll; height:100%;"  id="inventory">
       <input   style="position:absolute; top:40px; right:0 ; width:50px; background:#666666;z-index: 999; border:none; outline: none; font-size: 8px;" class="hover" placeholder="save name " id="savename" ></input>
       <div onclick="saveGameState(document.getElementById('savename').value || '' );" style="position:absolute; top:60px; right:0 ; background:#666666;z-index: 999; font-size: 10px;" class="hover">save game</div>
-      <div data-var="dropany" id="shootbtn" onclick="toggleAndStyleButton(this);" style="position:absolute; top:5px; left:0 ;z-index: 999; background:#666666; display:none;font-size: 10px; " > Dont shoot </div> 
+      <div data-var="shoot" id="shootbtn" onclick="toggleAndStyleButton(this);" style="position:absolute; top:5px; left:0 ;z-index: 999; background:#666666; display:none;font-size: 10px; " >  shoot anabled ? </div> 
       <div onclick="loadGameState(document.getElementById('savename').value || '');"  style="position:absolute; top:90px; right:0 ;z-index: 999; background:#666666;"class="hover">load game</div>
 <div onclick="toggleAllRecipes()"  style="position:absolute; top:120px; right:0 ; z-index: 999; background:#666666;"class="hover">Show all</div>
 <div onclick="showsaves();" style="position:absolute; top:140px; right:0 ; background:#666666;z-index: 999; " class="hover">save names</div>
@@ -13489,9 +14766,11 @@ document.getElementById("allachievements2").innerHTML+=d
         <div class="crafting-recipes" id="crafting">
             <!-- Crafting recipes will be displayed here -->
         </div>
-
+        
+<div id="slotsContainer">
         <div class="slots" id="slots">
         </div>
+</div>
     </div>
 
 <div id="advanced" style="display:none; height:100vh; overflow: hidden scroll;">
@@ -13503,11 +14782,12 @@ document.getElementById("allachievements2").innerHTML+=d
     </div>
     <button data-var="autoclose" onclick="toggleAndStyleButton(this);">Auto Close</button> <br>
     <button data-var="creativemode" onclick="toggleAndStyleButton(this);" class="cheatButton1">Creative mode</button> <br>
-    <button data-var="noclip" onclick="toggleAndStyleButton(this);" class="cheatButton1">Noclip modr</button> <br>
+    <button data-var="noclip" onclick="toggleAndStyleButton(this);" class="cheatButton1">Noclip modr</button> <br> <button data-var="editblocks" onclick="toggleAndStyleButton(this);">Edit Blocks ( example click chest to put items )</button><br>
     <button data-var="dropany" onclick="toggleAndStyleButton(this);">Drop any item (fishing rod)</button> <br>
     <button data-var="dontbreakfloor" onclick="toggleAndStyleButton(this);">Dont break floors</button>
     <button data-var="autopause" onclick="toggleAndStyleButton(this);">auto pause</button>
     <button data-var="fancygraphic" onclick="toggleAndStyleButton(this);">fancygraphic</button>
+    <button data-var="fancynight" onclick="toggleAndStyleButton(this);">Fancy night</button>
     <button data-var="quickinventory" onclick="toggleAndStyleButton(this); updateInventory()">quickinventory</button>
     <button data-var="fightmode" onclick="toggleAndStyleButton(this);">fightmode prevent destroying blocks </button>
     <button data-var="zoomout" onclick="toggleAndStyleButton(this);">zoom out</button>
@@ -13515,17 +14795,476 @@ document.getElementById("allachievements2").innerHTML+=d
     <button data-var="invertControls" onclick="toggleAndStyleButton(this);">invertControls</button>
     <button data-var="hideBlocksnumber" onclick="toggleAndStyleButton(this);">hideBlocksnumber</button>
     <button data-var="oldlight" onclick="toggleAndStyleButton(this);">oldlight</button> <br>
+    <button data-var="nomusic" onclick="toggleAndStyleButton(this); stopMusic()">disable sounds and music</button> <br>
 <button onclick="openAchievmentsMenu()">your achievements</button>
     <button data-var="Fskipping" onclick="toggleAndStyleButton(this);">frames skipping</button>
     <br>
+    <button onclick="exportData2();">export world as pfdata  </button>
 
-    
-
+<br>
+<!--    <button onclick="exportData();">export wld 1.5.8 ( it could take some time ) </button>
+load pfwld file : <input type="file" id="fileInput"    onchange="loadData2(event)" />
+<br>-->
 <button onclick="removeSaveFile(document.getElementById('savename').value || '')"> DELETE DATA FROM SELECTED SLOT  </button>
 <br> <br>
-<button onclick="document.getElementById('loadingMenu').style.display = 'none'; document.getElementById('MainMenu').style.display = 'block'; cancontinue=1; document.getElementById('continuebtn').style.display='block'; document.getElementById('advanced').style.display='none'; document.getElementById('gamescontainer').style.display='none'; paused=1 ;">backtomenu</button>
+<button onclick="randomizeCloudsAnimation(); document.getElementById('loadingMenu').style.display = 'none'; document.getElementById('MainMenu').style.display = 'block'; cancontinue=1; document.getElementById('continuebtn').style.display='none'; document.getElementById('advanced').style.display='none'; document.getElementById('gamescontainer').style.display='none';  paused=1 ; document.getElementById('inventory').style.visibility = 'hidden';
+document.getElementById('inventory').style.pointerEvents = 'none'; ">backtomenu</button>
 </ffd>
 </div>
+<script>
+
+
+
+function exportData() {
+    var gameState = {
+        information :" Don't edit game file this is cheating !",curseofgos,offsetX,offsetY,increasing,isRaining,nightpower,slots,VISIBLEIDS,AVAILABLE_IDS,cannotmove,options: JSON.stringify(options),yourItemsDurabilities: JSON.stringify(yourItemsDurabilities),activatedCheats,currentHP,currentStamina,yourItems: JSON.stringify(yourItems),
+        
+        generateCave,inabyss,isunderwater,isinhouse,isinhouse2,inhell,
+        overworldChunks: JSON.stringify(overworldChunks),
+        hellchunks: JSON.stringify(hellchunks),
+        houseChunks: JSON.stringify(housechunks),
+        caveChunks: JSON.stringify(caveChunks),
+        house2chunks: JSON.stringify(house2chunks),
+        seachunks: JSON.stringify(seachunks),
+        abysschunks: JSON.stringify(abysschunks),
+        chunks: JSON.stringify(chunks),
+        
+        renderedEnemies: RENDEREDENEMIES2,
+        oxygen,
+        dayscount: surviveddays,
+        spawnX: player.spawnX,
+        spawnY: player.spawnY,
+        dataChunksStructures: dataChunksStructures,
+        savedinworld: player.savedinworld,
+        achievements1: achievements,
+    };
+    if(APKversion==true){
+        Toast("Saving Game data .. ")
+    }
+gameState=encodeData(JSON.stringify(gameState),2)
+var dataok="pfWLDataV(1.5.8)"+gameState
+  //  const newWindow = window.open();
+    function downloadData() {
+        if(APKversion==false){
+    const blob = new Blob([JSON.stringify(dataok)], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `world${Math.random()*200}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+        }else{
+            InstallText(JSON.stringify(dataok),`world${Math.random()*200}.pfwld`)
+        }
+    }
+    downloadData()
+}
+
+
+function loadData2(event) {
+    const file = event.target.files[0];
+    if (!file) {
+        return;
+    }
+
+    const reader = new FileReader();
+ if (APKversion == true) {
+    Toast("Loading Game data .. ")
+}
+    reader.onload = function(e) {
+        const data = e.target.result;
+        if (!data.startsWith("pfWLDataV(1.5.8)")) {
+            customAlert("err outdated savefile or not a pf 1.5.8 save file !");
+            hideLoadingScreen(); 
+            return;
+        }
+        const jsonData = data.substring("pfWLDataV(1.5.8)".length);
+        try {
+            const parsedData = JSON.parse(decodeData(jsonData,2));
+          //  alert(parsedData)
+            const gameState = parsedData;
+        if (!gameState) {
+          customAlert("File syntax Err");
+          hideLoadingScreen(); 
+          return;
+        }
+
+        updfixbug = 1
+
+
+        if (gameState.AVAILABLE_IDS) {
+          AVAILABLE_IDS = gameState.AVAILABLE_IDS
+        }
+        if (gameState.VISIBLEIDS) {
+          VISIBLEIDS = gameState.VISIBLEIDS
+        }
+if (gameState.achievements1 !== null && gameState.achievements1) {
+    achievements = (gameState.achievements1);
+        
+} else {
+    achievements = []
+}
+        inhell = 0; isinhouse = 0; isinhouse2 = 0; inabyss = 0; isunderwater = 0;
+        curseofgos = gameState.curseofgos;
+        offsetX = gameState.offsetX;
+        offsetY = gameState.offsetY;
+        increasing = gameState.increasing;
+        isRaining = gameState.isRaining;
+        nightpower = gameState.nightpower;
+        slots = gameState.slots;
+        cannotmove = gameState.cannotmove;
+        options = JSON.parse(gameState.options);
+        activatedCheats = gameState.activatedCheats;
+        yourItemsDurabilities = JSON.parse(gameState.yourItemsDurabilities),
+          currentHP = gameState.currentHP;
+        currentStamina = gameState.currentStamina;
+        generateCave = gameState.generateCave;
+        yourItems = JSON.parse(gameState.yourItems);
+        overworldChunks = JSON.parse(gameState.overworldChunks);
+        housechunks = JSON.parse(gameState.houseChunks);
+        caveChunks = JSON.parse(gameState.caveChunks);
+        seachunks = JSON.parse(gameState.seachunks);
+        abysschunks = JSON.parse(gameState.abysschunks);
+        if (gameState.savedinworld) {
+        player.savedinworld = (gameState.savedinworld);
+        }
+        if (gameState.hellchunks) {
+          hellchunks = JSON.parse(gameState.hellchunks);
+        }
+        if (gameState.hellchunks) {
+            hellchunks = JSON.parse(gameState.hellchunks);
+        }
+        if (gameState.house2chunks) {
+            house2chunks = JSON.parse(gameState.house2chunks);
+        }
+        if (gameState.inhell) {
+          inhell = gameState.inhell
+        }
+        if (gameState.isinhouse2) {
+    isinhouse2 = gameState.isinhouse2
+}
+if (gameState.dayscount) {
+    surviveddays = gameState.dayscount
+}
+ if (gameState.spawnX) {
+            player.spawnX = gameState.spawnX
+            player.spawnY = gameState.spawnY
+        }
+        if (typeof gameState.renderedEnemies === "string") {
+          renderedEnemies = JSON.parse(gameState.renderedEnemies);
+        } else {
+          renderedEnemies = (gameState.renderedEnemies);
+        }
+
+        oxygen = gameState.oxygen;
+        inabyss = gameState.inabyss;
+        isunderwater = gameState.isunderwater;
+        isinhouse = gameState.isinhouse;
+        chunks = JSON.parse(gameState.chunks);
+
+if (isinhouse2 == 1) {
+    chunks = house2chunks;
+}else        if (inabyss == 1) {
+    chunks = abysschunks;
+}else if (isunderwater == 1) {
+          chunks = seachunks;
+        } else if (generateCave == 1) {
+          chunks = caveChunks;
+        } else if (isinhouse == 1) {
+          chunks = housechunks;
+        } else if (inhell == 1) {
+          chunks = hellchunks;
+        } else {
+
+        }
+
+        updateInventory();
+        updateCrafting();
+        
+
+        setTimeout(() => {
+          hideLoadingScreen(); // Ukrycie ekranu ładowania po zakończeniu
+          playMusic(); // Odtworzenie muzyki
+        }, 500); // Minimalne opóźnienie, aby efekt był zauważalny
+        setTimeout(function() {
+          updfixbug = 0
+        }, 1000)
+if (APKversion == true) {
+    Toast("Loaded Game data !")
+}
+        document.querySelectorAll('button[data-var]').forEach(button => {
+          const varName = button.getAttribute('data-var');
+          updateButtonStyle(button, options[varName]);
+        });
+        playMusic();
+     
+
+      request.onerror = function(event) {
+        customAlert("Failed to load game: " + event.target.errorCode);
+        hideLoadingScreen(); // Ukrycie ekranu ładowania w przypadku błędu
+      };
+        } catch (error) {
+            console.error("Error loading data: ", error);
+        }
+    };
+    reader.readAsText(file);
+}
+
+/*
+
+New Exporting File
+
+*/
+
+
+
+function encodeData(data, key) {
+    let encoded = '';
+    for (let i = 0; i < data.length; i++) {
+        encoded += String.fromCharCode(data.charCodeAt(i) ^ key);
+    }
+    return encoded;
+}
+
+function decodeData(data, key) {
+    return encodeData(data, key);
+}
+
+function exportData2() {
+if (APKversion == true) {
+    Toast("Exporting world data .. ")
+}
+    var codedata = {
+        curseofgos, offsetX, offsetY, increasing, isRaining, nightpower, slots, VISIBLEIDS, AVAILABLE_IDS, cannotmove,
+        options: JSON.stringify(options),
+        yourItemsDurabilities: JSON.stringify(yourItemsDurabilities),
+        activatedCheats, currentHP, currentStamina,
+        yourItems: JSON.stringify(yourItems),
+        renderedEnemies: RENDEREDENEMIES2,
+        oxygen,
+        dayscount: surviveddays,
+        spawnX: player.spawnX,
+        spawnY: player.spawnY,
+        dataChunksStructures: dataChunksStructures,
+        savedinworld: player.savedinworld,
+        achievements1: achievements
+    };
+
+    var gameState = {
+        generateCave, inabyss, isunderwater, isinhouse, isinhouse2, inhell,
+        overworldChunks: JSON.stringify(overworldChunks),
+        hellchunks: JSON.stringify(hellchunks),
+        houseChunks: JSON.stringify(housechunks),
+        caveChunks: JSON.stringify(caveChunks),
+        house2chunks: JSON.stringify(house2chunks),
+        seachunks: JSON.stringify(seachunks),
+        abysschunks: JSON.stringify(abysschunks),
+        chunks: JSON.stringify(chunks),
+    };
+
+    var World = JSON.stringify(gameState);
+    var Infor = encodeData(JSON.stringify(codedata), 1);
+    var dataok = [`1.5.8`, Infor, World]; // Zmiana kolejności i formatu
+
+    function downloadData() {
+        if (!APKversion) {
+            const blob = new Blob([JSON.stringify(dataok)], { type: 'application/json' }); // Użyj JSON.stringify
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+const currentDate = new Date();
+const day = String(currentDate.getDate()).padStart(2, '0');
+const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+const year = currentDate.getFullYear();
+const hours = String(currentDate.getHours()).padStart(2, '0');
+const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+const fileName = `worldsave(${day}-${month}-${year})(${hours}-${minutes}-${seconds}).pfd`;
+            a.download = fileName
+            a.click();
+            URL.revokeObjectURL(url);
+        } else {
+const currentDate = new Date();
+const day = String(currentDate.getDate()).padStart(2, '0');
+const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+const year = currentDate.getFullYear();
+const hours = String(currentDate.getHours()).padStart(2, '0');
+const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+const fileName = `worldsave(${day}-${month}-${year})(${hours}-${minutes}-${seconds}).pfd`;
+InstallText(JSON.stringify(dataok), fileName);
+        }
+    }
+
+    downloadData();
+}
+
+
+function loadData22(event) {
+if (APKversion == true) {
+    Toast("Loading primoria ferox data .. ")
+}
+    splashrandomize()
+  updateTextMenuLoading()
+  document.getElementById('loadingMenu').style.display = 'flex';
+  document.getElementById('loadingMenu').innerHTML=""
+  splashrandomize()
+updateTextMenuLoading()
+  abletostart = 1;
+  setTimeout(function() {
+    document.getElementById('MainMenu').style.display = 'none';
+    document.getElementById('loadingMenu').style.display = 'none';
+    if(paused==1){document.getElementById('advanced').style.display='block';}
+    isUpdating = 0; update(); paused = 1; setTimeout(function(){paused=0; update() },1000);
+  }, 2000);
+  
+    const file = event.target.files[0];
+    if (!file) {
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const data = e.target.result;
+        const parsedData = JSON.parse(data);
+
+        if (!Array.isArray(parsedData) || parsedData[0] !== "1.5.8") {
+            customAlert("Err: outdated savefile or not a pf 1.5.8 save file !");
+            hideLoadingScreen();
+            return;
+        }
+
+        const Infor = parsedData[1];
+        const worldDataPart = parsedData[2];
+
+        try {
+            const decodedGameState = decodeData(Infor,1);
+            var gameState = JSON.parse(decodedGameState);
+            const worldData = JSON.parse(worldDataPart);
+  gameState = Object.assign({}, gameState, worldData);
+         updfixbug = 1
+
+
+        if (gameState.AVAILABLE_IDS) {
+          AVAILABLE_IDS = gameState.AVAILABLE_IDS
+        }
+        if (gameState.VISIBLEIDS) {
+          VISIBLEIDS = gameState.VISIBLEIDS
+        }
+if (gameState.achievements1 !== null && gameState.achievements1) {
+    achievements = (gameState.achievements1);
+        
+} else {
+    achievements = []
+}
+        inhell = 0; isinhouse = 0; isinhouse2 = 0; inabyss = 0; isunderwater = 0;
+        curseofgos = gameState.curseofgos;
+        offsetX = gameState.offsetX;
+        offsetY = gameState.offsetY;
+        increasing = gameState.increasing;
+        isRaining = gameState.isRaining;
+        nightpower = gameState.nightpower;
+        slots = gameState.slots;
+        cannotmove = gameState.cannotmove;
+        options = JSON.parse(gameState.options);
+        activatedCheats = gameState.activatedCheats;
+        yourItemsDurabilities = JSON.parse(gameState.yourItemsDurabilities),
+          currentHP = gameState.currentHP;
+        currentStamina = gameState.currentStamina;
+        generateCave = gameState.generateCave;
+        yourItems = JSON.parse(gameState.yourItems);
+        overworldChunks = JSON.parse(gameState.overworldChunks);
+        housechunks = JSON.parse(gameState.houseChunks);
+        caveChunks = JSON.parse(gameState.caveChunks);
+        seachunks = JSON.parse(gameState.seachunks);
+        abysschunks = JSON.parse(gameState.abysschunks);
+        if (gameState.savedinworld) {
+        player.savedinworld = (gameState.savedinworld);
+        }
+        if (gameState.hellchunks) {
+          hellchunks = JSON.parse(gameState.hellchunks);
+        }
+        if (gameState.hellchunks) {
+            hellchunks = JSON.parse(gameState.hellchunks);
+        }
+        if (gameState.house2chunks) {
+            house2chunks = JSON.parse(gameState.house2chunks);
+        }
+        if (gameState.inhell) {
+          inhell = gameState.inhell
+        }
+        if (gameState.isinhouse2) {
+    isinhouse2 = gameState.isinhouse2
+}
+if (gameState.dayscount) {
+    surviveddays = gameState.dayscount
+}
+ if (gameState.spawnX) {
+            player.spawnX = gameState.spawnX
+            player.spawnY = gameState.spawnY
+        }
+        if (typeof gameState.renderedEnemies === "string") {
+          renderedEnemies = JSON.parse(gameState.renderedEnemies);
+        } else {
+          renderedEnemies = (gameState.renderedEnemies);
+        }
+
+        oxygen = gameState.oxygen;
+        inabyss = gameState.inabyss;
+        isunderwater = gameState.isunderwater;
+        isinhouse = gameState.isinhouse;
+        chunks = JSON.parse(gameState.chunks);
+
+if (isinhouse2 == 1) {
+    chunks = house2chunks;
+}else        if (inabyss == 1) {
+    chunks = abysschunks;
+}else if (isunderwater == 1) {
+          chunks = seachunks;
+        } else if (generateCave == 1) {
+          chunks = caveChunks;
+        } else if (isinhouse == 1) {
+          chunks = housechunks;
+        } else if (inhell == 1) {
+          chunks = hellchunks;
+        } else {
+
+        }
+
+        updateInventory();
+        updateCrafting();
+        
+
+        setTimeout(() => {
+          hideLoadingScreen(); // Ukrycie ekranu ładowania po zakończeniu
+          playMusic(); // Odtworzenie muzyki
+        }, 500); // Minimalne opóźnienie, aby efekt był zauważalny
+        setTimeout(function() {
+          updfixbug = 0
+        }, 1000)
+
+        document.querySelectorAll('button[data-var]').forEach(button => {
+          const varName = button.getAttribute('data-var');
+          updateButtonStyle(button, options[varName]);
+        });
+        playMusic();
+     
+        } catch (error) {
+            console.error("Error loading data: ", error);
+            customAlert("Error loading data: " + error.message);
+            hideLoadingScreen();
+        }
+    };
+    reader.readAsText(file);
+}
+ 
+
+
+
+ 
+ 
+</script>
 <!-- Modal dla kodu cheatów -->
 <div id="cheatModal" class="modal">
     <div class="modal-content">
@@ -13759,7 +15498,7 @@ updateButtonStyle(button, options[varName]);
 function updateButtonStyle(button, value) {
   const varName = button.getAttribute('data-var');
   if(varName!=="creativemode"&&varName!=="noclip"){
-    button.style.backgroundColor = value === 0 ? "darkred" : "green";
+    button.style.backgroundColor = (value === 0||value === undefined) ? "darkred" : "green";
   }else{
     button.style.backgroundColor = value === 0 ? "grey" : "green";
   }
@@ -13794,10 +15533,10 @@ function toggleadvanced() {
   const advanced = document.getElementById("advanced");
   advanced.style.display = (advanced.style.display === "none" || advanced.style.display === "") ? "flex" : "none";
 }
-let langPlactive=0;
+
 var langPl = {
-     
     items:{
+chest: "Skrzynia",
     hellsapling: "Sadzonka piekieł",
     abysssapling: "Sadzonka otchłani",
     hell_boomerang: "Piekielny boomerang",
@@ -13882,6 +15621,7 @@ var langPl = {
     hellgem: "Piekielny klejnot",
     hellwall2: "Piekielna ściana",
     titaniumbuff:  "tytanowy buff",
+    osmiumbuff:  "osm buff",
     hellbuff: "Piekielny buff",
     table: "Stół",
     compass: "Kompas",
@@ -13954,6 +15694,8 @@ var langPl = {
     energybowl: "Miska energii",
     healthbowl: "Miska zdrowia",
     iron_sword: "Żelazny miecz",
+    hypersword: "Hiper miecz",
+    toxicsword:"Toksyczny Miecz",
     spikegod_essence: "Esencja boga kolców",
     voltary_essence: "Esencja voltary'ego",
     unknown: "???",
@@ -14111,6 +15853,8 @@ var langPl = {
     titaniummace: "Tytanowy Buzdygan",
     salt: "Sól",
     titaniumbar: "Tytan",
+    osmiumbar:"Osm",
+    osmiumsword:"Miecz z osmytu",
     titaniumdioxide: "Dwutlenek tytanu",
     
     coconut:"Kokos ",
@@ -14144,7 +15888,25 @@ var langPl = {
 
         var slots = 8;  // Max slots
         var allItems = { // Definicja tekstur przedmiotów
-
+lit_kiln:"./lit_kiln1.png",
+chest: "./chest.png",
+cavebuilder: "./cavebuilder.png",
+wolframite:"./wolframite.png",
+  wolframaxe:"./wolframaxe.png",
+  uraniumaxe:"./uraniumaxe.png",
+  wolfram:"./wolfram.png",
+zombieflesh:"./flesh.png",
+  cavedirt:"./cavedirt.png",
+  randomrock1:"./randomrock1.png",
+  randomrock2:"./randomrock2.png",
+osm: "./osm.png",
+  osmiumbar: "./osmiumbar.png",
+  osmiumbuff: "./osmiumbuff.png",
+  osmiumsword: "./osmiumsword.png",
+  osmium: "./osmium.png",
+  uranium: "./uranium.png",
+  toxicsword: "./toxicsword.png",
+  
 carrot: "./carrot.png",
 sushi: "./sushi.png",
 shell1: "./shell1.png",
@@ -14359,7 +16121,7 @@ rainbow:"./rainbow.png",
         candy: "./candy.png",
   energybowl: "./energybowl.png",
   healthbowl: "./healthbowl.png",
-
+hypersword:"./hypersword.png",
   iron_sword: './iron-sword.png',
   spikegod_essence: './spikegodspawner.png',
   voltary_essence: './voltaryspawner.png',
@@ -14529,6 +16291,7 @@ stone_floor: './stone_floor.png',
   titaniumsword: "./titaniumsword.png",
   titaniummace: "./titaniummace.png",
   salt: './salt.png',
+  
   titaniumbar: './titaniumbar.png',
   titaniumdioxide: './titaniumdioxide.png',
         };
@@ -14549,22 +16312,22 @@ stone_floor: './stone_floor.png',
 "woodboard": [["log", "sharpstone"]],
 "pointed_stick": [["longstick", "sharpstone"]],
 "fireroll": [["fiber", "fiber","woodboard","woodboard","birch-powder"]],
-"stone_floor": [["stone", "stone", "stone", "stone", "stone", "stone"]],
-"fiber_floor": [["fiber", "fiber", "fiber", "fiber", "fiber", "fiber"]],
+"stone_floor": [["stone", "stone", "stone"  ]],
+
 "log_wall": [["log", "log", "log", "log"]],
 "stone_wall": [["bigrock", "bigrock", "bigrock", ]],
 "cordage": [["fiber", "treebark"]],
 "stone_axe": [["longstick", "sharpstone","cordage"]],
 "stoneshovel": [["longstick", "sharpstone","cordage","cordage"]],
 "thistleroot": [["thistle"]],
-"brickwall": [["clay", "brick", "brick", "brick"]],
-"brickfloor": [["clay", "brick", "brick", "brick"]],
+"brickwall": [["clay", "brick", "brick"]],
+"brickfloor": [["clay", "brick", "brick"]],
 "clayblock1": [["clay", "clay"]],
 "ashfloor": [["ash", "ash","ash"]],
 "fiber_fabric": [["fiber", "fiber","fiber"]],
 "extrabag": [["fiber_fabric", "fiber_fabric","fiber_fabric"]],
 "wood_manipulator":[["iron_bar","woodboard","log_wall","log_wall"]],
-"gypsumfloor":[["gypsum","gypsum"]],
+"gypsumfloor":[["gypsum"]],
 "fermentator": [["bowl", "fiber_fabric", "fiber_fabric"]],
 "flour": [["rye", "rye"]],
 "opalblock": [["opal"]],
@@ -14599,17 +16362,18 @@ stone_floor: './stone_floor.png',
 "goodarrows": [["stick","rarefeather","sharpstone"]],
 "powerfullarrows": [["stick","mythicfeather","sharpstone"]],
 "plantmaker": [["woodboard","grasslayer","yellow","woodboard"]],
-
+"chest": [["woodboard","log","woodboard","woodboard","woodboard"]],
         };
         var canbedecrafted=["brickwall","clayblock1","ashfloor","cordage","fiber","fireplow","stone_wall","fiber_floor","torch","campfire","brickfloor","fireroll","decrafter","log_floor","log_wall","sharpstone","pointed_stick","thistleroot","woodboard","hand_torch","stoneshovel","stone_axe","iron_spear","copper_spear","fiber_fabric","extrabag","cavemakingpickaxe","pickaxe","opalblock","emeraldblock","emeraldfloor","sapphireblock","sapphirefloor","rubyfloor","rubyblock","planks","planks_floor","houseroof","house_wall","furnace","kiln","campfire","decrafter","log_floor","log_wall","stone_floor","gelblock","aquaspear","goodsword","universesword","sharpsaw","nightsword","fleshsaber","goodmace","truegodsword","trueuniversesword","iron_mace","iron_sword","sharpmace","aquagodshell","deepgodspawner","voltary_essence",
-        "fleshdumbass","housewall","houseroof","housefloor","planks_floor","planks","table","titaniumbuff","titaniumsword","lamptorch","brickfloor2","trueuniversespawner","deepgodspawner","hellbuff","hellsword","moltensword","knive","hellknive","magicwand","magicwandofsharp","hyperblastwand","greenwand","blower","forestleaf","titanium_boomerang","boomerang","good_boomerang","gypsumroof","gypsumhouse","gypsumdoor","sing","hallucinate","stonesing","dracobuff","plantmaker","cauldron","titaniumbar","fountain","textstone","stairsup"
+        "fleshdumbass","housewall","houseroof","housefloor","planks_floor","planks","table","titaniumbuff","titaniumsword","lamptorch","brickfloor2","trueuniversespawner","deepgodspawner","hellbuff","hellsword","moltensword","knive","hellknive","magicwand","magicwandofsharp","hyperblastwand","greenwand","blower","forestleaf","titanium_boomerang","boomerang","good_boomerang","gypsumroof","gypsumhouse","gypsumdoor","sing","hallucinate","stonesing","dracobuff","plantmaker","cauldron","titaniumbar","fountain","textstone","stairsup","hypersword","osmiumbar","osmiumsword","osmiumbuff","toxicsword","leafbowl", "wolframaxe","uraniumaxe","chest","cavebuilder"
         ]
 var plantmakerrecipes = {
     //blueflower2 deepblues daffodil myosotis poppy nettle
     "grasslayer": [["gelblock"]],
     "deadgrassfloor2": [["gelblock"]],
+    "sandblock2": [["gelblock"]],
     "snowgrass2": [["gelblock","gel"]],
-    "yellow": [["gel","gel","gel"]],
+    "yellow": [["gel","gel"]],
     "deepblues": [["gel","gel","gel"]],
     "poppy": [["gel","gel","gel","gel"]],
     "redflower2": [["gel","gel"]],
@@ -14622,9 +16386,10 @@ var plantmakerrecipes = {
     "flax": [["gel","gel","gel"]],
     "fern": [["gel","gel","gel"]],
     "violet": [["gel","gel","gel"]],
-    "daffodil": [["gel","gel","gel"]],
+    "daffodil": [["gel","gel"]],
     "tallgrass": [["gel"]],
-    "snowflower": [["gel","gel","gel"]],
+    "toadstool": [["gel","gel","gel"]],
+    "snowflower": [["gel","gel"]],
 }
 var campfirerecipes = {
 "cooked_thistleroot": [["thistleroot"]],
@@ -14667,6 +16432,7 @@ var wood_manipulator_recipes = {
 "gypsumdoor": [["door", "gypsum"]],
 "polishedfloor": [["bigrock","sharpstone"]],
 "stairsup": [["bigrock", "bigrock","bigrock"]],
+"fiber_floor": [["fiber"]],
 }
 var furnacerecipes = {
 "copper": [["chalcopyrite", "coal"]],
@@ -14695,6 +16461,10 @@ var furnacerecipes = {
 "friedegg": [["eggs"]],
 "cauldron": [["bigrock","iron_bar"]],
 "fountain": [["bigrock","stick"]],
+"wolframaxe": [["wolfram","wolfram","iron_bar","longstick"]],
+"wolfram": [["wolframite", "coal"]],
+"uraniumaxe": [["uranium","uranium","wolframaxe","longstick"]],
+"cavebuilder":[["bigrock","bigrock","sharpstone"]]
 }
 var cauldronrecipes = {
     "bowl": [["clay", "clay", "clay", "clay", "clay", "clay"]],
@@ -14752,7 +16522,9 @@ var anvilrecipes = {
 "lamptorch": [["torch","iron_bar","longstick"]],
 "iron_sword": [["iron_bar","iron_bar","iron_spear"]],
 "titaniumsword": [["titaniumbar","titaniumbar","iron_sword"]],
+"osmiumsword": [["osmiumbar","osmiumbar","iron_sword"]],
 "titaniumbuff": [["titaniumbar","titaniumbar","titaniumbar","evileye","evileye"]],
+"osmiumbuff": [["osmiumbar","osmiumbar","osmiumbar","evileye","soulofsharp"]],
 "hellbuff": [["titaniumbuff","hellgem","hellessence","evileye","evileye"]],
 "dracobuff": [["universefragment","hellbuff","coloressence"]],
 "titaniummace": [["titaniumbar","titaniumbar","iron_mace"]],
@@ -14780,6 +16552,7 @@ var anvilrecipes = {
 "trueuniversesword": [["trueuniverseorb","trueuniverseorb","universesword"]],
 "can": [["titaniumbar"]],
 "bottle": [["glass", "glass"]],
+
 //"cave_wall": [["bigrock", "stone"]],
 }
 var redanvilrecipes={
@@ -14789,6 +16562,8 @@ var redanvilrecipes={
   "magicwand": [["magicgem","greenwand","abysscore","frozeningot","soulofsharp","desertcore"]],
   "magicwandofsharp": [["magicwand","magicgem","soulofsharp","soulofsharp","fleshvolume","fleshvolume"]],
   "hyperblastwand": [["magicwandofsharp","magicgem","magicgem","universefragment","coloressence"]],
+  "hypersword":[["trueuniversesword","desertcore","fleshvolume"]],
+  "toxicsword":[["trueuniversesword","uranium","uranium","uranium","uranium"]]
 }
 let itemsDurabilities = { "pickaxe":90 , "arrows": 32 , "goodarrows": 50,"powerfullarrows": 50};
 let yourItemsDurabilities = []; 
@@ -14798,6 +16573,7 @@ var alchemy_tableRecipes = {
   "mercurybottle": [["bottle","cinnabar","cinnabar"]],
   "cinnabargeode": [["cinnabar","cinnabar","cinnabar"]],
   "titaniumdioxide": [["ilmenite"]],
+  "osmiumbar":[["ilmenite","osmium"]]
 }
 var fermentatorRecipes = {
 "yeast": [["flour", "sugar", "bowl_with_water"]],
@@ -15204,16 +16980,11 @@ function deconstructItem(item) {
     }
 }
 
-
+var aschest=0;
         // Otwórz ekwipunek
         function openInventory() {
-           
    offsetX = (Math.floor(offsetX / 32) * 32) + 17; // Zaokrąglamy offsetX
 offsetY = (Math.floor(offsetY / 32) * 32) + 10; // Zaokrąglamy offsetY
-   
-     
-  
-
           if(options.autopause==1){
           paused=1
           }else{
@@ -15224,10 +16995,27 @@ offsetY = (Math.floor(offsetY / 32) * 32) + 10; // Zaokrąglamy offsetY
             updateInventory();
             updateCrafting();
         }
+ 
+        // Globalne zmienne
+let activeChest = false;         // Określa, czy skrzynka jest otwarta
+let chestItems = [];             // Tablica przechowująca przedmioty w skrzynce
+const chestMaxItems = 20;        // Maksymalna liczba przedmiotów w skrzynce
+
+// Funkcja otwierająca ekwipunek razem ze skrzynką
+function openInventory2() {
+    if (!activeChest) return; 
+    document.getElementById("inventory").style.visibility = "visible";
+    document.getElementById("inventory").style.pointerEvents = "all";
+updateCrafting(); updateInventory();
+     
+}
+
+ 
+
 
         // Zamknij ekwipunek
         function closeInventory() {
-          
+          activeChest=false;
 if (options.autopause == 1) {
   paused = 1
   setTimeout(function(){paused=0; update() },300);
@@ -15273,6 +17061,8 @@ if (options.autopause == 1) {
         // Funkcja craftingu – usuwa wymagane przedmioty i dodaje crafted item
         let achievementsfromcrafting={
             "iron_bar":["Metal century",0],
+            "chest":["Storing data inside",0],
+            "cavebuilder":["Damn, I'll finally plug the hole",0],
             "yellow":["Botanics !",0],
             "climbhill":["Fake environment creator",2],
             "campfire":["Fake environment creator",2],
@@ -15290,6 +17080,7 @@ if (options.autopause == 1) {
             "greenwand":["Hagrid ?",2],
             "door":["<span style='color:yellow;' > Its Time to build a house</span>",0],
             "titaniumbuff":["Buff yourself ",0],
+            "osmiumbuff":["You choosed regeneration?",0],
             "hellbuff":["Made in hell",2],
             "dracobuff":["Made in heaven",1],
             "titaniumbar":["Light and hard metal ",0],
@@ -15468,10 +17259,11 @@ if(checkIfItems("bow",1)||checkIfItems("nightbow",1)||checkIfItems("darkbow",1)|
             const miniMenu = document.createElement("div");
             miniMenu.classList.add("mini-menu");
             miniMenu.style.position = "absolute";
-            miniMenu.style.bottom = "100%"; // Wyświetlanie nad slotem
+            miniMenu.style.bottom = "-100%"; // Wyświetlanie nad slotem
             miniMenu.style.left = "50%";
             miniMenu.style.transform = "translateX(-50%)";
             miniMenu.style.backgroundColor = "#333"; // Ciemne tło
+            miniMenu.style.zIndex="2"
             miniMenu.style.color = "#fff"; // Jasny tekst
             miniMenu.style.padding = "5px";
             miniMenu.style.borderRadius = "5px";
@@ -15685,57 +17477,152 @@ function canCraftAny(recipeVariants) {
 
 // Helper function to check if any variant of a recipe can be crafted
 
-
+var chestsData={};
 function updateCrafting() {
     const craftingContainer = document.getElementById("crafting");
     craftingContainer.innerHTML = "";  // Clear current recipes
+ 
+    if (activeChest && Array.isArray(activeChest) && activeChest.length >= 2) {
+     
+    let chestKey = `${activeChest[0]},${activeChest[1]}`;
 
-    let activeRecipes = { ...recipes };  // Base recipes
+    if (!chestsData[chestKey]) {
+        console.error("Błąd: Skrzynia o kluczu", chestKey, "nie istnieje!");
+        return;
+    }
+let container = document.createElement("div");
+container.className = "slots2";
+    for (let i = 0; i < 20; i++) {
+        let slot = document.createElement("div");
+        slot.className = "chestslot";
+        let slotName = document.createElement("span");
+        slotName.classList.add("chestslot-name"); 
+        let item = chestsData[chestKey][i]; 
+        if (item) {
+            const recipeImg = document.createElement("img");
+            recipeImg.src = allItems[item] || "";  
+            slot.dataset.item = JSON.stringify([chestKey, i]);
 
-    // Check proximity to various stations and add relevant recipes
+            slot.addEventListener("click", function () {
+                let [chestKey, index] = JSON.parse(slot.dataset.item);
+                
+ if (chestsData[chestKey] && chestsData[chestKey][index] !== undefined) {
+   if(checkEmptySlots(0)){
+    addItem(chestsData[chestKey][index], 1);
+    chestsData[chestKey].splice(index, 1); // Usuwa element zamiast go zastępować null
+    updateCrafting();
+   }else{
+     if (!langPlactive) {
+  TextPopUp("no space");
+} else {
+  TextPopUp("Brak miejsca");
+}
+     
+   }
+}});
+            slot.appendChild(recipeImg);
+            slotName.innerHTML = item;
+        } else {
+            slotName.innerHTML = ""; 
+        }
+        slot.appendChild(slotName);
+        container.appendChild(slot);
+        craftingContainer.appendChild(container);
+    }
+    return;
+} else {
+     
+}
+ 
+    let activeRecipes = { ...recipes };  
 if (isNearFurnace(player.x, player.y)) {
     activeRecipes = { ...activeRecipes, ...furnacerecipes };
+    if(langPlactive==1){
+      craftingContainer.innerHTML += "<h3>Odkryto Piec</h3>";
+    }else{
     craftingContainer.innerHTML += "<h3>Discovered the Furnace!</h3>";
+    }
 }
 if (isNearCauldron(player.x, player.y)) {
     activeRecipes = { ...activeRecipes, ...cauldronrecipes };
+    if (langPlactive == 1) {
+  craftingContainer.innerHTML += "<h3>Kocioł Ugotuj coś !</h3>";
+} else {
     craftingContainer.innerHTML += "<h3 style='color: pink' >Cauldron Cook something !</h3>";
+}
 }
 if (isNearCampfire(player.x, player.y)) {
     activeRecipes = { ...activeRecipes, ...campfirerecipes };
+    if (langPlactive == 1) {
+  craftingContainer.innerHTML += "<h3>Jest tu naprawdę ciepło ..</h3>";
+} else {
     craftingContainer.innerHTML += "<h3>It's really nice and hot</h3>";
+}
 }
 if (isNearPlanter(player.x, player.y)) {
     activeRecipes = { ...activeRecipes, ...plantmakerrecipes };
+    if (langPlactive == 1) {
+  craftingContainer.innerHTML += "<h3 style='color:lime;'>Zieolony świat</h3>";
+} else {
     craftingContainer.innerHTML += "<h3 style='color:lime;'>World is Green</h3>";
+}
 }
 if (isNearKiln(player.x, player.y)) {
     activeRecipes = { ...activeRecipes, ...kiln_recipes };
+if (langPlactive == 1) {
+  craftingContainer.innerHTML += "<h3>Twarde Cegły</h3>";
+} else {
     craftingContainer.innerHTML += "<h3>Hard Bricks!</h3>";
+}
 }
 if (isNearUnknown(player.x, player.y)) {
     activeRecipes = { ...activeRecipes, ...unknownrecipes };
+    if (langPlactive == 1) {
+  craftingContainer.innerHTML += "Nieznany jest stała do przywolywania bossów <h3 style='color:red'> Ważne: Nie klikaj w go gdy trzymasz spawner bossa to może go przywołać gdy nie jesteś jeszcze na to gotowy</h3>";
+} else {
     craftingContainer.innerHTML += "Unknown is an ancient statue for summoning ancient bosses. <h3 style='color:red'> Note: Do not click it while you are holding special summons that you can craft because this can summon a boss while you're not ready for it. Make a save first before the boss.</h3>";
+}
 }
 if (isNearRedanvil(player.x, player.y)) {
     activeRecipes = { ...activeRecipes, ...redanvilrecipes };
+    if (langPlactive == 1) {
+  craftingContainer.innerHTML += "Możesz stworzyć <h3 style='color:yellow'>Magiczne przedmioty</h3>";
+}else{
     craftingContainer.innerHTML += "You can craft <h3 style='color:yellow'>Magic items</h3>";
+}
 }
 if (isNearAlchemyTable(player.x, player.y)) {
     activeRecipes = { ...activeRecipes, ...alchemy_tableRecipes };
+    if (langPlactive == 1) {
+  craftingContainer.innerHTML += "<h3>Jesteś doświadczonym alchemikiem ;) </h3>";
+} else {
     craftingContainer.innerHTML += "<h3>You are a skilled alchemist :)</h3>";
+}
 }
 if (isNearFermentator(player.x, player.y)) {
     activeRecipes = { ...activeRecipes, ...fermentatorRecipes };
+    if (langPlactive == 1) {
+  craftingContainer.innerHTML += "<h3>Choduj kolonie bakterii :) </h3>";
+} else {
     craftingContainer.innerHTML += "<h3>You can farm a bacteria colony's ;) </h3>";
+}
 }
 if (isNearWoodManipulator(player.x, player.y)) {
     activeRecipes = { ...activeRecipes, ...wood_manipulator_recipes };
+    if (langPlactive == 1) {
+  craftingContainer.innerHTML += "<h3>Urzywasz manipulatora drewna :) </h3>";
+} else {
     craftingContainer.innerHTML += "<h3>Using Wood Manipulator Station :)</h3>";
 }
+}
 if (isNearAnvil(player.x, player.y)) {
+  
     activeRecipes = { ...activeRecipes, ...anvilrecipes };
+    if (langPlactive == 1) {
+  craftingContainer.innerHTML += "<h3>Kowadło twórz bronie i zbroje!</h3>";
+} else {
     craftingContainer.innerHTML += "<h3>Forge weapons and armor at the Anvil!</h3>";
+}
 }
 //alert(JSON.stringify(activeRecipes))
     // Loop through active recipes and display those that can be crafted or should be shown
@@ -15747,7 +17634,7 @@ if (isNearAnvil(player.x, player.y)) {
         // Create div for each recipe item
         const recipeDiv = document.createElement("div");
         recipeDiv.classList.add("recipe");
-
+ 
         // Set opacity if the item can't be crafted (in "show all" mode)
         if (!canCraftRecipe && showAllRecipes) {
             recipeDiv.style.opacity = "0.5";
@@ -15820,8 +17707,11 @@ if(variant){
 
     // Deconstruction feature if near the decrafter
     if (isNearDecrafter(player.x, player.y)) {
+       if (langPlactive == 1) {
+  craftingContainer.innerHTML += "<h3>Dekonstrułowanie przedmiotów </h3>";
+}else{
         craftingContainer.innerHTML = "<h3>Deconstruction Menu</h3>";
-
+}
         canbedecrafted.forEach(item => {
             if (yourItems.includes(item)) {
                 const recipeDiv = document.createElement("div");
@@ -15963,6 +17853,9 @@ if (gameState.achievements1 !== null && gameState.achievements1) {
 } else {
     achievements = []
 }
+if(gameState.chestsData){
+  chestsData=JSON.parse(gameState.chestsData)
+}
         inhell = 0; isinhouse = 0; isinhouse2 = 0; inabyss = 0; isunderwater = 0;
         curseofgos = gameState.curseofgos;
         offsetX = gameState.offsetX;
@@ -15972,7 +17865,19 @@ if (gameState.achievements1 !== null && gameState.achievements1) {
         nightpower = gameState.nightpower;
         slots = gameState.slots;
         cannotmove = gameState.cannotmove;
-        options = JSON.parse(gameState.options);
+ if (options) {
+    let gameStateOptions = JSON.parse(gameState.options);
+    console.log(JSON.stringify(gameStateOptions)+";"+JSON.stringify(options))
+    Object.keys(options).forEach(key => {
+        if (!(key in gameStateOptions)) {
+            gameStateOptions[key] = options[key];
+        }
+    });
+    options = gameStateOptions;
+}
+ 
+
+
         activatedCheats = gameState.activatedCheats;
         yourItemsDurabilities = JSON.parse(gameState.yourItemsDurabilities),
           currentHP = gameState.currentHP;
@@ -16055,7 +17960,7 @@ if (isinhouse2 == 1) {
         });
         playMusic();
       };
-
+options.shoot=1
       request.onerror = function(event) {
         customAlert("Failed to load game: " + event.target.errorCode);
         hideLoadingScreen(); // Ukrycie ekranu ładowania w przypadku błędu
@@ -16100,6 +18005,9 @@ if (gameState.achievements1 !== null && gameState.achievements1) {
 } else {
     achievements = []
 }
+if (gameState.chestsData) {
+  chestsData = JSON.parse(gameState.chestsData)
+}
         inhell = 0; isinhouse = 0; isinhouse2 = 0; inabyss = 0; isunderwater = 0;
         curseofgos = gameState.curseofgos;
         offsetX = gameState.offsetX;
@@ -16109,7 +18017,21 @@ if (gameState.achievements1 !== null && gameState.achievements1) {
         nightpower = gameState.nightpower;
         slots = gameState.slots;
         cannotmove = gameState.cannotmove;
-        options = JSON.parse(gameState.options);
+ 
+if (options) {
+    let gameStateOptions = JSON.parse(gameState.options);
+    console.log(JSON.stringify(gameStateOptions)+";"+JSON.stringify(options))
+    Object.keys(options).forEach(key => {
+        if (!(key in gameStateOptions)) {
+            gameStateOptions[key] = options[key];
+        }
+    });
+    options = gameStateOptions;
+}
+ 
+
+
+
         activatedCheats = gameState.activatedCheats;
         yourItemsDurabilities = JSON.parse(gameState.yourItemsDurabilities),
           currentHP = gameState.currentHP;
@@ -16191,8 +18113,11 @@ if (isinhouse2 == 1) {
           updateButtonStyle(button, options[varName]);
         });
         playMusic();
+        
+ options.autopause = 1;
+ 
       };
-
+options.shoot=1
       request.onerror = function(event) {
         customAlert("Failed to load game: " + event.target.errorCode);
         hideLoadingScreen(); // Ukrycie ekranu ładowania w przypadku błędu
@@ -16268,7 +18193,7 @@ savedtimes++;
                 isinhouse2:isinhouse2,
                 inhell,
                 dayscount:surviveddays,
-                
+                chestsData:JSON.stringify(chestsData),
                 spawnX: player.spawnX ,
                 spawnY: player.spawnY ,
                 chunks: JSON.stringify(chunks),
@@ -16298,15 +18223,18 @@ function showLoadingScreen() {
     loadingScreen.style.height = "100vh";
     loadingScreen.style.opacity = "0.5";
     loadingScreen.style.backgroundColor = "black";
-    loadingScreen.style.zIndex = "99999999999";
+    loadingScreen.style.zIndex = "9";
     loadingScreen.style.display = "flex";
     loadingScreen.style.justifyContent = "center";
     loadingScreen.style.alignItems = "center";
     loadingScreen.style.color = "white";
-    loadingScreen.style.fontSize = "15px";
+    loadingScreen.style.fontSize = "13px";
     loadingScreen.style.fontFamily = "Arial, sans-serif";
     loadingScreen.textContent = "be patient, loading can take some time ...";
+    
     document.body.appendChild(loadingScreen);
+    updateTextMenuLoading()
+    splashrandomize()
 }
 
 function hideLoadingScreen() {
@@ -16862,7 +18790,7 @@ document.addEventListener('keyup', (e) => {
     if (e.key === 'd') moveRight = false;
     if (e.key === 'w') moveUp = false;
     if (e.key === 's') moveDown = false;
-});
+}); 
 
     </script>
     
@@ -16914,3 +18842,4 @@ updateFPS();
     <div onclick="document.getElementById('allachievements').style.display='none' " style="position: absolute; width:9px; height:9px; background:  rgb(100,10,10); top:5px; right:5px; padding :6px; color:white;">x</div>
     <div id="allachievements2"></div>
 </div>
+ 
